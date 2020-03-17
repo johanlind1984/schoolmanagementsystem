@@ -8,6 +8,7 @@ public class Person {
 
     @Id
     @Column(name="person_username")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String studentId;
 
     @Column(name="first_name")
@@ -16,8 +17,8 @@ public class Person {
     @Column(name="last_name")
     private String lastName;
 
-    @Column(name="personal_number")
-    private String personalNumber;
+    @Column(name="PIN")
+    private String personalIdentityNumber;
 
     @Column(name="email")
     private String email;
@@ -52,12 +53,12 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public String getPersonalNumber() {
-        return personalNumber;
+    public String getPersonalIdentityNumber() {
+        return personalIdentityNumber;
     }
 
-    public void setPersonalNumber(String personalNumber) {
-        this.personalNumber = personalNumber;
+    public void setPersonalNumber(String personalIdentityNumber) {
+        this.personalIdentityNumber = personalIdentityNumber;
     }
 
     public String getEmail() {
