@@ -28,6 +28,7 @@ public class startViewController {
         return "welcome-" + credentials.getUserPermission();
 
     }
+  
     public void setUser(Person user) {
         this.user = user;
     }
