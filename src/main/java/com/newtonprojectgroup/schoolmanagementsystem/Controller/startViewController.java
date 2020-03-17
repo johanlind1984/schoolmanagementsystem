@@ -17,13 +17,7 @@ public class startViewController {
 
     @RequestMapping("/greetuser")
     public String greetUser(Model theModel) {
-        if(user!=null) {
-            theModel.addAttribute("theuser", user);
-            return "welcome-" + credentials.getUserPermission();
-        }
-
-        return "login-failed";
-
+        return "welcome-" + credentials.getUserPermission();
     }
     public void setUser(Person user) {
         this.user = user;
