@@ -8,7 +8,10 @@ public class Person {
 
     @Id
     @Column(name="person_username")
+<<<<<<< HEAD
     //@GeneratedValue(strategy = GenerationType.AUTO)
+=======
+>>>>>>> Projektgrupp
     private String studentId;
 
     @Column(name="first_name")
