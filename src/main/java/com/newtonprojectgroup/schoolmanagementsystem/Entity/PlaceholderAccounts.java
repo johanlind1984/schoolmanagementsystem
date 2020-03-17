@@ -4,13 +4,12 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name="placeholderaccounts")
+@Table(name = "placeholderaccounts")
 public class PlaceholderAccounts {
 
     @Id
     @Column(name = "username_ph")
-    //@GeneratedValue(strategy = GenerationType.AUTO)
-    private String studentId;
+    private String username_ph;
 
     @Column(name = "password")
     private char[] password;
@@ -33,12 +32,12 @@ public class PlaceholderAccounts {
     public PlaceholderAccounts() {
     }
 
-    public String getStudentId() {
-        return studentId;
+    public String getUsername_ph() {
+        return username_ph;
     }
 
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
+    public void setUsername_ph(String username_ph) {
+        this.username_ph = username_ph;
     }
 
     public String getFirstName() {
