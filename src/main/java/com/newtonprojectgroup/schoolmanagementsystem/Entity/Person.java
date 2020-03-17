@@ -8,7 +8,6 @@ public class Person {
 
     @Id
     @Column(name="person_username")
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private String studentId;
 
     @Column(name="first_name")
