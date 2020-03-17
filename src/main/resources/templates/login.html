@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Login - School Management System</title>
-    <h1 align="center">Please login</h1>
-    <form action="#" th:action="@{/checkcredentials}" th:object="${credentials}" method="post">
-        <p>Username<input type="text" th:field="*{userName}" /></p>
-        <p>Password: <input type="password" th:field="*{password}" /></p>
-        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-    </form>
+    <title>Creative Colorlib SignUp Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- Custom Theme files -->
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- //Custom Theme files -->
+    <!-- web font -->
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+    <!-- //web font -->
 </head>
 <body>
-
+<h1 align="center">School Management System</h1>
+<br><br><br><br>
+<form action="#" th:action="@{/checkcredentials}" th:object="${credentials}" method="post">
+    <p align="center">Username: <input type="text" th:field="*{userName}"  /></p>
+    <br>
+    <p align="center">Password: <input type="password" th:field="*{password}"/></p>
+    <br>
+    <p align="center"><input type="submit" value="Log In" /> </p>
+    <p align="center"><input type="submit" value="Register As New User" /></p>
+</form>
 </body>
 </html>

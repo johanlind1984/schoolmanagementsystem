@@ -19,12 +19,12 @@ public class startViewController {
     private Person user;
     private Credentials credentials;
 
-
     public startViewController() {
     }
 
     @RequestMapping("/greetuser")
     public String greetUser(Model theModel) {
+        theModel.addAttribute("theuser", user);
         return "welcome-" + credentials.getUserPermission();
 
     }
