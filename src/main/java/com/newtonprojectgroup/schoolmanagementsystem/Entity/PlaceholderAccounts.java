@@ -32,14 +32,8 @@ public class PlaceholderAccounts {
     @Column(name = "adress")
     private String adress;
 
-    public PlaceholderAccounts(String username_ph, char[] password, String firstName, String lastName, String personalNumber, String email, String adress) {
-        this.username_ph = username_ph;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.personalNumber = personalNumber;
-        this.email = email;
-        this.adress = adress;
+    public PlaceholderAccounts() {
+
     }
 
     public String getUsername_ph() {
