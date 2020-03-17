@@ -9,9 +9,7 @@ public class PlaceholderAccounts {
 
     @Id
     @Column(name = "username_ph")
-    private String username_ph;
-
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private String studentId;
 
     @Column(name = "password")
@@ -33,15 +31,6 @@ public class PlaceholderAccounts {
     private String adress;
 
     public PlaceholderAccounts() {
-
-    }
-
-    public String getUsername_ph() {
-        return username_ph;
-    }
-
-    public void setUsername_ph(String username_ph) {
-        this.username_ph = username_ph;
     }
 
     public String getStudentId() {
