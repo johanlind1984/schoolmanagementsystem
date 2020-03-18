@@ -3,6 +3,7 @@ package com.newtonprojectgroup.schoolmanagementsystem.Entity;
 import javax.persistence.*;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name="person")
 public class Person {
 
@@ -24,6 +25,10 @@ public class Person {
 
     @Column(name="adress")
     private String adress;
+
+    @ManyToOne
+    @JoinColumn(name="person_type_id", nullable=false)
+    private PersonType personType;
 
     public Person() {
     }
@@ -76,4 +81,11 @@ public class Person {
         this.adress = adress;
     }
 
+    public PersonType getPersonType() {
+        return personType;
+    }
+
+    public void setPersonType(PersonType personType) {
+        this.personType = personType;
+    }
 }

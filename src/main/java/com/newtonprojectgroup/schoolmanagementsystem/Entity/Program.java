@@ -22,6 +22,9 @@ public class Program {
     )
     private List<Course> courseList;
 
+    @OneToMany(mappedBy="enlistedProgram")
+    private List<Student> studentList;
+
 
     public Program() {
     }
@@ -48,5 +51,13 @@ public class Program {
 
     public void setCourseList(List<Course> courseList) {
         this.courseList = courseList;
+    }
+
+    public List<Student> getStudentList() {
+        return studentList;
+    }
+
+    public void setStudentList(List<Student> studentList) {
+        this.studentList = studentList;
     }
 }
