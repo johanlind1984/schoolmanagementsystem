@@ -3,6 +3,7 @@ package com.newtonprojectgroup.schoolmanagementsystem.Entity;
 import net.bytebuddy.asm.Advice;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="student")
@@ -19,6 +20,9 @@ public class Student extends Person {
     @ManyToOne
     @JoinColumn(name="student_program_id", nullable=false)
     private Program enlistedProgram;
+
+    @OneToMany(mappedBy = "gradedStudent")
+    private List<StudentGrade> studentGrades;
 
     public Student() {
     }
@@ -47,5 +51,13 @@ public class Student extends Person {
 
     public void setEnlistedProgram(Program enlistedProgram) {
         this.enlistedProgram = enlistedProgram;
+    }
+
+    public List<StudentGrade> getStudentGrades() {
+        return studentGrades;
+    }
+
+    public void setStudentGrades(List<StudentGrade> studentGrades) {
+        this.studentGrades = studentGrades;
     }
 }

@@ -1,10 +1,7 @@
 package com.newtonprojectgroup.schoolmanagementsystem.Controller;
 
 import com.newtonprojectgroup.schoolmanagementsystem.Entity.*;
-import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryCourse;
-import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryPerson;
-import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryProgram;
-import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryStudent;
+import com.newtonprojectgroup.schoolmanagementsystem.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +18,10 @@ public class startViewController {
     @Autowired
     private iRepositoryStudent repositoryStudent;
 
+    @Autowired
+    private iRepositoryGrade repositoryGrade;
+
+    private List<Grade> gradeList;
     private List<Student> studentList;
 
 
@@ -42,7 +43,21 @@ public class startViewController {
             for (Course course : person.getEnlistedProgram().getCourseList()) {
                 System.out.println(course.getCourseName());
             }
+            System.out.println("====GRADES===\n");
+
+            for (StudentGrade studentGrade : person.getStudentGrades()) {
+                System.out.println(studentGrade.getCourse().getCourseName() + ": " + studentGrade.getGrade().getScore());
+
+            }
+
             System.out.println("====END OF PERSON===\n");
+
+        }
+
+        gradeList = repositoryGrade.findAll();
+
+        for (Grade grade : gradeList) {
+            System.out.println(grade.getScore());
         }
 
 
