@@ -70,12 +70,4 @@ public class startViewController {
     public void setCredentials(Credentials credentials) {
         this.credentials = credentials;
     }
-
-    public Person getUser() {
-        return user;
-    }
-
-    public Credentials getCredentials() {
-        return credentials;
-    }
 }
