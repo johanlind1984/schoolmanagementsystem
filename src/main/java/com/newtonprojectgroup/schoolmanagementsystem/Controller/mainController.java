@@ -39,9 +39,23 @@ public class mainController {
         if(Arrays.equals(realCredentials.getPassword(), credentials.getPassword())) {
             startViewController.setUser(repositoryPerson.findById(credentials.getUserName()).orElse(null));
             startViewController.setCredentials(realCredentials);
-            return new ModelAndView("redirect:/greetuser");
+
+            switch (realCredentials.getUserPermission()) {
+                case 1:
+                    return new ModelAndView("redirect:/greetuser");
+                case 2:
+                    return new ModelAndView("redirect:/greetuser");
+                case 3:
+                    return new ModelAndView("redirect:/greetuser");
+                case 4:
+                    System.out.println("adminstratorView model and view");
+                    return new ModelAndView("redirect:/adminstartview");
+                default:
+                    return new ModelAndView("redirect:/greetuser");
+            }
         }
 
         return new ModelAndView("redirect:/login-failed");
+
     }
 }

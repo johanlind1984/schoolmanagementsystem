@@ -62,6 +62,7 @@ public class startViewController {
 
 
         theModel.addAttribute("theuser", user);
+
         return "welcome-" + credentials.getUserPermission();
 
     }
