@@ -1,9 +1,15 @@
 package com.newtonprojectgroup.schoolmanagementsystem.Entity;
 
-import net.bytebuddy.asm.Advice;
-
-import javax.persistence.*;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="student")
@@ -12,7 +18,7 @@ public class Student extends Person {
 
     @Id
     @Column(name="idstudent")
-    private String studentId;
+    private String personId;
 
     @Column(name="student_semester")
     private int semester;
@@ -28,13 +34,13 @@ public class Student extends Person {
     }
 
     @Override
-    public String getStudentId() {
-        return studentId;
+    public String getPersonId() {
+        return personId;
     }
 
     @Override
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
+    public void setPersonId(String personId) {
+        this.personId = personId;
     }
 
     public int getSemester() {
