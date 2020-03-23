@@ -40,15 +40,6 @@ public class startViewController {
         studentList = repositoryStudent.findAll();
         staffList = repositoryStaff.findAll();
 
-        if (credentials.getUserPermission() == 3) {
-            for (Staff person : staffList) {
-                System.out.println("Name: " + person.getFirstName() + " " + person.getLastName());
-                System.out.println("Role: " + person.getPersonType().getPersonTypeTitle());
-                System.out.println("StaffID: " + person.getStaffId());
-            }
-            System.out.println("====END OF PERSON===\n");
-        }
-
         if (credentials.getUserPermission() == 1) {
             for (Student person : studentList) {
                 System.out.println("Name: " + person.getFirstName() + " " + person.getLastName());
@@ -65,7 +56,6 @@ public class startViewController {
                 for (StudentGrade studentGrade : person.getStudentGrades()) {
                     System.out.println(studentGrade.getCourse().getCourseName() + ": " + studentGrade.getGrade().getScore());
                 }
-                System.out.println("====END OF PERSON===\n");
             }
 
             gradeList = repositoryGrade.findAll();
@@ -73,7 +63,16 @@ public class startViewController {
             for (Grade grade : gradeList) {
                 System.out.println(grade.getScore());
             }
+            System.out.println("====END OF PERSON===\n");
+        } else if (credentials.getUserPermission() == 3) {
+            for (Staff person : staffList) {
+                System.out.println("Name: " + person.getFirstName() + " " + person.getLastName());
+                System.out.println("Role: " + person.getPersonType().getPersonTypeTitle());
+                System.out.println("StaffID: " + person.getStaffId());
+            }
+            System.out.println("====END OF PERSON===\n");
         }
+
 
         theModel.addAttribute("theuser", user);
         return "welcome-" + credentials.getUserPermission();

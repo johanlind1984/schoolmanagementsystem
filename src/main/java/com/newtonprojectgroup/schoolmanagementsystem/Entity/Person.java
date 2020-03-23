@@ -12,7 +12,7 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String studentId;
 
-    @Column(name="")
+    @Column(name="idstaff")
     private String staffId;
 
     @Column(name="first_name")
