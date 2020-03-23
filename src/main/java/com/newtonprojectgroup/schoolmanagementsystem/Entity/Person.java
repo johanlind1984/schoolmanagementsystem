@@ -9,7 +9,7 @@ public class Person {
 
     @Id
     @Column(name="person_username")
-    private String studentId;
+    private String personId;
 
     @Column(name="first_name")
     private String firstName;
@@ -33,15 +33,21 @@ public class Person {
     public Person() {
     }
 
-    public String getStudentId() {
-        return studentId;
-    }
+   
 
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
-    }
+    public String getPersonId() {
+		return personId;
+	}
 
-    public String getFirstName() {
+
+
+	public void setPersonId(String personId) {
+		this.personId = personId;
+	}
+
+
+
+	public String getFirstName() {
         return firstName;
     }
 
