@@ -21,18 +21,22 @@
 </head>
 <body>
 <h1 align="center">Logged in as faculty...</h1>
-    <h2 align="center">Din information</h2>
-        <p align="center">
-            <label>Namn: </label>
-            <label><td align="center" th:text="${theuser.firstName}"></td></label>
-        </p>
-        <p align="center">
-            <label>Efteramn: </label>
-            <label><td align="center" th:text="${theuser.lastName}"></td></label>
-        </p>
+<h2 align="center">Din information</h2>
+<p align="center">
+    <label>Namn: </label>
+    <label>
+        <td align="center" th:text="${Person.firstName}"></td>
+    </label>
+</p>
+<p align="center">
+    <label>Efteramn: </label>
+    <label>
+        <td align="center" th:text="${Person.lastName}"></td>
+    </label>
+</p>
         <p align="center">
             <label>Sysselsättning: </label>
-            <label><td align="center" th:text="${theuser.personType.personTypeTitle}"></td></label>
+            <label><td align="center" th:text="${Person.personType.personTypeTitle}"></td></label>
         </p>
 </body>
 </html>

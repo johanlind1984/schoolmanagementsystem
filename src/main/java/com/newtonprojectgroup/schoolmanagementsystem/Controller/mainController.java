@@ -24,6 +24,9 @@ public class mainController {
     @Autowired
     private startViewController startViewController;
 
+    @Autowired
+    private staffController staffController;
+
     @RequestMapping("/")
     public String login(Model theModel) {
         theModel.addAttribute("credentials", new Credentials());
@@ -39,6 +42,8 @@ public class mainController {
         if (Arrays.equals(realCredentials.getPassword(), credentials.getPassword())) {
             startViewController.setUser(repositoryPerson.findById(credentials.getUserName()).orElse(null));
             startViewController.setCredentials(realCredentials);
+            staffController.setUser(repositoryPerson.findById(credentials.getUserName()).orElse(null));
+            staffController.setCredentials(realCredentials);
 
             switch (realCredentials.getUserPermission()) {
                 case 1:
