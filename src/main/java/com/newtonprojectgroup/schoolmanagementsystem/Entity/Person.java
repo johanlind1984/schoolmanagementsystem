@@ -18,8 +18,8 @@ public class Person {
     @Column(name="last_name")
     private String lastName;
 
-    @Column(name="PIN")
-    private String personalIdentityNumber;
+    @Column(name="personal_number")
+    private String personalNumber;
 
     @Column(name="email")
     private String email;
@@ -58,12 +58,12 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public String getPersonalIdentityNumber() {
-        return personalIdentityNumber;
+    public String getPersonalNumber() {
+        return personalNumber;
     }
 
-    public void setPersonalNumber(String personalIdentityNumber) {
-        this.personalIdentityNumber = personalIdentityNumber;
+    public void setPersonalNumber(String personalNumber) {
+        this.personalNumber = personalNumber;
     }
 
     public String getEmail() {
