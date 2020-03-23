@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <meta charset="UTF-8">
+    <title>Login - School Management System</title>
+    <h1 align="center">Please login</h1>
+    <br><br><br><br>
+    <form action="#" th:action="@{/checkcredentials}" th:object="${credentials}" method="post">
+        <p>Username: <input type="text" th:field="*{userName}" /></p>
+        <p>Password: <input type="password" th:field="*{password}" /></p>
+        <p><input type="submit" value="Submit" /> </p>
+        <p><input type="reset" value="Reset" /> </p>
+    </form>
     <title>Creative Colorlib SignUp Form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -14,7 +24,6 @@
 </head>
 <body>
 <h1 align="center">School Management System</h1>
-<br><br><br><br>
 <form action="#" th:action="@{/checkcredentials}" th:object="${credentials}" method="post">
     <p align="center">Username: <input type="text" th:field="*{userName}"  /></p>
     <br>

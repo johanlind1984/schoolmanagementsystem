@@ -2,55 +2,42 @@ package com.newtonprojectgroup.schoolmanagementsystem.Entity;
 
 import javax.persistence.*;
 
+
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@Table(name="person")
-public class Person {
+@Table(name = "placeholderaccounts")
+public class PlaceholderAccounts {
 
     @Id
-    @Column(name="person_username")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String studentId;
+    @Column(name = "username_ph")
+    private String username_ph;
 
-    @Column(name="")
-    private String staffId;
+    @Column(name = "password")
+    private char[] password;
 
-    @Column(name="first_name")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name="last_name")
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column(name="personal_number")
+    @Column(name = "personal_number")
     private String personalNumber;
 
-    @Column(name="email")
+    @Column(name = "email")
     private String email;
 
-    @Column(name="adress")
+    @Column(name = "adress")
     private String adress;
 
-    @ManyToOne
-    @JoinColumn(name="person_type_id", nullable=false)
-    private PersonType personType;
-
-    public Person() {
+    public PlaceholderAccounts() {
     }
 
-    public String getStaffId() {
-        return staffId;
+    public String getUsername_ph() {
+        return username_ph;
     }
 
-    public void setStaffId(String staffId) {
-        this.staffId = staffId;
-    }
-
-    public String getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
+    public void setUsername_ph(String username_ph) {
+        this.username_ph = username_ph;
     }
 
     public String getFirstName() {
@@ -93,11 +80,11 @@ public class Person {
         this.adress = adress;
     }
 
-    public PersonType getPersonType() {
-        return personType;
+    public char[] getPassword() {
+        return password;
     }
 
-    public void setPersonType(PersonType personType) {
-        this.personType = personType;
+    public void setPassword(char[] password) {
+        this.password = password;
     }
 }
