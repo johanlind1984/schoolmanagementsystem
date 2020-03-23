@@ -3,19 +3,22 @@ package com.newtonprojectgroup.schoolmanagementsystem.Controller;
 import com.newtonprojectgroup.schoolmanagementsystem.Entity.Credentials;
 import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryCredentials;
 import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryPerson;
+import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryPersonType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Arrays;
-import java.util.List;
 
 @Controller()
 public class mainController {
+
+    @Autowired
+    private iRepositoryPersonType repositoryPersonType;
+
     @Autowired
     private iRepositoryCredentials repositoryCredentials;
 

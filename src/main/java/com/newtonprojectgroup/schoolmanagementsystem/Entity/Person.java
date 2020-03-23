@@ -34,6 +34,7 @@ public class Person {
     @JoinColumn(name="person_type_id", nullable=false)
     private PersonType personType;
 
+
     public Person() {
     }
 
@@ -100,4 +101,5 @@ public class Person {
     public void setPersonType(PersonType personType) {
         this.personType = personType;
     }
+
 }

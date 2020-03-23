@@ -2,6 +2,7 @@ package com.newtonprojectgroup.schoolmanagementsystem.Controller;
 
 import com.newtonprojectgroup.schoolmanagementsystem.Entity.*;
 import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryGrade;
+import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryPersonType;
 import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryStaff;
 import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryStudent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class startViewController {
     @Autowired
     private iRepositoryStaff repositoryStaff;
 
+    @Autowired
+    private iRepositoryPersonType repositoryPersonType;
+
     private List<Grade> gradeList;
     private List<Student> studentList;
     private List<Staff> staffList;
@@ -39,40 +43,41 @@ public class startViewController {
 
         studentList = repositoryStudent.findAll();
         staffList = repositoryStaff.findAll();
+        gradeList = repositoryGrade.findAll();
+
 
         if (credentials.getUserPermission() == 1) {
-            for (Student person : studentList) {
-                System.out.println("Name: " + person.getFirstName() + " " + person.getLastName());
-                System.out.println("Role: " + person.getPersonType().getPersonTypeTitle());
-                System.out.println("StudentId: " + person.getStudentId());
-                System.out.println("Student semester: " + person.getSemester());
-                System.out.println("Enlisted on program " + person.getEnlistedProgram().getProgramName());
+            for (Student student : studentList) {
+                System.out.println("Name: " + student.getFirstName() + " " + student.getLastName());
+                System.out.println("Role: " + student.getPersonType().getPersonTypeTitle());
+                System.out.println("StudentId: " + student.getStudentId());
+                System.out.println("Student semester: " + student.getSemester());
+                System.out.println("Enlisted on program " + student.getEnlistedProgram().getProgramName());
                 System.out.println("Courses in program: ");
-                for (Course course : person.getEnlistedProgram().getCourseList()) {
+                for (Course course : student.getEnlistedProgram().getCourseList()) {
                     System.out.println(course.getCourseName());
                 }
                 System.out.println("====GRADES===\n");
 
-                for (StudentGrade studentGrade : person.getStudentGrades()) {
+                for (StudentGrade studentGrade : student.getStudentGrades()) {
                     System.out.println(studentGrade.getCourse().getCourseName() + ": " + studentGrade.getGrade().getScore());
                 }
             }
 
-            gradeList = repositoryGrade.findAll();
 
             for (Grade grade : gradeList) {
                 System.out.println(grade.getScore());
             }
             System.out.println("====END OF PERSON===\n");
+
         } else if (credentials.getUserPermission() == 3) {
-            for (Staff person : staffList) {
-                System.out.println("Name: " + person.getFirstName() + " " + person.getLastName());
-                System.out.println("Role: " + person.getPersonType().getPersonTypeTitle());
-                System.out.println("StaffID: " + person.getStaffId());
+            for (Staff staff : staffList) {
+                System.out.println("Name: " + staff.getFirstName() + " " + staff.getLastName());
+                System.out.println("Role: " + staff.getPersonType().getPersonTypeTitle());
+                System.out.println("StaffID: " + staff.getStaffId());
             }
             System.out.println("====END OF PERSON===\n");
         }
-
 
         theModel.addAttribute("theuser", user);
         return "welcome-" + credentials.getUserPermission();
@@ -85,4 +90,5 @@ public class startViewController {
     public void setCredentials(Credentials credentials) {
         this.credentials = credentials;
     }
+
 }

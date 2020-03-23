@@ -1,7 +1,5 @@
 package com.newtonprojectgroup.schoolmanagementsystem.Entity;
 
-import net.bytebuddy.asm.Advice;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -27,12 +25,10 @@ public class Student extends Person {
     public Student() {
     }
 
-    @Override
     public String getStudentId() {
         return studentId;
     }
 
-    @Override
     public void setStudentId(String studentId) {
         this.studentId = studentId;
     }
