@@ -44,7 +44,7 @@ public class startViewController {
             for (Staff person : staffList) {
                 System.out.println("Name: " + person.getFirstName() + " " + person.getLastName());
                 System.out.println("Role: " + person.getPersonType().getPersonTypeTitle());
-                System.out.println("StaffID: " + person.getStaffID());
+                System.out.println("StaffID: " + person.getStaffId());
             }
             System.out.println("====END OF PERSON===\n");
         }
