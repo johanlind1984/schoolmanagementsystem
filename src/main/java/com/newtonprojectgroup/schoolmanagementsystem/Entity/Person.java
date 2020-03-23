@@ -33,19 +33,13 @@ public class Person {
     public Person() {
     }
 
-   
-
     public String getPersonId() {
-		return personId;
-	}
+        return personId;
+    }
 
-
-
-	public void setPersonId(String personId) {
-		this.personId = personId;
-	}
-
-
+    public void setPersonId(String personId) {
+        this.personId = personId;
+    }
 
 	public String getFirstName() {
         return firstName;

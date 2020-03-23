@@ -36,7 +36,7 @@ public class startViewController {
         for (Student person : studentList) {
             System.out.println("Name: " + person.getFirstName() + " " + person.getLastName());
             System.out.println("Role: " + person.getPersonType().getPersonTypeTitle());
-            System.out.println("StudentId: " + person.getStudentId());
+            System.out.println("StudentId: " + person.getPersonId());
             System.out.println("Student semester: " + person.getSemester());
             System.out.println("Enlisted on program " + person.getEnlistedProgram().getProgramName());
             System.out.println("Courses in program: ");
