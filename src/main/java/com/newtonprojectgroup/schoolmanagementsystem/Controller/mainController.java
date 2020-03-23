@@ -24,9 +24,6 @@ public class mainController {
     @Autowired
     private startViewController startViewController;
 
-    @Autowired
-    private staffController staffController;
-
     @RequestMapping("/")
     public String login(Model theModel) {
         theModel.addAttribute("credentials", new Credentials());
@@ -39,21 +36,25 @@ public class mainController {
         Credentials realCredentials = repositoryCredentials.findById(credentials.getUserName()).orElse(null);
 
 
+        if (Arrays.equals(realCredentials.getPassword(), credentials.getPassword())) {
+            startViewController.setUser(repositoryPerson.findById(credentials.getUserName()).orElse(null));
+            startViewController.setCredentials(realCredentials);
 
-        if (credentials.getUserPermission() == 1) {
-            if (Arrays.equals(realCredentials.getPassword(), credentials.getPassword())) {
-                startViewController.setUser(repositoryPerson.findById(credentials.getUserName()).orElse(null));
-                startViewController.setCredentials(realCredentials);
-                return new ModelAndView("redirect:/greetuser");
-            }
-        }
-        if (credentials.getUserPermission() == 3) {
-            if (Arrays.equals(realCredentials.getPassword(), credentials.getPassword())) {
-                staffController.setUser(repositoryPerson.findById(credentials.getUserName()).orElse(null));
-                staffController.setCredentials(realCredentials);
-                return new ModelAndView("redirect:/greetstaff");
+            switch (realCredentials.getUserPermission()) {
+                case 1:
+                    return new ModelAndView("redirect:/greetuser");
+                case 2:
+                    return new ModelAndView("redirect:/greetuser");
+                case 3:
+                    return new ModelAndView("redirect:/staffview");
+                case 4:
+                    System.out.println("adminstratorView model and view");
+                    return new ModelAndView("redirect:/adminstartview");
+                default:
+                    return new ModelAndView("redirect:/greetuser");
             }
         }
         return new ModelAndView("redirect:/login-failed");
+
     }
 }

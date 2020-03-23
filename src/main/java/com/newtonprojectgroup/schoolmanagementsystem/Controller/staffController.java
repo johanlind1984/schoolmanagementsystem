@@ -26,8 +26,8 @@ public class staffController {
     public staffController() {
     }
 
-    @RequestMapping("/greetstaff")
-    public String greetStaff(Model theModel) {
+    @RequestMapping("/staffview")
+    public String staffView(Model model) {
 
         staffList = repositoryStaff.findAll();
 
@@ -37,15 +37,7 @@ public class staffController {
             System.out.println("StaffID: " + staff.getStaffId());
         }
 
-        theModel.addAttribute("theuser", user);
+        model.addAttribute("theuser", user);
         return "welcome-" + credentials.getUserPermission();
-    }
-
-    public void setUser(Person user) {
-        this.user = user;
-    }
-
-    public void setCredentials(Credentials credentials) {
-        this.credentials = credentials;
     }
 }
