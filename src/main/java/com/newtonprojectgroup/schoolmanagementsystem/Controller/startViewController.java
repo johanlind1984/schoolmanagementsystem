@@ -2,8 +2,6 @@ package com.newtonprojectgroup.schoolmanagementsystem.Controller;
 
 import com.newtonprojectgroup.schoolmanagementsystem.Entity.*;
 import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryGrade;
-import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryPersonType;
-import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryStaff;
 import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryStudent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,15 +22,9 @@ public class startViewController {
     @Autowired
     private iRepositoryGrade repositoryGrade;
 
-    @Autowired
-    private iRepositoryStaff repositoryStaff;
-
-    @Autowired
-    private iRepositoryPersonType repositoryPersonType;
-
     private List<Grade> gradeList;
     private List<Student> studentList;
-    private List<Staff> staffList;
+
 
 
     public startViewController() {
@@ -42,11 +34,9 @@ public class startViewController {
     public String greetUser(Model theModel) {
 
         studentList = repositoryStudent.findAll();
-        staffList = repositoryStaff.findAll();
         gradeList = repositoryGrade.findAll();
 
 
-        if (credentials.getUserPermission() == 1) {
             for (Student student : studentList) {
                 System.out.println("Name: " + student.getFirstName() + " " + student.getLastName());
                 System.out.println("Role: " + student.getPersonType().getPersonTypeTitle());
@@ -64,20 +54,10 @@ public class startViewController {
                 }
             }
 
-
             for (Grade grade : gradeList) {
                 System.out.println(grade.getScore());
             }
             System.out.println("====END OF PERSON===\n");
-
-        } else if (credentials.getUserPermission() == 3) {
-            for (Staff staff : staffList) {
-                System.out.println("Name: " + staff.getFirstName() + " " + staff.getLastName());
-                System.out.println("Role: " + staff.getPersonType().getPersonTypeTitle());
-                System.out.println("StaffID: " + staff.getStaffId());
-            }
-            System.out.println("====END OF PERSON===\n");
-        }
 
         theModel.addAttribute("theuser", user);
         return "welcome-" + credentials.getUserPermission();

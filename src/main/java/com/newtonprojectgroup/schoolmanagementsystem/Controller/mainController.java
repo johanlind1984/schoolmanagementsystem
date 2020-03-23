@@ -3,7 +3,6 @@ package com.newtonprojectgroup.schoolmanagementsystem.Controller;
 import com.newtonprojectgroup.schoolmanagementsystem.Entity.Credentials;
 import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryCredentials;
 import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryPerson;
-import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryPersonType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +16,6 @@ import java.util.Arrays;
 public class mainController {
 
     @Autowired
-    private iRepositoryPersonType repositoryPersonType;
-
-    @Autowired
     private iRepositoryCredentials repositoryCredentials;
 
     @Autowired
@@ -27,6 +23,9 @@ public class mainController {
 
     @Autowired
     private startViewController startViewController;
+
+    @Autowired
+    private staffController staffController;
 
     @RequestMapping("/")
     public String login(Model theModel) {
@@ -39,12 +38,22 @@ public class mainController {
         System.out.println("Checking credentials");
         Credentials realCredentials = repositoryCredentials.findById(credentials.getUserName()).orElse(null);
 
-        if(Arrays.equals(realCredentials.getPassword(), credentials.getPassword())) {
-            startViewController.setUser(repositoryPerson.findById(credentials.getUserName()).orElse(null));
-            startViewController.setCredentials(realCredentials);
-            return new ModelAndView("redirect:/greetuser");
-        }
 
+
+        if (credentials.getUserPermission() == 1) {
+            if (Arrays.equals(realCredentials.getPassword(), credentials.getPassword())) {
+                startViewController.setUser(repositoryPerson.findById(credentials.getUserName()).orElse(null));
+                startViewController.setCredentials(realCredentials);
+                return new ModelAndView("redirect:/greetuser");
+            }
+        }
+        if (credentials.getUserPermission() == 3) {
+            if (Arrays.equals(realCredentials.getPassword(), credentials.getPassword())) {
+                staffController.setUser(repositoryPerson.findById(credentials.getUserName()).orElse(null));
+                staffController.setCredentials(realCredentials);
+                return new ModelAndView("redirect:/greetstaff");
+            }
+        }
         return new ModelAndView("redirect:/login-failed");
     }
 }
