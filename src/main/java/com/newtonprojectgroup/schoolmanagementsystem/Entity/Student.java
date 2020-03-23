@@ -1,5 +1,7 @@
 package com.newtonprojectgroup.schoolmanagementsystem.Entity;
 
+
+
 import java.util.List;
 
 import javax.persistence.Column;
@@ -15,6 +17,7 @@ import javax.persistence.Table;
 @Table(name="student")
 @PrimaryKeyJoinColumn(name = "idstudent")
 public class Student extends Person {
+
 
     @Id
     @Column(name="idstudent")
@@ -42,6 +45,7 @@ public class Student extends Person {
     public void setPersonId(String personId) {
         this.personId = personId;
     }
+
 
     public int getSemester() {
         return semester;
