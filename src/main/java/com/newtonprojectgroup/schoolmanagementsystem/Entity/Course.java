@@ -1,6 +1,7 @@
 package com.newtonprojectgroup.schoolmanagementsystem.Entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="course")
@@ -13,8 +14,8 @@ public class Course {
     @Column(name="course_name")
     private String courseName;
 
-    //@ManyToMany()
-    // List<Program> programList;
+    @ManyToMany(mappedBy = "courseList")
+    private List<Program> programList;
 
     public Course() {
     }
@@ -33,5 +34,13 @@ public class Course {
 
     public void setCourseName(String courseName) {
         this.courseName = courseName;
+    }
+
+    public List<Program> getProgramList() {
+        return programList;
+    }
+
+    public void setProgramList(List<Program> programList) {
+        this.programList = programList;
     }
 }
