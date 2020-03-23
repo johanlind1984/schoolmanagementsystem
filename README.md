@@ -49,6 +49,7 @@ CREATE TABLE `program` (
   `program_name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idprogram`)
 );
+
 CREATE TABLE `program_course` (
   `idprogram_course_course_id` int(11) NOT NULL,
   `idprogram_course_program_id` int(11) NOT NULL,
