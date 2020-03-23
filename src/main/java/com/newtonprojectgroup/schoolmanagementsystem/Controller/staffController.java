@@ -20,7 +20,7 @@ public class staffController {
 
 
         theModel.addAttribute("Person", person);
-        return "welcome-3";
+        return "faculty-view";
     }
 
     public void setUser(Person person) {

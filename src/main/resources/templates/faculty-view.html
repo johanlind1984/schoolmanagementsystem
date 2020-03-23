@@ -34,9 +34,30 @@
         <td align="center" th:text="${Person.lastName}"></td>
     </label>
 </p>
-        <p align="center">
-            <label>Sysselsättning: </label>
-            <label><td align="center" th:text="${Person.personType.personTypeTitle}"></td></label>
-        </p>
+<p align="center">
+    <label>Personnummer: </label>
+    <label>
+        <td align="center" th:text="${Person.personalNumber}"></td>
+    </label>
+</p>
+<p align="center">
+    <label>Adress: </label>
+    <label>
+        <td align="center" th:text="${Person.adress}"></td>
+    </label>
+</p>
+<p align="center">
+    <label>Epostadress: </label>
+    <label>
+        <td align="center" th:text="${Person.email}"></td>
+    </label>
+</p>
+<p align="center">
+    <label>Sysselsättning: </label>
+    <label>
+        <td align="center" th:text="${Person.personType.personTypeTitle}"></td>
+    </label>
+</p>
+
 </body>
 </html>
