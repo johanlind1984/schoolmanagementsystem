@@ -39,6 +39,6 @@ public class adminController {
         theModel.addAttribute("credentialsList", repositoryCredentials.findAll());
 
 
-        return "welcome-4";
+        return "admin-view";
     }
 }
