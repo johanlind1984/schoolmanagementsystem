@@ -48,7 +48,6 @@ public class mainController {
                 case 3:
                     return new ModelAndView("redirect:/greetuser");
                 case 4:
-                    System.out.println("adminstratorView model and view");
                     return new ModelAndView("redirect:/adminstartview");
                 default:
                     return new ModelAndView("redirect:/greetuser");

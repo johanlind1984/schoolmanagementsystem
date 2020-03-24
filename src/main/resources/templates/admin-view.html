@@ -16,17 +16,21 @@
 <body>
     <h1 align="center">Credentials</h1>
 
-    <form action="//www.html.am/html-codes/forms/html-form-tag-action.cfm" target="result2" method="get">
-        <p>What would you like for lunch?</p>
-        <select id="percentage" name="percentage">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            ...
-            <option value="100">100</option>
-        </select>
+    <tr th:if="${accountRequestsList.empty}" align="center">
+        <td colspan="2"> No requests at this time </td>
+    </tr>
+    <tr th:each="request : ${accountRequestsList}" align="center">
+        <td><span th:text="${request.userName}"> Username </span></td>
+        <td><span th:text="${request.password}"> Password </span></td>
+        <td><span th:text="${request.firstName}"> First Name </span></td>
+        <td><span th:text="${request.lastName}"> Last Name </span></td>
+        <td><span th:text="${request.personalNumber}"> Personal Number </span></td>
+        <td><span th:text="${request.email}"> Email </span></td>
+        <td><span th:text="${request.adress}"> Adress </span></td>
+        <td><span th:text="${request.personType.personTypeTitle}"> Person Type </span></td>
+        <br>
+    </tr>
+    </tbody>
 
-        <p><input type="submit" value="Submit"></p>
-    </form>
 </body>
 </html>
