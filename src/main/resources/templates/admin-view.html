@@ -14,20 +14,23 @@
     <!-- //web font -->
 </head>
 <body>
-    <h1 align="center">Credentials</h1>
 
-    <tr th:if="${accountRequestsList.empty}" align="center">
-        <td colspan="2"> No requests at this time </td>
-    </tr>
-    <tr th:each="request : ${accountRequestsList}" align="center">
-        <td><span th:text="${request.userName}"> Username </span></td>
-        <td><span th:text="${request.password}"> Password </span></td>
-        <td><span th:text="${request.firstName}"> First Name </span></td>
-        <td><span th:text="${request.lastName}"> Last Name </span></td>
-        <td><span th:text="${request.personalNumber}"> Personal Number </span></td>
-        <td><span th:text="${request.email}"> Email </span></td>
-        <td><span th:text="${request.adress}"> Adress </span></td>
-        <td><span th:text="${request.personType.personTypeTitle}"> Person Type </span></td>
+<!--        <form action="@{/denyaccess(username=${request.userName}',permission='0'}">-->
+<!--        <td><input type="submit" value="Deny Access" /> </td>-->
+<!--        </form>-->
+<!--        <form action="@{/approveaccess1}">-->
+<!--            <td><input type="submit" value="Approve as Student" /> </td>-->
+<!--        </form>-->
+<!--        <form action="@{/approveaccess2}">-->
+<!--            <td><input type="submit" value="Approve as Teacher" /> </td>-->
+<!--        </form>-->
+<!--        <form action="@{/approveaccess3}">-->
+<!--            <td><input type="submit" value="Approve as Faculty" /> </td>-->
+<!--        </form>-->
+<!--        <form action="@{/approveaccess4}">-->
+<!--            <td><input type="submit" value="Approve as Adminisstrator" /> </td>-->
+<!--        </form>-->
+        <br>
         <br>
     </tr>
     </tbody>

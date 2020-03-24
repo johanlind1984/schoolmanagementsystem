@@ -16,9 +16,34 @@
 <body>
     <h1 align="center">Pending account Requests</h1>
 
-    <form action="@{/grantAccess}" th:object="${accountRequest}" method="post">
+    <h1 align="center">Credentials</h1>
+    
+    <tr th:each="request : ${accountRequestsList}" align="center">
+        <td align="center"><span th:text="'Username: ' + ${request.userName}"> Username </span></td>
+        <br>
+        <td align="center"><span th:text="'Password: ' + ${request.password}"> Password </span></td>
+        <br>
+        <td align="center"><span th:text="'First Name: ' + ${request.firstName}"> First Name </span></td>
+        <br>
+        <td align="center"><span th:text="'Last Name: ' + ${request.lastName}"> Last Name </span></td>
+        <br>
+        <td align="center"><span th:text="'Personal Number: ' + ${request.personalNumber}"> Personal Number </span></td>
+        <br>
+        <td align="center"><span th:text="'Email: ' + ${request.email}"> Email </span></td>
+        <br>
+        <td align="center"><span th:text="'Adress: ' + ${request.adress}"> Adress </span></td>
+        <br>
+        <td align="center"><span th:text="'Title: ' + ${request.personType.personTypeTitle}"> Person Type </span></td>
 
-        <p><input type="submit" value="Submit"></p>
-    </form>
+        <form th:action="@{/manageaccess}">
+            <select th:name="permission">
+                <option value="0">Deny Access</option>
+                <option value="1">Approve as Student</option>
+                <option value="2">Approve as Teacher</option>
+                <option value="3">Approve as Faculty</option>
+                <option value="4">Approve as Administrator</option>
+            </select>
+            <button type="submit" th:name="username" th:value="${request.userName}">Save</button>
+        </form>
 </body>
 </html>
