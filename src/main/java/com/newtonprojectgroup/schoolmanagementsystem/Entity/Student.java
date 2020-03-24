@@ -30,7 +30,7 @@ public class Student extends Person {
 
     public Student() {
     }
-    
+
     public int getSemester() {
         return semester;
     }
