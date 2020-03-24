@@ -57,6 +57,7 @@ public class startViewController {
         gradeList = repositoryGrade.findAll();
         
         theModel.addAttribute("theuser", user);
+
         return "welcome-" + credentials.getUserPermission();
 
     }
