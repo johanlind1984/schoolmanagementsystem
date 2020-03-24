@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head >
+	<title>Registreringsformulär</title>
+</head>
+<body>
+
+
+		<h1>Registreringsformulär</h1>
+	<div class="container">
+		<form action="/new" th:object="${accountrequest}" method="POST">
+		
+		<input type="text" placeholder="Användarnamn" th:field="${accountrequest.userName}">
+		<input type="text" placeholder="Lösenord" th:field="${accountrequest.password}">
+		<input type="text" placeholder="Förnamn" th:field="${accountrequest.firstName}">
+		
+		<button type="submit">Lägg till</button><button type="reset">Rensa</button>
+		</form>
+	</div>
+	
+
+</body>
+</html>
