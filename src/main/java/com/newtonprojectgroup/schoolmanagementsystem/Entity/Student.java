@@ -8,9 +8,6 @@ import java.util.List;
 @PrimaryKeyJoinColumn(name = "idstudent")
 public class Student extends Person {
 
-//    @Column(name="idstudent")
-//    private String studentId;
-
     @Column(name="student_semester")
     private int semester;
 
