@@ -1,15 +1,27 @@
 package com.newtonprojectgroup.schoolmanagementsystem.Entity;
 
-import javax.persistence.*;
+
+
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="student")
 @PrimaryKeyJoinColumn(name = "idstudent")
 public class Student extends Person {
 
-//    @Column(name="idstudent")
-//    private String studentId;
+
+    @Id
+    @Column(name="idstudent")
+    private String personId;
 
     @Column(name="student_semester")
     private int semester;
@@ -23,6 +35,17 @@ public class Student extends Person {
 
     public Student() {
     }
+
+    @Override
+    public String getPersonId() {
+        return personId;
+    }
+
+    @Override
+    public void setPersonId(String personId) {
+        this.personId = personId;
+    }
+
 
     public int getSemester() {
         return semester;
