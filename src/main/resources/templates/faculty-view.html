@@ -13,51 +13,84 @@
         window.scrollTo(0, 1);
     } </script>
     <!-- Custom Theme files -->
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
     <!-- //Custom Theme files -->
     <!-- web font -->
     <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
     <!-- //web font -->
+    <style>
+        h2 {
+        font-size: 33px;
+        font-family: inherit;
+        color: black;
+        }
+
+        .form-inline label {
+            margin: 5px 10px 5px 0;
+            font-size: 15px;
+
+        }
+
+        .form-inline input {
+            vertical-align: middle;
+            margin: 5px 10px 5px 0;
+            padding: 10px;
+            font-size: 15px;
+        }
+
+        .form-inline button {
+            padding: 15px 175px;
+            background-color: #76b852;
+            cursor: pointer;
+            font-size: 16px;
+
+            border-color: #fff;
+            color: white;
+        }
+
+        .form-inline button:hover {
+            background-color: royalblue;
+        }
+        @media (max-width: 50px) {
+            .form-inline input {
+                margin: 10px 0;
+            }
+
+            .form-inline {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
 </head>
 <body>
-<h1 align="center">Logged in as faculty...</h1>
+<h1 align="center">Inloggad: Personal</h1>
+<br><br><br>
 <h2 align="center">Din information</h2>
-<p align="center">
-    <label>Namn: </label>
-    <label>
-        <td align="center" th:text="${Person.firstName}"></td>
-    </label>
-</p>
-<p align="center">
-    <label>Efteramn: </label>
-    <label>
-        <td align="center" th:text="${Person.lastName}"></td>
-    </label>
-</p>
-<p align="center">
-    <label>Personnummer: </label>
-    <label>
-        <td align="center" th:text="${Person.personalNumber}"></td>
-    </label>
-</p>
-<p align="center">
-    <label>Adress: </label>
-    <label>
-        <td align="center" th:text="${Person.adress}"></td>
-    </label>
-</p>
-<p align="center">
-    <label>Epostadress: </label>
-    <label>
-        <td align="center" th:text="${Person.email}"></td>
-    </label>
-</p>
-<p align="center">
-    <label>Sysselsättning: </label>
-    <label>
-        <td align="center" th:text="${Person.personType.personTypeTitle}"></td>
-    </label>
-</p>
+<br>
+
+<form class="form-inline" action="/staffview" method="get">
+
+    <p align="center"><label for="fname">Namn</label>
+        <input type="text" id="fname" name="fname" th:value="${Person.firstName}"></p><br>
+
+    <p align="center"><label for="lname">Efternamn</label>
+        <input type="text" id="lname" name="lname" th:value="${Person.lastName}"></p><br>
+
+    <p align="center"><label for="pNumber">Personnummer</label>
+        <input type="text" id="pNumber" name="pNumber" th:value="${Person.personalNumber}"></p><br>
+
+    <p align="center"><label for="adress">Adress</label>
+        <input type="text" id="adress" name="adress" th:value="${Person.adress}"></p><br>
+
+    <p align="center"><label for="email">Epostadress</label>
+        <input type="text" id="email" name="email" th:value="${Person.email}"></p><br>
+
+    <p align="center"><label for="personType">Sysselsättning</label>
+        <input type="text" id="personType" name="personType" th:value="${Person.personType.personTypeTitle}"></p><br><br>
+
+    <p align="center"><button type="submit">Spara information</button></p>
+</form>
 
 </body>
 </html>
