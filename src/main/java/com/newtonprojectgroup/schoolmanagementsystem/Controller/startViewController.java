@@ -55,12 +55,7 @@ public class startViewController {
         }
 
         gradeList = repositoryGrade.findAll();
-
-        for (Grade grade : gradeList) {
-            System.out.println(grade.getScore());
-        }
-
-
+        
         theModel.addAttribute("theuser", user);
 
         return "welcome-" + credentials.getUserPermission();
