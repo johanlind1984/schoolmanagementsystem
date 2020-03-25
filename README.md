@@ -5,6 +5,18 @@ CREATE DATABASE WITH THE FOLLOWNING STATEMENTS
 
 CREATE DATABASE `student_hms` ;
 
+CREATE TABLE `account_requests` (	
+  `person_username` varchar(45) NOT NULL,	
+  `person_password` varchar(45) NOT NULL,	
+  `person_type_id` int(11) DEFAULT NULL,	
+  `first_name` varchar(45) DEFAULT NULL,	
+  `last_name` varchar(45) DEFAULT NULL,	
+  `personal_number` varchar(45) DEFAULT NULL,	
+  `email` varchar(45) DEFAULT NULL,	
+  `adress` varchar(45) DEFAULT NULL,	
+  PRIMARY KEY (`person_username`)	
+);
+
 CREATE TABLE `course` (
   `idcourse` int(11) NOT NULL,
   `course_name` varchar(45) DEFAULT NULL,

@@ -1,8 +1,7 @@
 package com.newtonprojectgroup.schoolmanagementsystem.Controller;
 
 import com.newtonprojectgroup.schoolmanagementsystem.Entity.*;
-import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryGrade;
-import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryStudent;
+import com.newtonprojectgroup.schoolmanagementsystem.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,8 +55,6 @@ public class startViewController {
             }
             System.out.println("====END OF PERSON===\n");
         }
-
-        gradeList = repositoryGrade.findAll();
 
         theModel.addAttribute("theuser", user);
 
