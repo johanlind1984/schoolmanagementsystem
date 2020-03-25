@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.newtonprojectgroup.schoolmanagementsystem.Entity.AccountRequest;
-import com.newtonprojectgroup.schoolmanagementsystem.Entity.Person;
 import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryAccountRequests;
 
 @Controller
