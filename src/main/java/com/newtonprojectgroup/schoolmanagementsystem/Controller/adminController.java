@@ -1,10 +1,7 @@
 package com.newtonprojectgroup.schoolmanagementsystem.Controller;
 
-import com.newtonprojectgroup.schoolmanagementsystem.Entity.Credentials;
-import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryCourse;
-import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryCredentials;
-import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryProgram;
 import com.newtonprojectgroup.schoolmanagementsystem.Entity.AccountRequest;
+import com.newtonprojectgroup.schoolmanagementsystem.Entity.Credentials;
 import com.newtonprojectgroup.schoolmanagementsystem.Entity.Person;
 import com.newtonprojectgroup.schoolmanagementsystem.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,25 +41,18 @@ public class adminController {
         theModel.addAttribute("studentList", repositoryStudent.findAll());
         theModel.addAttribute("programList", repositoryProgram.findAll());
         theModel.addAttribute("credential", new Credentials());
+        
 
-        System.out.println(repositoryCredentials.findAll().size());
-        theModel.addAttribute("credentialsList", repositoryCredentials.findAll());
+        List<AccountRequest> list = repositoryAccountRequests.findAll();
+        theModel.addAttribute("accountRequestsList", list);
 
 
-        return "admin-view";
+        for (AccountRequest accountRequest: list) {
+            System.out.println(accountRequest.getEmail());
+        }
 
-//
-//
-//        List<AccountRequest> list = repositoryAccountRequests.findAll();
-//        theModel.addAttribute("accountRequestsList", list);
-//
-//
-//        for (AccountRequest accountRequest: list) {
-//            System.out.println(accountRequest.getEmail());
-//        }
-//
-//
-//        return "admin-view-accountrequests";
+
+        return "admin-view-accountrequests";
     }
 
     @RequestMapping("/manageaccess")
