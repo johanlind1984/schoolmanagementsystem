@@ -34,6 +34,7 @@ public class adminController {
     private iRepositoryAccountRequests repositoryAccountRequests;
 
 
+
     @RequestMapping("/adminstartview")
     public String administratorStartView(Model theModel) {
 
@@ -41,7 +42,8 @@ public class adminController {
         theModel.addAttribute("studentList", repositoryStudent.findAll());
         theModel.addAttribute("programList", repositoryProgram.findAll());
         theModel.addAttribute("credential", new Credentials());
-        
+
+
 
         List<AccountRequest> list = repositoryAccountRequests.findAll();
         theModel.addAttribute("accountRequestsList", list);
@@ -84,6 +86,7 @@ public class adminController {
             repositoryPerson.save(newPerson);
             repositoryAccountRequests.deleteById(userName);
         }
+
         return "admin-view-accountrequests";
     }
 }
