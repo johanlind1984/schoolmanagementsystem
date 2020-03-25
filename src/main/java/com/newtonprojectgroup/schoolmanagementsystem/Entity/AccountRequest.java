@@ -3,17 +3,15 @@ package com.newtonprojectgroup.schoolmanagementsystem.Entity;
 import javax.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@Table(name="person")
-public class Person {
+@Table(name="account_requests")
+public class AccountRequest {
 
     @Id
     @Column(name="person_username")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String personId;
+    private String userName;
 
-    @Column(name="idstaff")
-    private String staffId;
+    @Column(name="person_password")
+    private char[] password;
 
     @Column(name="first_name")
     private String firstName;
@@ -34,27 +32,26 @@ public class Person {
     @JoinColumn(name="person_type_id", nullable=false)
     private PersonType personType;
 
-
-    public Person() {
+    public AccountRequest() {
     }
 
-    public String getStaffId() {
-        return staffId;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setStaffId(String staffId) {
-        this.staffId = staffId;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getPersonId() {
-        return personId;
+    public char[] getPassword() {
+        return password;
     }
 
-    public void setPersonId(String personId) {
-        this.personId = personId;
+    public void setPassword(char[] password) {
+        this.password = password;
     }
 
-	public String getFirstName() {
+    public String getFirstName() {
         return firstName;
     }
 
@@ -101,5 +98,4 @@ public class Person {
     public void setPersonType(PersonType personType) {
         this.personType = personType;
     }
-
 }

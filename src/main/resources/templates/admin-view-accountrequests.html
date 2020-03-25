@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome Administrator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- Custom Theme files -->
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- //Custom Theme files -->
+    <!-- web font -->
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+    <!-- //web font -->
+</head>
+<body>
+    <h1 align="center">Pending account Requests</h1>
+
+    <h1 align="center">Credentials</h1>
+    
+    <tr th:each="request : ${accountRequestsList}" align="center">
+        <td align="center"><span th:text="'Username: ' + ${request.userName}"> Username </span></td>
+        <br>
+        <td align="center"><span th:text="'Password: ' + ${request.password}"> Password </span></td>
+        <br>
+        <td align="center"><span th:text="'First Name: ' + ${request.firstName}"> First Name </span></td>
+        <br>
+        <td align="center"><span th:text="'Last Name: ' + ${request.lastName}"> Last Name </span></td>
+        <br>
+        <td align="center"><span th:text="'Personal Number: ' + ${request.personalNumber}"> Personal Number </span></td>
+        <br>
+        <td align="center"><span th:text="'Email: ' + ${request.email}"> Email </span></td>
+        <br>
+        <td align="center"><span th:text="'Adress: ' + ${request.adress}"> Adress </span></td>
+        <br>
+        <td align="center"><span th:text="'Title: ' + ${request.personType.personTypeTitle}"> Person Type </span></td>
+
+        <form th:action="@{/manageaccess}">
+            <select th:name="permission">
+                <option value="0">Deny Access</option>
+                <option value="1">Approve as Student</option>
+                <option value="2">Approve as Teacher</option>
+                <option value="3">Approve as Faculty</option>
+                <option value="4">Approve as Administrator</option>
+            </select>
+            <button type="submit" th:name="username" th:value="${request.userName}">Save</button>
+        </form>
+</body>
+</html>

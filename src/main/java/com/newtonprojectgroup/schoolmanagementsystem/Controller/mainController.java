@@ -45,6 +45,7 @@ public class mainController {
             staffController.setUser(repositoryPerson.findById(credentials.getUserName()).orElse(null));
             staffController.setCredentials(realCredentials);
 
+
             switch (realCredentials.getUserPermission()) {
                 case 1:
                     return new ModelAndView("redirect:/greetuser");
@@ -53,7 +54,6 @@ public class mainController {
                 case 3:
                     return new ModelAndView("redirect:/staffview");
                 case 4:
-                    System.out.println("adminstratorView model and view");
                     return new ModelAndView("redirect:/adminstartview");
                 default:
                     return new ModelAndView("redirect:/greetuser");

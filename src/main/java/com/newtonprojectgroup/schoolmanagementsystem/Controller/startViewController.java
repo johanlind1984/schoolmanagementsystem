@@ -26,7 +26,6 @@ public class startViewController {
     private List<Student> studentList;
 
 
-
     public startViewController() {
     }
 
@@ -36,33 +35,35 @@ public class startViewController {
         studentList = repositoryStudent.findAll();
         gradeList = repositoryGrade.findAll();
 
+        for (Student person : studentList) {
+            System.out.println("Name: " + person.getFirstName() + " " + person.getLastName());
+            System.out.println("Role: " + person.getPersonType().getPersonTypeTitle());
+            System.out.println("StudentId: " + person.getPersonId());
+            System.out.println("Student semester: " + person.getSemester());
+            System.out.println("Enlisted on program " + person.getEnlistedProgram().getProgramName());
+            System.out.println("Courses in program: ");
+            for (Course course : person.getEnlistedProgram().getCourseList()) {
+                System.out.println(course.getCourseName());
+            }
+            System.out.println("====GRADES===\n");
 
-            for (Student student : studentList) {
-                System.out.println("Name: " + student.getFirstName() + " " + student.getLastName());
-                System.out.println("Role: " + student.getPersonType().getPersonTypeTitle());
-                System.out.println("StudentId: " + student.getStudentId());
-                System.out.println("Student semester: " + student.getSemester());
-                System.out.println("Enlisted on program " + student.getEnlistedProgram().getProgramName());
-                System.out.println("Courses in program: ");
-                for (Course course : student.getEnlistedProgram().getCourseList()) {
-                    System.out.println(course.getCourseName());
-                }
-                System.out.println("====GRADES===\n");
-
-                for (StudentGrade studentGrade : student.getStudentGrades()) {
-                    System.out.println(studentGrade.getCourse().getCourseName() + ": " + studentGrade.getGrade().getScore());
-                }
+            for (StudentGrade studentGrade : person.getStudentGrades()) {
+                System.out.println(studentGrade.getCourse().getCourseName() + ": " + studentGrade.getGrade().getScore());
             }
 
             for (Grade grade : gradeList) {
                 System.out.println(grade.getScore());
             }
             System.out.println("====END OF PERSON===\n");
+        }
+
+        gradeList = repositoryGrade.findAll();
 
         theModel.addAttribute("theuser", user);
+
         return "welcome-" + credentials.getUserPermission();
     }
-  
+
     public void setUser(Person user) {
         this.user = user;
     }
