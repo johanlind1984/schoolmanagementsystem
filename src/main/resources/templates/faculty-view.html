@@ -20,9 +20,9 @@
     <!-- //web font -->
     <style>
         h2 {
-        font-size: 33px;
-        font-family: inherit;
-        color: black;
+            font-size: 33px;
+            font-family: inherit;
+            color: black;
         }
 
         .form-inline label {
@@ -51,6 +51,7 @@
         .form-inline button:hover {
             background-color: royalblue;
         }
+
         @media (max-width: 50px) {
             .form-inline input {
                 margin: 10px 0;
@@ -68,6 +69,28 @@
 <br><br><br>
 <h2 align="center">Din information</h2>
 <br>
+<table>
+    <thead>
+    <tr>
+        <th> Program </th>
+
+    </tr>
+    </thead>
+    <tbody>
+<!--    <tr th:if="${programList.empty}">-->
+<!--        <td colspan="2"> Inga program tillgängliga </td>-->
+<!--    </tr>-->
+<form th:action="@{/faculty-view}">
+    <select th:name="program">
+        <option th:each="program : ${programList}" th:value="${program.programId}" th:text="${program.programName}">
+        </option>
+    </select>
+    <tr th:each="program : ${programs}">
+        <td><span th:text="${program.programName}"> Program: </span></td>
+        <td><span th:text="${program.getProgramName}"> Program: </span></td>
+    </tr>
+    </tbody>
+</table>
 
 <form class="form-inline" action="/staffview" method="get">
 
@@ -87,9 +110,12 @@
         <input type="text" id="email" name="email" th:value="${Person.email}"></p><br>
 
     <p align="center"><label for="personType">Sysselsättning</label>
-        <input type="text" id="personType" name="personType" th:value="${Person.personType.personTypeTitle}"></p><br><br>
+        <input type="text" id="personType" name="personType" th:value="${Person.personType.personTypeTitle}"></p>
+    <br><br>
 
-    <p align="center"><button type="submit">Spara information</button></p>
+    <p align="center">
+        <button type="submit">Spara information</button>
+    </p>
 </form>
 
 </body>
