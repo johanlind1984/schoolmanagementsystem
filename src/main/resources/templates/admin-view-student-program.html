@@ -24,8 +24,6 @@
 
     <tr th:each="unassignedStudent : ${unassignedStudents}" align="center">
         <td><span th:text="'Username: ' + ${unassignedStudent.personId}"></span></td>
-<!--        <br>-->
-<!--        <td><span th:text="'Password: ' + ${request.password}"></span></td>-->
         <br>
         <td><span th:text="'First Name: ' + ${unassignedStudent.firstName}"></span></td>
         <br>
@@ -37,6 +35,7 @@
         <br>
         <td><span th:text="'Adress: ' + ${unassignedStudent.adress}"></span></td>
 
+
         <form th:action="@{/saveassignstudents}">
             <select th:name="program">
                 <option th:each="program : ${programList}" th:value="${program.programId}" th:text="${program.programName}">
@@ -44,6 +43,7 @@
             </select>
             <button type="submit" th:name="username" th:value="${unassignedStudent.personId}">Save</button>
         </form>
+        </div>
         <br><br>
     </tr>
     </h3>

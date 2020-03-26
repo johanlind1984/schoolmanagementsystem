@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome Administrator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- Custom Theme files -->
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- //Custom Theme files -->
+    <!-- web font -->
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+    <!-- //web font -->
+</head>
+<body>
+    <h1 align="center">Programs - Add / Delete Courses</h1>
+    <br><br><br><br>
+
+
+    <span th:each="program : ${programList}">
+        <h2 align="center" th:text="${program.programName}"></h2>
+
+        <tr align="center" th:each="course: ${program.courseList}">
+            <p align="center" th:text="${course.courseName}"></p>
+        </tr>
+
+
+        <div align="center">
+        <form th:action="@{/savecoursetoprogram}">
+            <select th:name="courseId">
+                <option th:each="course : ${courseList}" th:value="${course.courseID}" th:text="${course.courseName}">
+                </option>
+            </select>
+            <button type="submit" th:name="saveProgramId" th:value="${program.programId}">Add to Program</button>
+            <button type="submit" th:name="deleteProgramId" th:value="${program.programId}">Remove from Program</button>
+        </form>
+        </div>
+
+        <br><br>
+
+    </span>
+
+</body>
+</html>
