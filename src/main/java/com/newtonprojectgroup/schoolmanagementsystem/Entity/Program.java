@@ -1,5 +1,7 @@
 package com.newtonprojectgroup.schoolmanagementsystem.Entity;
 
+import org.hibernate.annotations.Fetch;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,7 +16,7 @@ public class Program {
     @Column(name="program_name")
     private String programName;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(cascade = { CascadeType.ALL }, fetch=FetchType.EAGER)
     @JoinTable(
             name = "program_course",
             joinColumns = { @JoinColumn(name = "idprogram_course_course_id") },
