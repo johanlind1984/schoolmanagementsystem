@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome Administrator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- Custom Theme files -->
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- //Custom Theme files -->
+    <!-- web font -->
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+    <!-- //web font -->
+</head>
+<body>
+    <h1 align="center">Assign Students to Program</h1>
+    <br><br><br><br>
+
+    <h3 align="center">
+    <td>
+        <span th:if="${unassignedStudents.isEmpty()}">There are no students unassigned to a program at this time</span>
+    </td>
+
+    <tr th:each="unassignedStudent : ${unassignedStudents}" align="center">
+        <td><span th:text="'Username: ' + ${unassignedStudent.personId}"></span></td>
+<!--        <br>-->
+<!--        <td><span th:text="'Password: ' + ${request.password}"></span></td>-->
+        <br>
+        <td><span th:text="'First Name: ' + ${unassignedStudent.firstName}"></span></td>
+        <br>
+        <td><span th:text="'Last Name: ' + ${unassignedStudent.lastName}"></span></td>
+        <br>
+        <td><span th:text="'Personal Number: ' + ${unassignedStudent.personalNumber}"></span></td>
+        <br>
+        <td><span th:text="'Email: ' + ${unassignedStudent.email}"></span></td>
+        <br>
+        <td><span th:text="'Adress: ' + ${unassignedStudent.adress}"></span></td>
+
+        <form th:action="@{/saveassignstudents}">
+            <select th:name="program">
+                <option th:each="program : ${programList}" th:value="${program.programId}" th:text="${program.programName}">
+                </option>
+            </select>
+            <button type="submit" th:name="username" th:value="${unassignedStudent.personId}">Save</button>
+        </form>
+        <br><br>
+    </tr>
+    </h3>
+
+</body>
+</html>
