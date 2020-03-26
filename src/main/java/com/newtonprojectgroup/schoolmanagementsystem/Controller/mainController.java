@@ -48,7 +48,11 @@ public class mainController {
                 case 3:
                     return new ModelAndView("redirect:/greetuser");
                 case 4:
-                    return new ModelAndView("redirect:/adminstartview");
+                    // test assingning students
+                    return new ModelAndView("redirect:/assignstudents");
+
+                    // test approving/declining accounts
+                    // return new ModelAndView("redirect:/adminstartview");
                 default:
                     return new ModelAndView("redirect:/greetuser");
             }
