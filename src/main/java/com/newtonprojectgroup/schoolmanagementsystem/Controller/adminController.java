@@ -1,15 +1,15 @@
 package com.newtonprojectgroup.schoolmanagementsystem.Controller;
 
-import com.newtonprojectgroup.schoolmanagementsystem.Entity.AccountRequest;
-import com.newtonprojectgroup.schoolmanagementsystem.Entity.Credentials;
-import com.newtonprojectgroup.schoolmanagementsystem.Entity.Person;
+import com.newtonprojectgroup.schoolmanagementsystem.Entity.*;
 import com.newtonprojectgroup.schoolmanagementsystem.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -33,6 +33,9 @@ public class adminController {
     @Autowired
     private iRepositoryAccountRequests repositoryAccountRequests;
 
+    private List<AccountRequest> accountRequestList;
+    private List<Student> studentList;
+
 
 
     @RequestMapping("/adminstartview")
@@ -43,50 +46,102 @@ public class adminController {
         theModel.addAttribute("programList", repositoryProgram.findAll());
         theModel.addAttribute("credential", new Credentials());
 
+        accountRequestList = repositoryAccountRequests.findAll();
+        theModel.addAttribute("accountRequestsList", accountRequestList);
 
-
-        List<AccountRequest> list = repositoryAccountRequests.findAll();
-        theModel.addAttribute("accountRequestsList", list);
-
-
-        for (AccountRequest accountRequest: list) {
+        for (AccountRequest accountRequest: accountRequestList) {
             System.out.println(accountRequest.getEmail());
         }
-
 
         return "admin-view-accountrequests";
     }
 
+    // This method could possibly have ModelAndView returntype instead.
     @RequestMapping("/manageaccess")
     public String setPendingAccountAccess(
             @RequestParam( value = "permission", required = true) int permission,
-            @RequestParam( value = "username") String userName) {
+            @RequestParam( value = "username") String userName, Model theModel) {
 
         if(permission == 0) {
             System.out.println("Deleting student from queue: " + userName);
             repositoryAccountRequests.deleteById(userName);
         } else {
-
             AccountRequest requestToSave = repositoryAccountRequests.findById(userName).orElse(null);
-            Credentials newCredentials = new Credentials();
-            newCredentials.setUserName(requestToSave.getUserName());
-            newCredentials.setPassword(requestToSave.getPassword());
-            newCredentials.setUserPermission(permission);
-
-            Person newPerson = new Person();
-            newPerson.setPersonId(requestToSave.getUserName());
-            newPerson.setFirstName(requestToSave.getFirstName());
-            newPerson.setLastName(requestToSave.getLastName());
-            newPerson.setAdress(requestToSave.getAdress());
-            newPerson.setEmail(requestToSave.getEmail());
-            newPerson.setPersonalNumber(requestToSave.getPersonalNumber());
-            newPerson.setPersonType(requestToSave.getPersonType());
-
-            repositoryCredentials.save(newCredentials);
-            repositoryPerson.save(newPerson);
+            saveAccountRequestAsCredential(requestToSave, permission);
+            savePersonAsCorrectPersonType(requestToSave, permission);
             repositoryAccountRequests.deleteById(userName);
+
         }
+
+        accountRequestList = repositoryAccountRequests.findAll();
+        theModel.addAttribute("accountRequestsList", accountRequestList);
 
         return "admin-view-accountrequests";
     }
+
+    @RequestMapping("/assignstudents")
+    public String studentProgram(Model theModel) {
+
+        List<Student> studentList = repositoryStudent.findAll();
+        List<Student> unassignedStudentsList = new ArrayList<>();
+        List<Program> programList = repositoryProgram.findAll();
+
+        for (Student unassignedStudent : studentList) {
+            if(unassignedStudent.getEnlistedProgram() == null) {
+                unassignedStudentsList.add(unassignedStudent);
+            }
+        }
+
+        theModel.addAttribute("unassignedStudents",unassignedStudentsList);
+        theModel.addAttribute("programList", programList);
+
+
+        return "admin-view-student-program";
+    }
+
+    @RequestMapping("saveassignstudents")
+    public ModelAndView saveStudentProgram(
+            @RequestParam( value = "program") int programId,
+            @RequestParam( value = "username") String userName,
+            Model theModel) {
+
+        Student student = (Student) repositoryPerson.findById(userName).orElse(null);
+        student.setEnlistedProgram(repositoryProgram.findById(programId).orElse(null));
+        student.setSemester(1);
+        repositoryStudent.save(student);
+
+        return new ModelAndView("redirect:/assignstudents");
+    }
+
+    private void savePersonAsCorrectPersonType(AccountRequest requestToSave, int permission) {
+
+        switch (permission) {
+            case 1:
+                Student student = new Student();
+                student.setPersonId(requestToSave.getUserName());
+                student.setFirstName(requestToSave.getFirstName());
+                student.setLastName(requestToSave.getLastName());
+                student.setAdress(requestToSave.getAdress());
+                student.setEmail(requestToSave.getEmail());
+                student.setPersonalNumber(requestToSave.getPersonalNumber());
+                student.setPersonType(requestToSave.getPersonType());
+                repositoryStudent.save(student);
+                break;
+            default:
+                // add case for each personType and add the person to the suiting table as I've done with student.
+                break;
+        }
+
+    }
+
+    private void saveAccountRequestAsCredential(AccountRequest requestToSave, int permission) {
+
+        Credentials newCredentials = new Credentials();
+        newCredentials.setUserName(requestToSave.getUserName());
+        newCredentials.setPassword(requestToSave.getPassword());
+        newCredentials.setUserPermission(permission);
+        repositoryCredentials.save(newCredentials);
+
+    }
+
 }

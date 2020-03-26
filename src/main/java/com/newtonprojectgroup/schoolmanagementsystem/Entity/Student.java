@@ -19,7 +19,7 @@ import javax.persistence.Table;
 public class Student extends Person {
 
     @Column(name="student_semester")
-    private int semester;
+    private Integer semester;
 
     @ManyToOne
     @JoinColumn(name="student_program_id", nullable=false)
