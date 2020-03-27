@@ -1,6 +1,6 @@
 package com.newtonprojectgroup.schoolmanagementsystem.Entity;
 
-
+import javax.persistence.*;
 
 import java.util.List;
 
