@@ -10,9 +10,9 @@ public class Person {
     @Id
     @Column(name="person_username")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String studentId;
+    private String personId;
 
-    @Column(name="")
+    @Column(name="idstaff")
     private String staffId;
 
     @Column(name="first_name")
@@ -34,6 +34,7 @@ public class Person {
     @JoinColumn(name="person_type_id", nullable=false)
     private PersonType personType;
 
+
     public Person() {
     }
 
@@ -45,15 +46,15 @@ public class Person {
         this.staffId = staffId;
     }
 
-    public String getStudentId() {
-        return studentId;
+    public String getPersonId() {
+        return personId;
     }
 
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
+    public void setPersonId(String personId) {
+        this.personId = personId;
     }
 
-    public String getFirstName() {
+	public String getFirstName() {
         return firstName;
     }
 
@@ -100,4 +101,5 @@ public class Person {
     public void setPersonType(PersonType personType) {
         this.personType = personType;
     }
+
 }

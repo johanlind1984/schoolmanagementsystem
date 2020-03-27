@@ -15,7 +15,10 @@ public class PersonType {
     private String personTypeTitle;
 
     @OneToMany(mappedBy="personType")
-    List<Person> personList;
+    private List<Person> personList;
+
+    @OneToMany(mappedBy="personType")
+    private List<AccountRequest> accountRequestList;
 
     public PersonType() {
     }

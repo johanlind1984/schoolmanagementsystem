@@ -30,3 +30,6 @@ build/
 ### VS Code ###
 .vscode/
 README.md
+src/main/resources/application.properties
+*.properties
+src/main/resources/application.properties

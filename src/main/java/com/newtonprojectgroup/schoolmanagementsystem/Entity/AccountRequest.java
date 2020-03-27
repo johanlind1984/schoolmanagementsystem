@@ -2,42 +2,53 @@ package com.newtonprojectgroup.schoolmanagementsystem.Entity;
 
 import javax.persistence.*;
 
-
 @Entity
-@Table(name = "placeholderaccounts")
-public class PlaceholderAccounts {
+@Table(name="account_requests")
+public class AccountRequest {
 
     @Id
-    @Column(name = "username_ph")
-    private String username_ph;
+    @Column(name="person_username")
+    private String userName;
 
-    @Column(name = "password")
+    @Column(name="person_password")
     private char[] password;
 
-    @Column(name = "first_name")
+    @Column(name="first_name")
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name="last_name")
     private String lastName;
 
-    @Column(name = "personal_number")
+    @Column(name="personal_number")
     private String personalNumber;
 
-    @Column(name = "email")
+    @Column(name="email")
     private String email;
 
-    @Column(name = "adress")
+    @Column(name="adress")
     private String adress;
 
-    public PlaceholderAccounts() {
+    @ManyToOne
+    @JoinColumn(name="person_type_id", nullable=false)
+    private PersonType personType;
+
+    public AccountRequest() {
     }
 
-    public String getUsername_ph() {
-        return username_ph;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername_ph(String username_ph) {
-        this.username_ph = username_ph;
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public char[] getPassword() {
+        return password;
+    }
+
+    public void setPassword(char[] password) {
+        this.password = password;
     }
 
     public String getFirstName() {
@@ -80,11 +91,11 @@ public class PlaceholderAccounts {
         this.adress = adress;
     }
 
-    public char[] getPassword() {
-        return password;
+    public PersonType getPersonType() {
+        return personType;
     }
 
-    public void setPassword(char[] password) {
-        this.password = password;
+    public void setPersonType(PersonType personType) {
+        this.personType = personType;
     }
 }
