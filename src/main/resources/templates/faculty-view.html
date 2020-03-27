@@ -67,33 +67,34 @@
 <body>
 <h1 align="center">Inloggad: Personal</h1>
 <br><br><br>
-<h2 align="center">Din information</h2>
-<br>
-<table>
-    <thead>
-    <tr>
-        <th> Program </th>
 
-    </tr>
-    </thead>
-    <tbody>
-<!--    <tr th:if="${programList.empty}">-->
-<!--        <td colspan="2"> Inga program tillgängliga </td>-->
-<!--    </tr>-->
-<form th:action="@{/faculty-view}">
+
+<h3 align="center">Välj program och se tillhörande klasser</h3>
+<div align="center">
     <select th:name="program">
-        <option th:each="program : ${programList}" th:value="${program.programId}" th:text="${program.programName}">
+        <option th:each="program : ${programs}"
+                th:value="${program.programId}"
+                th:text="${program.programName}">
         </option>
     </select>
-    <tr th:each="program : ${programs}">
-        <td><span th:text="${program.programName}"> Program: </span></td>
-        <td><span th:text="${program.getProgramName}"> Program: </span></td>
-    </tr>
-    </tbody>
-</table>
+</div>
+
+<div align="center">
+    <label>
+        <select th:name="student">
+            <option th:each="student : ${students}"
+                    th:value="${student.enlistedProgram}"
+                    th:text="${student.firstName}">
+            </option>
+        </select>
+    </label>
+</div>
+<br><br>
+
+<h2 align="center">Din information</h2>
+<br>
 
 <form class="form-inline" action="/staffview" method="get">
-
     <p align="center"><label for="fname">Namn</label>
         <input type="text" id="fname" name="fname" th:value="${Person.firstName}"></p><br>
 
