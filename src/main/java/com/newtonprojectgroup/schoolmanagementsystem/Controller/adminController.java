@@ -148,9 +148,22 @@ public class adminController {
     }
 
     @RequestMapping("/removeperson")
-    public String removePersonFromSystem() {
-
+    public String removePersonFromSystem(Model theModel) {
+        theModel.addAttribute("personList", repositoryPerson.findAll());
         return "admin-remove-person";
+    }
+
+    @RequestMapping("/removethisperson")
+    public ModelAndView removePersonById(@RequestParam(value = "username") String userName) {
+
+        if(userName != null) {
+            Person personToRemove = repositoryPerson.findById(userName).orElse(null);
+            if(personToRemove != null) {
+                repositoryPerson.delete(personToRemove);
+            }
+        }
+
+        return new ModelAndView("redirect:/removeperson");
     }
 
     private void savePersonAsCorrectPersonType(AccountRequest requestToSave, int permission) {
