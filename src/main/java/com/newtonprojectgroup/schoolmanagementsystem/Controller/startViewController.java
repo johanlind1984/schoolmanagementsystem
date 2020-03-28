@@ -1,7 +1,8 @@
 package com.newtonprojectgroup.schoolmanagementsystem.Controller;
 
 import com.newtonprojectgroup.schoolmanagementsystem.Entity.*;
-import com.newtonprojectgroup.schoolmanagementsystem.Repository.*;
+import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryGrade;
+import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryStudent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +33,7 @@ public class startViewController {
     public String greetUser(Model theModel) {
 
         studentList = repositoryStudent.findAll();
+        gradeList = repositoryGrade.findAll();
 
         for (Student person : studentList) {
             System.out.println("Name: " + person.getFirstName() + " " + person.getLastName());
@@ -47,21 +49,21 @@ public class startViewController {
 
             for (StudentGrade studentGrade : person.getStudentGrades()) {
                 System.out.println(studentGrade.getCourse().getCourseName() + ": " + studentGrade.getGrade().getScore());
-
             }
 
+            for (Grade grade : gradeList) {
+                System.out.println(grade.getScore());
+            }
             System.out.println("====END OF PERSON===\n");
-
         }
 
         gradeList = repositoryGrade.findAll();
-        
+
         theModel.addAttribute("theuser", user);
 
         return "welcome-" + credentials.getUserPermission();
-
     }
-  
+
     public void setUser(Person user) {
         this.user = user;
     }

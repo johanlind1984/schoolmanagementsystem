@@ -9,7 +9,11 @@ public class Person {
 
     @Id
     @Column(name="person_username")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String personId;
+
+    @Column(name="idstaff")
+    private String staffId;
 
     @Column(name="first_name")
     private String firstName;
@@ -30,7 +34,16 @@ public class Person {
     @JoinColumn(name="person_type_id", nullable=false)
     private PersonType personType;
 
+
     public Person() {
+    }
+
+    public String getStaffId() {
+        return staffId;
+    }
+
+    public void setStaffId(String staffId) {
+        this.staffId = staffId;
     }
 
     public String getPersonId() {
@@ -88,4 +101,5 @@ public class Person {
     public void setPersonType(PersonType personType) {
         this.personType = personType;
     }
+
 }
