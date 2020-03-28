@@ -146,6 +146,13 @@ public class adminController {
 
         return new ModelAndView("redirect:/programcourse");
     }
+
+    @RequestMapping("/removeperson")
+    public String removePersonFromSystem() {
+
+        return "admin-remove-person";
+    }
+
     private void savePersonAsCorrectPersonType(AccountRequest requestToSave, int permission) {
 
         switch (permission) {
