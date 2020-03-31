@@ -1,6 +1,7 @@
 package com.newtonprojectgroup.schoolmanagementsystem.Controller;
 
 import com.newtonprojectgroup.schoolmanagementsystem.Entity.*;
+import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryPerson;
 import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryPersonType;
 import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryProgram;
 import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryStudent;
@@ -16,10 +17,13 @@ public class staffController {
 
     private PersonType personType;
     private Person person;
+    private Program program;
     public Credentials credentials;
 
     @Autowired
     private iRepositoryPersonType repositoryPersonType;
+    @Autowired
+    private iRepositoryPerson repositoryPerson;
     @Autowired
     private iRepositoryStudent repositoryStudent;
     @Autowired
@@ -34,11 +38,17 @@ public class staffController {
         List<PersonType> personTypes = repositoryPersonType.findAll();
         List<Student> students = repositoryStudent.findAll();
         List<Program> programs = repositoryProgram.findAll();
+        List<Person> persons = repositoryPerson.findAll();
 
-        for (PersonType person : personTypes) {
-            if(person.getPersonTypeId() == 3) {
+
+
+        for (Person person : persons) {
+            if(person.getPersonId().equals(credentials.getUserName())) {
+//                program = (Program) program.getStudentList();
+
                 theModel.addAttribute("students", students);
                 theModel.addAttribute("programs", programs);
+
             }
         }
 
