@@ -20,7 +20,6 @@ public class staffController {
 
     @Autowired
     private iRepositoryPersonType repositoryPersonType;
-
     @Autowired
     private iRepositoryStudent repositoryStudent;
     @Autowired
@@ -37,7 +36,7 @@ public class staffController {
         List<Program> programs = repositoryProgram.findAll();
 
         for (PersonType person : personTypes) {
-            if(person.getPersonTypeId() == 4) {
+            if(person.getPersonTypeId() == 3) {
                 theModel.addAttribute("students", students);
                 theModel.addAttribute("programs", programs);
             }

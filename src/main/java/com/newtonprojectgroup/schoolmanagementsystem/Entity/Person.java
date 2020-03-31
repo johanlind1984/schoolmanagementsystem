@@ -12,8 +12,6 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String personId;
 
-    // du hade get staffId här och i Staffklassen. Jag tog bort det
-
     @Column(name="first_name")
     private String firstName;
 
