@@ -86,9 +86,12 @@
                     th:value="${student.enlistedProgram}"
                     th:text="${student.firstName}">
             </option>
+
         </select>
+
     </label>
 </div>
+<button type="submit" th:name="chosen" th:value="${staffController?.chosenProgram}">Visa klasslista</button>
 <br><br>
 
 <h2 align="center">Din information</h2>

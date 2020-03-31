@@ -39,6 +39,20 @@ public class staffController {
         return "faculty-view";
     }
 
+    //Skapa en knapp för att visa studenter i ett program
+    @RequestMapping("/chosenprogram")
+    public String chosenProgram(int chosen, Model theModel) {
+
+        List<Program> programs = repositoryProgram.findAll();
+        repositoryProgram.findById(chosen);
+        theModel.addAttribute("programs", programs);
+
+
+
+    return "faculty-view";
+    }
+
+
     public void setUser(Person person) {
         this.person = person;
     }
