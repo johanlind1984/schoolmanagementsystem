@@ -1,6 +1,11 @@
 package com.newtonprojectgroup.schoolmanagementsystem.Entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="account_requests")
@@ -29,7 +34,7 @@ public class AccountRequest {
     private String adress;
 
     @ManyToOne
-    @JoinColumn(name="person_type_id", nullable=false)
+    @JoinColumn(name="person_type_id")
     private PersonType personType;
 
     public AccountRequest() {
