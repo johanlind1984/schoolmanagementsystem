@@ -1,10 +1,10 @@
 package com.newtonprojectgroup.schoolmanagementsystem.Controller;
 
-import com.newtonprojectgroup.schoolmanagementsystem.Entity.*;
-import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryPerson;
-import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryPersonType;
+import com.newtonprojectgroup.schoolmanagementsystem.Entity.Credentials;
+import com.newtonprojectgroup.schoolmanagementsystem.Entity.Person;
+import com.newtonprojectgroup.schoolmanagementsystem.Entity.Program;
+import com.newtonprojectgroup.schoolmanagementsystem.Entity.Student;
 import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryProgram;
-import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryStudent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,17 +15,9 @@ import java.util.List;
 @Controller
 public class staffController {
 
-    private PersonType personType;
     private Person person;
-    private Program program;
     public Credentials credentials;
 
-    @Autowired
-    private iRepositoryPersonType repositoryPersonType;
-    @Autowired
-    private iRepositoryPerson repositoryPerson;
-    @Autowired
-    private iRepositoryStudent repositoryStudent;
     @Autowired
     private iRepositoryProgram repositoryProgram;
 
@@ -35,23 +27,11 @@ public class staffController {
     @RequestMapping("/staffview")
     public String staffView(Model theModel) {
 
-        List<PersonType> personTypes = repositoryPersonType.findAll();
-        List<Student> students = repositoryStudent.findAll();
         List<Program> programs = repositoryProgram.findAll();
-        List<Person> persons = repositoryPerson.findAll();
 
-
-
-        for (Person person : persons) {
-            if(person.getPersonId().equals(credentials.getUserName())) {
-//                program = (Program) program.getStudentList();
-
-                theModel.addAttribute("students", students);
-                theModel.addAttribute("programs", programs);
-
-            }
-        }
-
+        theModel.addAttribute("programs", programs);
+        List<Student> students = repositoryProgram.findById(1).orElse(null).getStudentList();
+        theModel.addAttribute("students", students);
 
 
         theModel.addAttribute("Person", person);
