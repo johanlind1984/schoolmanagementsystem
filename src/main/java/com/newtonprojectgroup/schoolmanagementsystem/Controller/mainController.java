@@ -1,6 +1,7 @@
 package com.newtonprojectgroup.schoolmanagementsystem.Controller;
 
 import com.newtonprojectgroup.schoolmanagementsystem.Entity.Credentials;
+import com.newtonprojectgroup.schoolmanagementsystem.Entity.Person;
 import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryCredentials;
 import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryPerson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,12 +35,15 @@ public class mainController {
     }
 
     @RequestMapping("/checkcredentials")
-    public ModelAndView checkCredentials(@ModelAttribute Credentials credentials, Model theModel) {
+    public ModelAndView checkCredentials(@ModelAttribute("credentials") Credentials credentials, Model theModel) {
         System.out.println("Checking credentials");
         Credentials realCredentials = repositoryCredentials.findById(credentials.getUserName()).orElse(null);
 
 
         if (Arrays.equals(realCredentials.getPassword(), credentials.getPassword())) {
+
+            Person person = repositoryPerson.findById(credentials.getUserName()).orElse(null);
+            System.out.println(person.getFirstName());
             startViewController.setUser(repositoryPerson.findById(credentials.getUserName()).orElse(null));
             startViewController.setCredentials(realCredentials);
             staffController.setUser(repositoryPerson.findById(credentials.getUserName()).orElse(null));

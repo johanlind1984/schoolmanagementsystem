@@ -15,25 +15,19 @@
 </head>
 <body>
 
-<!--        <form action="@{/denyaccess(username=${request.userName}',permission='0'}">-->
-<!--        <td><input type="submit" value="Deny Access" /> </td>-->
-<!--        </form>-->
-<!--        <form action="@{/approveaccess1}">-->
-<!--            <td><input type="submit" value="Approve as Student" /> </td>-->
-<!--        </form>-->
-<!--        <form action="@{/approveaccess2}">-->
-<!--            <td><input type="submit" value="Approve as Teacher" /> </td>-->
-<!--        </form>-->
-<!--        <form action="@{/approveaccess3}">-->
-<!--            <td><input type="submit" value="Approve as Faculty" /> </td>-->
-<!--        </form>-->
-<!--        <form action="@{/approveaccess4}">-->
-<!--            <td><input type="submit" value="Approve as Adminisstrator" /> </td>-->
-<!--        </form>-->
-        <br>
-        <br>
-    </tr>
-    </tbody>
+<div align="center">
+    <table align="center" width="75%" height="125">
+        <tr>
+            <form th:action="@{/menuchoice}" method="post">
+                <td><button type="submit" th:name="menuchoice" th:value="accountrequests">Account Requests</button></td>
+                <td><button type="submit" th:name="menuchoice" th:value="studentprogram">Assign Students to Program</button></td>
+                <td><button type="submit" th:name="menuchoice" th:value="deleteusers">Delete Users</button></td>
+                <td><button type="submit" th:name="menuchoice" th:value="userdetails">My Details</button></td>
+            </form>
+        </tr>
+    </table>
+</div>
+
 
 </body>
 </html>
