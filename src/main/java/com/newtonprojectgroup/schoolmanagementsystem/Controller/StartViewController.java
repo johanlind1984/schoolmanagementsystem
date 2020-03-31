@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-public class startViewController {
+public class StartViewController {
 
     private Person user;
     private Credentials credentials;
@@ -26,7 +26,7 @@ public class startViewController {
     private List<Student> studentList;
 
 
-    public startViewController() {
+    public StartViewController() {
     }
 
     @RequestMapping("/greetuser")

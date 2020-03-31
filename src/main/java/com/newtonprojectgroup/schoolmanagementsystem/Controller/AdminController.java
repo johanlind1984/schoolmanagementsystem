@@ -13,7 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class adminController {
+@RequestMapping("/admin")
+public class AdminController {
 
     @Autowired
     private iRepositoryCourse repositoryCourse;
@@ -38,7 +39,7 @@ public class adminController {
 
 
 
-    @RequestMapping("/adminstartview")
+    @RequestMapping("/accountrequests")
     public String administratorStartView(Model theModel) {
 
         theModel.addAttribute("courseList", repositoryCourse.findAll());
