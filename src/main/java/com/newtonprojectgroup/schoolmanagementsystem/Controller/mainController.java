@@ -28,7 +28,7 @@ public class mainController {
     private staffController staffController;
 
     @RequestMapping("/")
-    public String login(Model theModel) {
+    public String home(Model theModel) {
         theModel.addAttribute("credentials", new Credentials());
         return "login";
     }
@@ -38,13 +38,11 @@ public class mainController {
         System.out.println("Checking credentials");
         Credentials realCredentials = repositoryCredentials.findById(credentials.getUserName()).orElse(null);
 
-
         if (Arrays.equals(realCredentials.getPassword(), credentials.getPassword())) {
             startViewController.setUser(repositoryPerson.findById(credentials.getUserName()).orElse(null));
             startViewController.setCredentials(realCredentials);
             staffController.setUser(repositoryPerson.findById(credentials.getUserName()).orElse(null));
             staffController.setCredentials(realCredentials);
-
 
             switch (realCredentials.getUserPermission()) {
                 case 1:

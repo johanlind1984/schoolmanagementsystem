@@ -33,6 +33,10 @@
                 <form action="/removeperson" method="post">
                     <td><button type="submit">Remove Person</button></td>
                 </form>
+
+                <form th:action="@{/logout}" method="post">
+                    <td><input type="submit" value="Sign Out"/></td>
+                </form>
             </tr>
         </table>
     </div>
