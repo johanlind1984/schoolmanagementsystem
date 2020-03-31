@@ -12,9 +12,6 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String personId;
 
-    @Column(name="idstaff")
-    private String staffId;
-
     @Column(name="first_name")
     private String firstName;
 
@@ -36,14 +33,6 @@ public class Person {
 
 
     public Person() {
-    }
-
-    public String getStaffId() {
-        return staffId;
-    }
-
-    public void setStaffId(String staffId) {
-        this.staffId = staffId;
     }
 
     public String getPersonId() {
