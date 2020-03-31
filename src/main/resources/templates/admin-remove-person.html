@@ -40,12 +40,10 @@
 
     <h3 align="center">
     <td>
-        <span th:if="${accountRequestsList.isEmpty()}">There are no pending requests</span>
+        <span th:if="${personList.isEmpty()}">There are no pending requests</span>
     </td>
 
-    <tr th:each="request : ${accountRequestsList}" align="center">
-        <td><span th:text="'Username: ' + ${request.userName}"></span></td>
-        <br>
+    <tr th:each="request : ${personList}" align="center">
         <td><span th:text="'First Name: ' + ${request.firstName}"></span></td>
         <br>
         <td><span th:text="'Last Name: ' + ${request.lastName}"></span></td>
@@ -58,15 +56,8 @@
         <br>
         <td><span th:text="'Title: ' + ${request.personType.personTypeTitle}"></span></td>
 
-        <form th:action="@{/manageaccess}">
-            <select th:name="permission">
-                <option value="0">Deny Access</option>
-                <option value="1">Approve as Student</option>
-                <option value="2">Approve as Teacher</option>
-                <option value="3">Approve as Faculty</option>
-                <option value="4">Approve as Administrator</option>
-            </select>
-            <button type="submit" th:name="username" th:value="${request.userName}">Save</button>
+        <form th:action="@{/removethisperson}">
+            <button type="submit" th:name="username" th:value="${request.personId}">Remove</button>
         </form>
         <br><br>
     </tr>

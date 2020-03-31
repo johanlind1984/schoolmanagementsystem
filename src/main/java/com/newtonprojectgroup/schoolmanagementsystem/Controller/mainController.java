@@ -34,7 +34,7 @@ public class mainController {
     }
 
     @RequestMapping("/checkcredentials")
-    public ModelAndView checkCredentials(@ModelAttribute Credentials credentials, Model theModel) {
+    public ModelAndView checkCredentials(@ModelAttribute("credentials") Credentials credentials, Model theModel) {
         System.out.println("Checking credentials");
         Credentials realCredentials = repositoryCredentials.findById(credentials.getUserName()).orElse(null);
 
