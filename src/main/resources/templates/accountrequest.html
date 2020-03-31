@@ -8,17 +8,42 @@
 <body>
 
 
-		<h1>Registreringsformulär</h1>
-	<div class="container">
+		<h1 align="center">Registreringsformulär</h1>
+	<div class="container" align="center">
 		<form action="/new" th:object="${accountrequest}" method="POST">
+		<label for=userName>Användarnamn:</label><br>
+		<input type="text" th:field="${accountrequest.userName}"><br>
+		<label for=password>Lösenord</label><br>
+		<input type="text" th:field="${accountrequest.password}"><br>
+		<label for=firstName>Förnamn:</label><br>
+		<input type="text" th:field="${accountrequest.firstName}"><br>
+		<label for=lastName>Efternamn:</label><br>
+		<input type="text" th:field="${accountrequest.lastName}"><br>
+		<label for=personalNumber>Personnummer:</label><br>
+		<input type="text" th:field="${accountrequest.personalNumber}"><br>
+		<label for=email>Epost</label><br>
+		<input type="text" th:field="${accountrequest.email}"><br>
+		<label for=adress>Adress</label><br>
+		<input type="text" th:field="${accountrequest.adress}"><br><br>
 		
-		<input type="text" placeholder="Användarnamn" th:field="${accountrequest.userName}">
-		<input type="text" placeholder="Lösenord" th:field="${accountrequest.password}">
-		<input type="text" placeholder="Förnamn" th:field="${accountrequest.firstName}">
+		
+		
+
+	 
+	
+		<select class="form-control" th:field="${accountrequest.personType}" id="dropOperator">
+			<option value="0">Välj behörighet</option>
+			<option	th:each="personType:${allPersonTypes}"
+					th:value="${personType.personTypeId}"
+					th:text="${personType.personTypeTitle}">
+					</option>
+					
+		</select><br><br>
 		
 		<button type="submit">Lägg till</button><button type="reset">Rensa</button>
 		</form>
 	</div>
+	
 	
 
 </body>
