@@ -27,7 +27,7 @@ public class Person {
     @Column(name="adress")
     private String adress;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name="person_type_id", nullable=false)
     private PersonType personType;
 

@@ -95,11 +95,10 @@ public class adminController {
         theModel.addAttribute("unassignedStudents",unassignedStudentsList);
         theModel.addAttribute("programList", programList);
 
-
         return "admin-view-student-program";
     }
 
-    @RequestMapping("saveassignstudents")
+    @RequestMapping("/saveassignstudents")
     public ModelAndView saveStudentProgram(
             @RequestParam( value = "program") int programId,
             @RequestParam( value = "username") String userName,
@@ -109,8 +108,62 @@ public class adminController {
         student.setEnlistedProgram(repositoryProgram.findById(programId).orElse(null));
         student.setSemester(1);
         repositoryStudent.save(student);
-
         return new ModelAndView("redirect:/assignstudents");
+    }
+
+    @RequestMapping("/programcourse")
+    public String programCourseLoadModel(Model theModel) {
+
+        theModel.addAttribute("courseList", repositoryCourse.findAll());
+        theModel.addAttribute("programList", repositoryProgram.findAll());
+
+        return "admin-view-program-courses";
+    }
+
+    @RequestMapping("/savecoursetoprogram")
+    public ModelAndView saveCourseToProgram(
+            @RequestParam( value = "courseId") int courseId,
+            @RequestParam( value = "saveProgramId", required = false) Integer saveToProgramId,
+            @RequestParam( value = "deleteProgramId", required = false) Integer deletefromProgramId
+    ) {
+
+        Course course = repositoryCourse.findById(courseId).orElse(null);
+        Program program = new Program();
+
+        if(saveToProgramId != null) {
+            program = repositoryProgram.findById(saveToProgramId).orElse(null);
+            if(!program.getCourseList().contains(course)) {
+                program.getCourseList().add(course);
+            }
+        } else {
+            program = repositoryProgram.findById(deletefromProgramId).orElse(null);
+            if(program.getCourseList().contains(course)) {
+                program.getCourseList().remove(course);
+            }
+        }
+
+        repositoryProgram.save(program);
+
+        return new ModelAndView("redirect:/programcourse");
+    }
+
+    @RequestMapping("/removeperson")
+    public String removePersonFromSystem(Model theModel) {
+        theModel.addAttribute("personList", repositoryPerson.findAll());
+        return "admin-remove-person";
+    }
+
+    @RequestMapping("/removethisperson")
+    public ModelAndView removePersonById(@RequestParam(value = "username") String userName) {
+
+        if(userName != null) {
+            Person personToRemove = repositoryPerson.findById(userName).orElse(null);
+            if(personToRemove != null) {
+                repositoryPerson.delete(personToRemove);
+            }
+        }
+
+        return new ModelAndView("redirect:/removeperson");
     }
 
     private void savePersonAsCorrectPersonType(AccountRequest requestToSave, int permission) {
@@ -135,7 +188,6 @@ public class adminController {
     }
 
     private void saveAccountRequestAsCredential(AccountRequest requestToSave, int permission) {
-
         Credentials newCredentials = new Credentials();
         newCredentials.setUserName(requestToSave.getUserName());
         newCredentials.setPassword(requestToSave.getPassword());
