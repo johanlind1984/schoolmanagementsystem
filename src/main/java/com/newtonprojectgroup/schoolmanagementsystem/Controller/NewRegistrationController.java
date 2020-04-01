@@ -36,9 +36,9 @@ public class NewRegistrationController {
 	}
 	@PostMapping ("/new")
 	public String createAccountRequest(@ModelAttribute("personTypeId") AccountRequest accountRequest, Model model) {
-		
 
-		
+		// LÄGG TILL KRYPTERING AV PASSWORD HÄR INNAN DEN SPARAS I DATABASEN
+
 		accReqRepo.save(accountRequest);
 		return "redirect:/new";
 	

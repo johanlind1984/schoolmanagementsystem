@@ -57,7 +57,7 @@
         <td><span th:text="'Adress: ' + ${unassignedStudent.adress}"></span></td>
 
 
-        <form th:action="@{/saveassignstudents}">
+        <form th:action="@{/admin/saveassignstudents}">
             <select th:name="program">
                 <option th:each="program : ${programList}" th:value="${program.programId}" th:text="${program.programName}">
                 </option>

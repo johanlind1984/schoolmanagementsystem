@@ -17,7 +17,7 @@ public class Credentials {
     private char[] password;
 
     @Column(name="permission")
-    private int userPermission;
+    private String userPermission;
 
     public Credentials() {
     }
@@ -43,11 +43,11 @@ public class Credentials {
         this.password = password;
     }
 
-    public int getUserPermission() {
+    public String getUserPermission() {
         return userPermission;
     }
 
-    public void setUserPermission(int userPermission) {
+    public void setUserPermission(String userPermission) {
         this.userPermission = userPermission;
     }
 }

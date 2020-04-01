@@ -56,7 +56,7 @@
         <br>
         <td><span th:text="'Title: ' + ${request.personType.personTypeTitle}"></span></td>
 
-        <form th:action="@{/removethisperson}">
+        <form th:action="@{/admin/removethisperson}">
             <button type="submit" th:name="username" th:value="${request.personId}">Remove</button>
         </form>
         <br><br>

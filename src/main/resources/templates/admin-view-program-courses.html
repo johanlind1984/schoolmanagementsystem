@@ -49,7 +49,7 @@
 
 
         <div align="center">
-        <form th:action="@{/savecoursetoprogram}">
+        <form th:action="@{/admin/savecoursetoprogram}">
             <select th:name="courseId">
                 <option th:each="course : ${courseList}" th:value="${course.courseID}" th:text="${course.courseName}">
                 </option>

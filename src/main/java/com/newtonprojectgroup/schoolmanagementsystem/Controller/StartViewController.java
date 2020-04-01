@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
+///
+/// Dernna klassen kommer att tas bort om vi skall använda Spring Securtity
+///
+
 @Controller
 public class StartViewController {
 

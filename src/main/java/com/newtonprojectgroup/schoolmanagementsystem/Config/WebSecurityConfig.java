@@ -37,13 +37,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/admin").hasRole("4")
-                .antMatchers("/student").hasRole("1")
-                .antMatchers("/staff").hasRole("3")
+                .antMatchers("/admin").hasRole("ADMIN")
+                .antMatchers("/student").hasRole("STUDENT")
+                .antMatchers("/teacher").hasRole("TEACHER")
+                .antMatchers("/staff").hasRole("STAFF")
                 .antMatchers("/login").permitAll()
                 .and()
                 .formLogin();
-
     }
 
     @Bean

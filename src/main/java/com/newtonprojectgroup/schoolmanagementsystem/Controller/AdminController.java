@@ -60,10 +60,10 @@ public class AdminController {
     // This method could possibly have ModelAndView returntype instead.
     @RequestMapping("/manageaccess")
     public String setPendingAccountAccess(
-            @RequestParam( value = "permission", required = true) int permission,
+            @RequestParam( value = "permission", required = true) String permission,
             @RequestParam( value = "username") String userName, Model theModel) {
 
-        if(permission == 0) {
+        if(permission.equals("DENIED")) {
             System.out.println("Deleting student from queue: " + userName);
             repositoryAccountRequests.deleteById(userName);
         } else {
@@ -167,10 +167,10 @@ public class AdminController {
         return new ModelAndView("redirect:/removeperson");
     }
 
-    private void savePersonAsCorrectPersonType(AccountRequest requestToSave, int permission) {
+    private void savePersonAsCorrectPersonType(AccountRequest requestToSave, String permission) {
 
         switch (permission) {
-            case 1:
+            case "ROLE_STUDENT":
                 Student student = new Student();
                 student.setPersonId(requestToSave.getUserName());
                 student.setFirstName(requestToSave.getFirstName());
@@ -188,7 +188,7 @@ public class AdminController {
 
     }
 
-    private void saveAccountRequestAsCredential(AccountRequest requestToSave, int permission) {
+    private void saveAccountRequestAsCredential(AccountRequest requestToSave, String permission) {
         Credentials newCredentials = new Credentials();
         newCredentials.setUserName(requestToSave.getUserName());
         newCredentials.setPassword(requestToSave.getPassword());

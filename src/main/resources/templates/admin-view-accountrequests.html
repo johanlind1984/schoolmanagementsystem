@@ -61,13 +61,13 @@
         <br>
         <td><span th:text="'Title: ' + ${request.personType.personTypeTitle}"></span></td>
 
-        <form th:action="@{/manageaccess}">
+        <form th:action="@{/admin/manageaccess}">
             <select th:name="permission">
-                <option value="0">Deny Access</option>
-                <option value="1">Approve as Student</option>
-                <option value="2">Approve as Teacher</option>
-                <option value="3">Approve as Faculty</option>
-                <option value="4">Approve as Administrator</option>
+                <option value="DENIED">Deny Access</option>
+                <option value="ROLE_STUDENT">Approve as Student</option>
+                <option value="ROLE_TEACHER">Approve as Teacher</option>
+                <option value="ROLE_STAFF">Approve as Faculty</option>
+                <option value="ROLE_ADMIN">Approve as Administrator</option>
             </select>
             <button type="submit" th:name="username" th:value="${request.userName}">Save</button>
         </form>
