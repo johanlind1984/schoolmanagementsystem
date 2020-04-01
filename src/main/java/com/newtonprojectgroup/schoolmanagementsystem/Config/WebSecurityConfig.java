@@ -27,6 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         auth.jdbcAuthentication()
         .dataSource(dataSource)
+                .passwordEncoder(passwordEncoder())
                 .usersByUsernameQuery("SELECT username, password, enabled FROM credentials WHERE username = ?")
                 .authoritiesByUsernameQuery("SELECT username, permission FROM credentials WHERE username = ?");
 
@@ -42,12 +43,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/teacher").hasRole("TEACHER")
                 .antMatchers("/staff").hasRole("STAFF")
                 .antMatchers("/login").permitAll()
+                .antMatchers("/register").permitAll()
                 .and()
                 .formLogin();
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
+
+        //return NoOpPasswordEncoder.getInstance();
+        return new BCryptPasswordEncoder();
     }
 }

@@ -70,6 +70,7 @@ public class AdminController {
             AccountRequest requestToSave = repositoryAccountRequests.findById(userName).orElse(null);
             saveAccountRequestAsCredential(requestToSave, permission);
             savePersonAsCorrectPersonType(requestToSave, permission);
+
             repositoryAccountRequests.deleteById(userName);
 
         }
@@ -193,6 +194,7 @@ public class AdminController {
         newCredentials.setUserName(requestToSave.getUserName());
         newCredentials.setPassword(requestToSave.getPassword());
         newCredentials.setUserPermission(permission);
+        newCredentials.setEnabled(true);
         repositoryCredentials.save(newCredentials);
 
     }

@@ -10,7 +10,7 @@
 
 		<h1 align="center">Registreringsformulär</h1>
 	<div class="container" align="center">
-		<form action="/new" th:object="${accountrequest}" method="POST">
+		<form action="/register/new" th:object="${accountrequest}" method="POST">
 		<label for=userName>Användarnamn:</label><br>
 		<input type="text" th:field="${accountrequest.userName}"><br>
 		<label for=password>Lösenord</label><br>
@@ -25,11 +25,6 @@
 		<input type="text" th:field="${accountrequest.email}"><br>
 		<label for=adress>Adress</label><br>
 		<input type="text" th:field="${accountrequest.adress}"><br><br>
-		
-		
-		
-
-	 
 	
 		<select class="form-control" th:field="${accountrequest.personType}" id="dropOperator">
 			<option value="0">Välj behörighet</option>

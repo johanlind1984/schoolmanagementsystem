@@ -19,6 +19,9 @@ public class Credentials {
     @Column(name="permission")
     private String userPermission;
 
+    @Column(name="enabled")
+    private Boolean isEnabled;
+
     public Credentials() {
     }
 
@@ -49,5 +52,13 @@ public class Credentials {
 
     public void setUserPermission(String userPermission) {
         this.userPermission = userPermission;
+    }
+
+    public Boolean getEnabled() {
+        return isEnabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        isEnabled = enabled;
     }
 }
