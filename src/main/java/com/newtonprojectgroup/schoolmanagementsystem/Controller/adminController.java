@@ -49,10 +49,6 @@ public class adminController {
         accountRequestList = repositoryAccountRequests.findAll();
         theModel.addAttribute("accountRequestsList", accountRequestList);
 
-        for (AccountRequest accountRequest: accountRequestList) {
-            System.out.println(accountRequest.getEmail());
-        }
-
         return "admin-view-accountrequests";
     }
 
