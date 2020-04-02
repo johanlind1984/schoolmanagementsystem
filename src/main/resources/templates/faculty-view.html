@@ -87,13 +87,14 @@
 
 <div align="center">
     <label>
+        <form class="form-inline" th:action="@{/chosenprogram}" method="get">
         <select th:name="student">
             <option th:each="student : ${studentList}"
                     th:value="${student.enlistedProgram}"
                     th:text="${student.firstName}">
             </option>
         </select>
-
+        </form>
     </label>
 </div>
 <button type="submit" th:name="chosen" th:value="${staffController?.chosenProgram}">Visa klasslista</button>
