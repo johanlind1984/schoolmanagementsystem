@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -41,13 +42,13 @@ public class staffController {
 
     //Skapa en knapp för att visa studenter i ett program
     @RequestMapping("/chosenprogram")
-    public String chosenProgram(int chosen, Model theModel) {
-
+    public String chosenProgram(@RequestParam("program") int chosenProgramId, Model theModel) {
         List<Program> programs = repositoryProgram.findAll();
-        repositoryProgram.findById(chosen);
+        Program program = repositoryProgram.findById(chosenProgramId).orElse(null);
+        List<Student> studentList = program.getStudentList();
         theModel.addAttribute("programs", programs);
-
-
+        theModel.addAttribute("chosenProgram", program);
+        theModel.addAttribute("studentList", studentList);
 
     return "faculty-view";
     }

@@ -70,23 +70,28 @@
 
 
 <h3 align="center">Välj program och se tillhörande klasser</h3>
+
 <div align="center">
+    <form class="form-inline" th:action="@{/chosenprogram}" method="get">
     <select th:name="program">
         <option th:each="program : ${programs}"
                 th:value="${program.programId}"
                 th:text="${program.programName}">
         </option>
     </select>
+        <p align="center">
+            <button type="submit">Välj program</button>
+        </p>
+    </form>
 </div>
 
 <div align="center">
     <label>
         <select th:name="student">
-            <option th:each="student : ${students}"
+            <option th:each="student : ${studentList}"
                     th:value="${student.enlistedProgram}"
                     th:text="${student.firstName}">
             </option>
-
         </select>
 
     </label>
@@ -97,30 +102,30 @@
 <h2 align="center">Din information</h2>
 <br>
 
-<form class="form-inline" action="/staffview" method="get">
-    <p align="center"><label for="fname">Namn</label>
-        <input type="text" id="fname" name="fname" th:value="${Person.firstName}"></p><br>
+<!--<form class="form-inline" action="/staffview" method="get">-->
+<!--    <p align="center"><label for="fname">Namn</label>-->
+<!--        <input type="text" id="fname" name="fname" th:value="${Person.firstName}"></p><br>-->
 
-    <p align="center"><label for="lname">Efternamn</label>
-        <input type="text" id="lname" name="lname" th:value="${Person.lastName}"></p><br>
+<!--    <p align="center"><label for="lname">Efternamn</label>-->
+<!--        <input type="text" id="lname" name="lname" th:value="${Person.lastName}"></p><br>-->
 
-    <p align="center"><label for="pNumber">Personnummer</label>
-        <input type="text" id="pNumber" name="pNumber" th:value="${Person.personalNumber}"></p><br>
+<!--    <p align="center"><label for="pNumber">Personnummer</label>-->
+<!--        <input type="text" id="pNumber" name="pNumber" th:value="${Person.personalNumber}"></p><br>-->
 
-    <p align="center"><label for="adress">Adress</label>
-        <input type="text" id="adress" name="adress" th:value="${Person.adress}"></p><br>
+<!--    <p align="center"><label for="adress">Adress</label>-->
+<!--        <input type="text" id="adress" name="adress" th:value="${Person.adress}"></p><br>-->
 
-    <p align="center"><label for="email">Epostadress</label>
-        <input type="text" id="email" name="email" th:value="${Person.email}"></p><br>
+<!--    <p align="center"><label for="email">Epostadress</label>-->
+<!--        <input type="text" id="email" name="email" th:value="${Person.email}"></p><br>-->
 
-    <p align="center"><label for="personType">Sysselsättning</label>
-        <input type="text" id="personType" name="personType" th:value="${Person.personType.personTypeTitle}"></p>
-    <br><br>
+<!--    <p align="center"><label for="personType">Sysselsättning</label>-->
+<!--        <input type="text" id="personType" name="personType" th:value="${Person.personType.personTypeTitle}"></p>-->
+<!--    <br><br>-->
 
-    <p align="center">
-        <button type="submit">Spara information</button>
-    </p>
-</form>
+<!--    <p align="center">-->
+<!--        <button type="submit">Spara information</button>-->
+<!--    </p>-->
+<!--</form>-->
 
 </body>
 </html>
