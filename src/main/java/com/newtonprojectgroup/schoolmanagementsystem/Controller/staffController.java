@@ -30,17 +30,15 @@ public class staffController {
     public staffController() {
     }
 
-//    @RequestMapping("/staffview")
-//    public String staffView(Model theModel) {
-//
-//        List<Program> programs = repositoryProgram.findAll();
-//
-//
-//        theModel.addAttribute("programs", programs);
-//        theModel.addAttribute("Person", person);
-//
-//        return "faculty-view";
-//    }
+    @RequestMapping("/staffview")
+    public String staffView(Model theModel) {
+
+        List<Program> programs = repositoryProgram.findAll();
+        theModel.addAttribute("programs", programs);
+        theModel.addAttribute("Person", person);
+
+        return "faculty-view";
+    }
 
 
     //Skapa en knapp för att visa studenter i ett program
@@ -52,7 +50,7 @@ public class staffController {
         theModel.addAttribute("programs", programs);
         theModel.addAttribute("chosenProgram", program);
         theModel.addAttribute("studentList", studentList);
-
+        theModel.addAttribute("Person", person);
 
         return "faculty-view";
     }

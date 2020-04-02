@@ -6,10 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <script type="application/x-javascript"> addEventListener("load", function () {
-
-    }
-
-    addEventListener("load", function () {
         setTimeout(hideURLbar, 0);
     }, false);
 
@@ -67,129 +63,79 @@
             }
         }
     </style>
+
 </head>
 <body>
 <h1 align="center">Inloggad: Personal</h1>
 <br><br><br>
 
-<h3 align="center">
-    <form th:action="@{/staffview}">
-        <button type="submit" th:name="action" th:value="show">Visa klasslista</button>
-    </form>
-</h3>
-
-
-<!--<form role="form" id="staffview" th:action=@{/staffview} method="get">-->
-<!--    <select class="form-control" name="*chosen*">-->
-<!--        <option value="">Välj program</option>-->
-<!--        <option value="1">Byggprogrammet</option>-->
-<!--        <option value="2">Elprogrammet</option>-->
-<!--        <option value="3">Ekonomiprogrammet</option>-->
-<!--        <option value="4">Estetiska programmet</option>-->
-<!--    </select>-->
-<!--</form>-->
-
-
-<h3 align="center">Välj program och se tillhörande klasser</h3>
+<h3 align="center">Välj program och se tillhörande elever</h3>
 
 <div align="center">
-    <select th:name="programs" th:action="@{/staffview/__${chosen}__}">
-        <option th:each="programs : ${programs}"
-                th:value="${programs.programId}"
-                th:text="${programs.programName}">
-    <form class="form-inline" th:action="@{/chosenprogram}" method="get">
-    <select th:name="program">
-        <option th:each="program : ${programs}"
-                th:value="${program.programId}"
-                th:text="${program.programName}">
-        </option>
-    </select>
+    <form th:action="@{/chosenprogram}" method="get">
+        <select th:name="program">
+            <option th:each="program : ${programs}"
+                    th:value="${program.programId}"
+                    th:text="${program.programName}">
+            </option>
+        </select>
         <p align="center">
             <button type="submit">Välj program</button>
         </p>
     </form>
 </div>
-</h3>
-
 
 <div align="center">
-    <label>
-        <select th:name="students">
-            <option th:each="students : ${students}"
-                    th:value="${students.enlistedProgram}"
-                    th:text="${students.firstName}">
-        <select th:name="student">
-            <option th:each="student : ${studentList}"
-                    th:value="${student.enlistedProgram}"
-                    th:text="${student.firstName}">
-            </option>
-        </select>
-    </label>
+    <table>
+        <tr>
+            <th align="left">Föramn   </th>
+            <th align="left">Efternamn   </th>
+        </tr>
+        <tr th:each="student : ${studentList}">
+            <td colspan="2" th:text="${student.firstName}">Default firstname</td>
+            <td colspan="2" th:text="${student.lastName}">Default lastname</td>
+        </tr>
+    </table>
 </div>
-
-
-<!--<div style="text-align: center;">-->
-<!--    <form th:action="@{/staffview}">-->
-<!--    <label>-->
-<!--        <select th:name="chosen">-->
-<!--            <option value="1">Byggprogrammet</option>-->
-<!--            <option value="2">Elprogrammet</option>-->
-<!--            <option value="3">Ekonomiprogrammet</option>-->
-<!--            <option value="4">Estetiska programmet</option>-->
-<!--        </select>-->
-<!--    </label>-->
-<!--    <button type="submit" th:value="${chosen}">Visa klasslista</button>-->
-<!--</form></div>-->
-
-
-<!--    <form th:action="@{/chosenProgram}">-->
-<!--        <label>-->
-<!--            <select th:name="chosen">-->
-<!--                <option value="1">Byggprogrammet</option>-->
-<!--                <option value="2">Elprogrammet</option>-->
-<!--                <option value="3">Ekonomiprogrammet</option>-->
-<!--                <option value="4">Estetiska programmet</option>-->
-<!--            </select>-->
-<!--        </label>-->
-<!--        <button type="submit" th:name="chosen" th:value="${chosen}">Save</button>-->
-<!--    </form>-->
-<!--    <br><br>-->
-
-
-<!--<h2 align="center">Din information</h2>-->
-<!--<br>-->
-
-<button type="submit" th:name="chosen" th:value="${staffController?.chosenProgram}">Visa klasslista</button>
 <br><br>
 
 <h2 align="center">Din information</h2>
 <br>
+<form class="form-inline" action="/staffview" method="get">
+    <p align="center"><label for="fname">Namn</label>
+        <input type="text" id="fname" name="fname" th:value="${Person.firstName}"></p><br>
 
-<!--<form class="form-inline" action="/staffview" method="get">-->
-<!--    <p align="center"><label for="fname">Namn</label>-->
-<!--        <input type="text" id="fname" name="fname" th:value="${Person.firstName}"></p><br>-->
+    <p align="center"><label for="lname">Efternamn</label>
+        <input type="text" id="lname" name="lname" th:value="${Person.lastName}"></p><br>
 
-<!--    <p align="center"><label for="lname">Efternamn</label>-->
-<!--        <input type="text" id="lname" name="lname" th:value="${Person.lastName}"></p><br>-->
+    <p align="center"><label for="pNumber">Personnummer</label>
+        <input type="text" id="pNumber" name="pNumber" th:value="${Person.personalNumber}"></p><br>
 
-<!--    <p align="center"><label for="pNumber">Personnummer</label>-->
-<!--        <input type="text" id="pNumber" name="pNumber" th:value="${Person.personalNumber}"></p><br>-->
+    <p align="center"><label for="adress">Adress</label>
+        <input type="text" id="adress" name="adress" th:value="${Person.adress}"></p><br>
 
-<!--    <p align="center"><label for="adress">Adress</label>-->
-<!--        <input type="text" id="adress" name="adress" th:value="${Person.adress}"></p><br>-->
+    <p align="center"><label for="email">Epostadress</label>
+        <input type="text" id="email" name="email" th:value="${Person.email}"></p><br>
 
-<!--    <p align="center"><label for="email">Epostadress</label>-->
-<!--        <input type="text" id="email" name="email" th:value="${Person.email}"></p><br>-->
+    <p align="center"><label for="personType">Sysselsättning</label>
+        <input type="text" id="personType" name="personType" th:value="${Person.personType.personTypeTitle}"></p>
+    <br><br>
 
-<!--    <p align="center"><label for="personType">Sysselsättning</label>-->
-<!--        <input type="text" id="personType" name="personType" th:value="${Person.personType.personTypeTitle}"></p>-->
-<!--    <br><br>-->
-
-
-<!--    <p align="center">-->
-<!--        <button type="submit">Spara information</button>-->
-<!--    </p>-->
-<!--</form>-->
-
+    <p align="center">
+        <button type="submit">Spara information</button>
+    </p>
+</form>
 </body>
 </html>
+
+<!--<div align="center">-->
+<!--    <label>-->
+<!--        <select th:name="student">-->
+<!--            <option th:each="student : ${studentList}"-->
+<!--                    th:value="${student.enlistedProgram}"-->
+<!--                    th:text="${student.firstName}">-->
+<!--            </option>-->
+<!--        </select>-->
+
+<!--    </label>-->
+<!--</div>-->
