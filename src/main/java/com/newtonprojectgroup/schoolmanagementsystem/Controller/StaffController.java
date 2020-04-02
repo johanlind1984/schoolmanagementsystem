@@ -19,7 +19,6 @@ public class StaffController {
     @RequestMapping("/")
     public String staffView(Model theModel) {
 
-
         theModel.addAttribute("Person", person);
         return "faculty-view";
     }

@@ -45,33 +45,32 @@ public class AdminController {
     @Autowired
     private UserDetailsService userDetailService;
 
-    @Autowired
-    private UserDetailsService userDetailsService;
-
     private List<AccountRequest> accountRequestList;
     private List<Student> studentList;
 
 
+    @RequestMapping("/")
+    public ModelAndView goToStartView() {
+        return new ModelAndView("redirect:/admin/accountrequests");
+    }
 
     @RequestMapping("/accountrequests")
     public String administratorStartView(Model theModel, Principal userdetails) {
 
-        Person person = repositoryPerson.findById(userdetails.getName()).orElse(null);
-        System.out.println(person.getFirstName());
-        System.out.println(person.getLastName());
-        System.out.println(person.getEmail());
+        // såhär hämtar man användarens information, Principal i parametern på metoden är en Spring klass som autowire
+        // med den inloggade användaren. Principal har en metod .getName() som är användarnmanet, via det kan man
+        // sedan hämta användarinformationen via en repository,
+
+        Admin admin = repositoryAdmin.findById(userdetails.getName()).orElse(null);
+
+
+        accountRequestList = repositoryAccountRequests.findAll();
 
         theModel.addAttribute("courseList", repositoryCourse.findAll());
         theModel.addAttribute("studentList", repositoryStudent.findAll());
         theModel.addAttribute("programList", repositoryProgram.findAll());
         theModel.addAttribute("credential", new Credentials());
-
-        accountRequestList = repositoryAccountRequests.findAll();
         theModel.addAttribute("accountRequestsList", accountRequestList);
-
-        for (AccountRequest accountRequest: accountRequestList) {
-            System.out.println(accountRequest.getEmail());
-        }
 
         return "admin-view-accountrequests";
     }
@@ -89,9 +88,7 @@ public class AdminController {
             AccountRequest requestToSave = repositoryAccountRequests.findById(userName).orElse(null);
             saveAccountRequestAsCredential(requestToSave, permission);
             savePersonAsCorrectPersonType(requestToSave, permission);
-
             repositoryAccountRequests.deleteById(userName);
-
         }
 
         accountRequestList = repositoryAccountRequests.findAll();
@@ -129,6 +126,7 @@ public class AdminController {
         student.setEnlistedProgram(repositoryProgram.findById(programId).orElse(null));
         student.setSemester(1);
         repositoryStudent.save(student);
+
         return new ModelAndView("redirect:/admin/assignstudents");
     }
 
@@ -171,6 +169,7 @@ public class AdminController {
     @RequestMapping("/removeperson")
     public String removePersonFromSystem(Model theModel) {
         theModel.addAttribute("personList", repositoryPerson.findAll());
+
         return "admin-remove-person";
     }
 
