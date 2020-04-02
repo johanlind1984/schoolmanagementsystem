@@ -3,6 +3,7 @@ package com.newtonprojectgroup.schoolmanagementsystem.Controller;
 import com.newtonprojectgroup.schoolmanagementsystem.Entity.*;
 import com.newtonprojectgroup.schoolmanagementsystem.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,6 +40,9 @@ public class AdminController {
 
     @Autowired
     private iRepositoryAccountRequests repositoryAccountRequests;
+
+    @Autowired
+    private UserDetailsService userDetailService;
 
     private List<AccountRequest> accountRequestList;
     private List<Student> studentList;
@@ -116,7 +120,7 @@ public class AdminController {
         student.setEnlistedProgram(repositoryProgram.findById(programId).orElse(null));
         student.setSemester(1);
         repositoryStudent.save(student);
-        return new ModelAndView("redirect:/assignstudents");
+        return new ModelAndView("redirect:/admin/assignstudents");
     }
 
     @RequestMapping("/programcourse")
@@ -152,7 +156,7 @@ public class AdminController {
 
         repositoryProgram.save(program);
 
-        return new ModelAndView("redirect:/programcourse");
+        return new ModelAndView("redirect:/admin/programcourse");
     }
 
     @RequestMapping("/removeperson")

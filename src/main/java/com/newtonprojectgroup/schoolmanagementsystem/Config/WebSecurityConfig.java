@@ -21,19 +21,12 @@ import javax.sql.DataSource;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    DataSource dataSource;
-
-    @Autowired
     private UserDetailsService userDetailService;
 
     @Override
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
 
-        auth.jdbcAuthentication()
-        .dataSource(dataSource)
-                .passwordEncoder(passwordEncoder())
-                .usersByUsernameQuery("SELECT username, password, enabled FROM credentials WHERE username = ?")
-                .authoritiesByUsernameQuery("SELECT username, permission FROM credentials WHERE username = ?");
+        auth.userDetailsService(userDetailService).passwordEncoder(passwordEncoder());
 
     }
 
@@ -54,7 +47,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-
         //return NoOpPasswordEncoder.getInstance();
         return new BCryptPasswordEncoder();
     }
