@@ -69,7 +69,7 @@
 <h2 align="center">Din information</h2>
 <br>
 
-<form class="form-inline" action="/staffview" method="get">
+<form class="form-inline" th:action="/staffview" method="get">
 
     <p align="center"><label for="fname">Namn</label>
         <input type="text" id="fname" name="fname" th:value="${Person.firstName}"></p><br>
