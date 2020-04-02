@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,13 +45,21 @@ public class AdminController {
     @Autowired
     private UserDetailsService userDetailService;
 
+    @Autowired
+    private UserDetailsService userDetailsService;
+
     private List<AccountRequest> accountRequestList;
     private List<Student> studentList;
 
 
 
     @RequestMapping("/accountrequests")
-    public String administratorStartView(Model theModel) {
+    public String administratorStartView(Model theModel, Principal userdetails) {
+
+        Person person = repositoryPerson.findById(userdetails.getName()).orElse(null);
+        System.out.println(person.getFirstName());
+        System.out.println(person.getLastName());
+        System.out.println(person.getEmail());
 
         theModel.addAttribute("courseList", repositoryCourse.findAll());
         theModel.addAttribute("studentList", repositoryStudent.findAll());
