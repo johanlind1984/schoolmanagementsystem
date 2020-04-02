@@ -44,28 +44,14 @@ public class staffController {
 
 
     //Skapa en knapp för att visa studenter i ett program
-    @RequestMapping("/staffview")
-    public String chosenProgram(
-            @RequestParam(value = "chosen", required = false) Integer chosen, Model theModel) {
-
-        if (chosen == null) {
-            chosen = 1;
-        }
-
-
-
-
+    @RequestMapping("/chosenprogram")
+    public String chosenProgram(@RequestParam("program") int chosenProgramId, Model theModel) {
         List<Program> programs = repositoryProgram.findAll();
-        List<Student> students = repositoryProgram.findById(chosen).orElse(null).getStudentList();
-
-            theModel.addAttribute("programs", programs);
-            theModel.addAttribute("students", students);
-            theModel.addAttribute("Person", person);
-
-//            theModel.addAttribute("chosen", chosen);
-//            List<Integer> chosenProgramID = Arrays.asList(1,2,3,4);
-//            theModel.addAttribute("chosenProgramID", chosenProgramID);
-
+        Program program = repositoryProgram.findById(chosenProgramId).orElse(null);
+        List<Student> studentList = program.getStudentList();
+        theModel.addAttribute("programs", programs);
+        theModel.addAttribute("chosenProgram", program);
+        theModel.addAttribute("studentList", studentList);
 
 
         return "faculty-view";

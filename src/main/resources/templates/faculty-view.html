@@ -91,13 +91,23 @@
 
 
 <h3 align="center">Välj program och se tillhörande klasser</h3>
+
 <div align="center">
     <select th:name="programs" th:action="@{/staffview/__${chosen}__}">
         <option th:each="programs : ${programs}"
                 th:value="${programs.programId}"
                 th:text="${programs.programName}">
+    <form class="form-inline" th:action="@{/chosenprogram}" method="get">
+    <select th:name="program">
+        <option th:each="program : ${programs}"
+                th:value="${program.programId}"
+                th:text="${program.programName}">
         </option>
     </select>
+        <p align="center">
+            <button type="submit">Välj program</button>
+        </p>
+    </form>
 </div>
 </h3>
 
@@ -108,12 +118,15 @@
             <option th:each="students : ${students}"
                     th:value="${students.enlistedProgram}"
                     th:text="${students.firstName}">
+        <select th:name="student">
+            <option th:each="student : ${studentList}"
+                    th:value="${student.enlistedProgram}"
+                    th:text="${student.firstName}">
             </option>
-
         </select>
-
     </label>
 </div>
+
 
 <!--<div style="text-align: center;">-->
 <!--    <form th:action="@{/staffview}">-->
@@ -146,6 +159,12 @@
 <!--<h2 align="center">Din information</h2>-->
 <!--<br>-->
 
+<button type="submit" th:name="chosen" th:value="${staffController?.chosenProgram}">Visa klasslista</button>
+<br><br>
+
+<h2 align="center">Din information</h2>
+<br>
+
 <!--<form class="form-inline" action="/staffview" method="get">-->
 <!--    <p align="center"><label for="fname">Namn</label>-->
 <!--        <input type="text" id="fname" name="fname" th:value="${Person.firstName}"></p><br>-->
@@ -165,6 +184,7 @@
 <!--    <p align="center"><label for="personType">Sysselsättning</label>-->
 <!--        <input type="text" id="personType" name="personType" th:value="${Person.personType.personTypeTitle}"></p>-->
 <!--    <br><br>-->
+
 
 <!--    <p align="center">-->
 <!--        <button type="submit">Spara information</button>-->
