@@ -88,12 +88,14 @@
 <div align="center">
     <table>
         <tr>
-            <th align="left">Föramn   </th>
-            <th align="left">Efternamn   </th>
+            <th style="font-weight: bold">Föramn</th>
+            <th style="font-weight: bold">Efternamn</th>
+            <th style="font-weight: bold">Email</th>
         </tr>
         <tr th:each="student : ${studentList}">
-            <td colspan="2" th:text="${student.firstName}">Default firstname</td>
-            <td colspan="2" th:text="${student.lastName}">Default lastname</td>
+            <td width="25%" align="center" th:text="${student.firstName}">Default firstname</td>
+            <td width="25%" align="center" th:text="${student.lastName}">Default lastname</td>
+            <td width="25%" align="center" th:text="${student.email}">Default email</td>
         </tr>
     </table>
 </div>
