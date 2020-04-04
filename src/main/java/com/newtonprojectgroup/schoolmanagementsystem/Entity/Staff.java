@@ -7,8 +7,6 @@ import javax.persistence.*;
 @PrimaryKeyJoinColumn(name="idstaff")
 public class Staff extends Person {
 
-
     public Staff() {
     }
-    
 }

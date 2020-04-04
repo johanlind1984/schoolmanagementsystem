@@ -9,7 +9,6 @@ public class Person {
 
     @Id
     @Column(name="person_username")
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private String personId;
 
     @Column(name="first_name")

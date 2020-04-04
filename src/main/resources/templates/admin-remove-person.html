@@ -18,19 +18,19 @@
     <div align="center">
         <table align="center" width="75%" height="125">
             <tr>
-                <form action="/adminstartview" method="post">
+                <form action="/admin/accountrequests" method="post">
                     <td><button type="submit">Account Requests</button></td>
                 </form>
 
-                <form action="/assignstudents" method="post">
+                <form action="/admin/assignstudents" method="post">
                 <td><button type="submit">Assign Students to Program</button></td>
                 </form>
 
-                <form action="/programcourse" method="post">
-                    <td><button type="submit">Assign Students to Program</button></td>
+                <form action="/admin/programcourse" method="post">
+                    <td><button type="submit">Add / Remove courses from Program</button></td>
                 </form>
 
-                <form action="/removeperson" method="post">
+                <form action="/admin/removeperson" method="post">
                     <td><button type="submit">Remove Person</button></td>
                 </form>
             </tr>
@@ -56,7 +56,7 @@
         <br>
         <td><span th:text="'Title: ' + ${request.personType.personTypeTitle}"></span></td>
 
-        <form th:action="@{/removethisperson}">
+        <form th:action="@{/admin/removethisperson}">
             <button type="submit" th:name="username" th:value="${request.personId}">Remove</button>
         </form>
         <br><br>
