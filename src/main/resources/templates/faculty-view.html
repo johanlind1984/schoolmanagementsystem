@@ -18,115 +18,163 @@
     <!-- web font -->
     <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
     <!-- //web font -->
-    <style>
+    <style type="text/css">
         h2 {
             font-size: 33px;
             font-family: inherit;
             color: black;
         }
-
-        .form-inline label {
-            margin: 5px 10px 5px 0;
-            font-size: 15px;
-
+        h3 {
+            font-size: 23px;
+            font-family: inherit;
+            color: black;
         }
-
-        .form-inline input {
-            vertical-align: middle;
-            margin: 5px 10px 5px 0;
-            padding: 10px;
-            font-size: 15px;
+        .body {
+            background-color: #aaada9;
         }
-
-        .form-inline button {
-            padding: 15px 175px;
-            background-color: #76b852;
+        .table-body-font-size {
+            font-size: 17px;
+        }
+        .table-head-font-size {
+            font-size: 20px;
+        }
+        .program button {
+            padding: 5px;
+            margin-top: 5px;
+            width: 140px;
+            background-color: #4169E1;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 20px;
+            border-color: #fff;
+            color: white;
+        }
+        .program button:hover {
+            background-color: royalblue;
+        }
+        .form-1 label {
+            size: 50px;
+            font-size: 20px;
+            padding-bottom: 10px;
+            padding-top: 10px;
+        }
+        .form {
+            margin: 0 auto;
+            width: 210px;
+        }
+
+        .form label {
+            font-size: 19px;
+            font-weight: bold;
+            padding-top: 9px;
+            padding-bottom: 2px;
+            display: inline-block;
+            text-align: right;
+            float: left;
+        }
+
+        .form input {
+            font-size: 14px;
+            size: 155px;
+            width: 207px;
+            display: inline-block;
+            text-align: left;
+            float: right;
+        }
+        .form button {
+            padding: 5px;
+            margin-top: 5px;
+            width: 207px;
+            background-color: #4169E1;
+            cursor: pointer;
+            font-size: 20px;
 
             border-color: #fff;
             color: white;
         }
 
-        .form-inline button:hover {
+        .form button:hover {
             background-color: royalblue;
         }
 
-        @media (max-width: 50px) {
-            .form-inline input {
-                margin: 10px 0;
-            }
-
-            .form-inline {
-                flex-direction: column;
-                align-items: stretch;
-            }
-        }
     </style>
 
 </head>
-<body>
+<body class="body">
 <h1 align="center">Inloggad: Personal</h1>
-<br><br><br>
+<br>
 
 <h3 align="center">Välj program och se tillhörande elever</h3>
 
 <div align="center">
-    <form th:action="@{/staff/chosenprogram}" method="get">
-        <select th:name="program">
-            <option th:each="program : ${programs}"
-                    th:value="${program.programId}"
-                    th:text="${program.programName}">
-            </option>
-        </select>
-        <p align="center">
+    <form class="form-1" th:action="@{/staff/chosenprogram}" method="get">
+        <label>
+            <select name="program" id="program" multiple="multiple">
+                <option th:each="program : ${programs}"
+                        th:value="${program.programId}"
+                        th:text="${program.programName}">
+                </option>
+            </select>
+        </label>
+        <p align="center" class="program">
             <button type="submit">Välj program</button>
         </p>
     </form>
 </div>
 
+<!--<li th:each="program: ${allPrograms}">-->
+<!--    <input type="checkbox" th:field="*{programs}" th:value="${program}" th:checked="${true}"/>-->
+<!--</li>-->
+
+
 <div align="center">
     <table>
-        <tr>
+        <tr class="table-head-font-size">
             <th style="font-weight: bold">Föramn</th>
             <th style="font-weight: bold">Efternamn</th>
             <th style="font-weight: bold">Email</th>
+
         </tr>
-        <tr th:each="student : ${studentList}">
+        <tr class="table-body-font-size" th:each="student: ${studentList}">
             <td width="25%" align="center" th:text="${student.firstName}">Default firstname</td>
             <td width="25%" align="center" th:text="${student.lastName}">Default lastname</td>
             <td width="25%" align="center" th:text="${student.email}">Default email</td>
+
         </tr>
     </table>
 </div>
-<br><br>
-
-<h2 align="center">Din information</h2>
 <br>
 
-<form class="form-inline" action="/staff" method="get">
-    <p align="center"><label for="fname">Namn</label>
-        <input type="text" id="fname" name="fname" th:value="${Person.firstName}"></p><br>
+<h2 align="center">Din information</h2>
 
-    <p align="center"><label for="lname">Efternamn</label>
-        <input type="text" id="lname" name="lname" th:value="${Person.lastName}"></p><br>
+<form class="form" action="/staff" method="get">
+    <label for="fname">Namn</label>
+    <input type="text" id="fname" name="fname"
+           th:value="${Person.firstName}"><br>
 
-    <p align="center"><label for="pNumber">Personnummer</label>
-        <input type="text" id="pNumber" name="pNumber" th:value="${Person.personalNumber}"></p><br>
+    <label for="lname">Efternamn</label>
+    <input type="text" id="lname" name="lname"
+           th:value="${Person.lastName}"><br>
 
-    <p align="center"><label for="adress">Adress</label>
-        <input type="text" id="adress" name="adress" th:value="${Person.adress}"></p><br>
+    <label for="pNumber">Personnummer</label>
+    <input type="text" id="pNumber" name="pNumber"
+           th:value="${Person.personalNumber}"><br>
 
-    <p align="center"><label for="email">Epostadress</label>
-        <input type="text" id="email" name="email" th:value="${Person.email}"></p><br>
+    <label for="adress">Adress</label>
+    <input type="text" id="adress" name="adress"
+           th:value="${Person.adress}"><br>
 
-    <p align="center"><label for="personType">Sysselsättning</label>
-        <input type="text" id="personType" name="personType" th:value="${Person.personType.personTypeTitle}"></p>
-    <br><br>
+    <label for="email">Epostadress</label>
+    <input align="20%" type="text" id="email" name="email"
+           th:value="${Person.email}"><br>
 
-    <p align="center">
-        <button type="submit">Spara information</button>
-    </p>
+    <label for="personType">Sysselsättning</label>
+    <input id="personType" name="personType"
+           th:value="${Person.personType.personTypeTitle}">
+
+    <button type="submit">Spara information</button>
+
 </form>
+
+
 </body>
 </html>

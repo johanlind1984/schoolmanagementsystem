@@ -82,7 +82,6 @@ public class StaffController {
 //        return "faculty-view";
 //    }
 
-
     public void setUser(Person person) {
         this.person = person;
     }
