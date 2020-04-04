@@ -17,6 +17,10 @@ import javax.persistence.Table;
 @Table(name="student")
 @PrimaryKeyJoinColumn(name = "idstudent")
 public class Student extends Person {
+	
+	@Column(name="count")
+	private Integer count;
+	
 
     @Column(name="student_semester")
     private Integer semester;
@@ -54,4 +58,14 @@ public class Student extends Person {
     public void setStudentGrades(List<StudentGrade> studentGrades) {
         this.studentGrades = studentGrades;
     }
+
+	public Integer getCount() {
+		return count;
+	}
+
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+    
+    
 }

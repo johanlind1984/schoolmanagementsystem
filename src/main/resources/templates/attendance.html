@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="ISO-8859-1">
+<title>Attendance</title>
+</head>
+<body>
+
+<div align="center">
+	<h3>Attendance Form</h3>
+
+	
+	<div align="center">
+<form th:action="@{/attendance}" method="get">
+<select th:name="student">
+<option th:each="student : ${studentList}"
+th:value=" '${student.firstName}'+ '${student.lastName}' "
+th:text="${student.LastName}">
+</option>
+</select>
+	 
+<button type="submit">Submit</button>
+</form>
+</div>
+	
+	
+	</div>
+	
+</body>
+</html>
