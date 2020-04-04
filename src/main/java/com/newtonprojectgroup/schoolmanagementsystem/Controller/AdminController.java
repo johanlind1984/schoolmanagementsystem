@@ -55,13 +55,12 @@ public class AdminController {
     }
 
     @RequestMapping("/accountrequests")
-    public String administratorStartView(Model theModel, Principal userdetails) {
+    public String administratorStartView(Model theModel, Principal principal) {
 
         // såhär hämtar man användarens information, Principal i parametern på metoden är en Spring klass som autowire
         // med den inloggade användaren. Principal har en metod .getName() som är användarnmanet, via det kan man
         // sedan hämta användarinformationen via en repository,
-
-        Admin admin = repositoryAdmin.findById(userdetails.getName()).orElse(null);
+        Admin admin = repositoryAdmin.findById(principal.getName()).orElse(null);
 
 
         accountRequestList = repositoryAccountRequests.findAll();

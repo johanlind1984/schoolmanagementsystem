@@ -37,7 +37,6 @@ To create a user with username admin and password admin in table credentials use
 INSERT INTO credentials (username, password, permission, enabled) VALUES ('admin', '$2a$10$cohOOhg76WuBC7EwwOegje8jH0Tqs6ERFWaOKxuolo9TLQ8YRlCJ2', 'ROLE_ADMIN', '1');
 //****
 
-
 CREATE TABLE `grade` (
   `idgrade` int(11) NOT NULL,
   `score` varchar(45) DEFAULT NULL,
@@ -82,6 +81,16 @@ CREATE TABLE `student` (
   `student_semester` int(11) DEFAULT NULL,
   PRIMARY KEY (`idstudent`),
   CONSTRAINT `idstudent` FOREIGN KEY (`idstudent`) REFERENCES `credentials` (`username`)
+);
+
+CREATE TABLE `admin` (
+  `idadmin` varchar(45) NOT NULL,
+  PRIMARY KEY (`idadmin`)
+);
+
+CREATE TABLE `staff` (
+  `idstaff` varchar(45) NOT NULL,
+  PRIMARY KEY (`idstaff`)
 );
 
 CREATE TABLE `student_grade` (

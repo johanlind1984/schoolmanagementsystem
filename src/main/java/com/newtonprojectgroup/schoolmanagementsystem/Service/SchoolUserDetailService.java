@@ -22,6 +22,4 @@ public class SchoolUserDetailService implements UserDetailsService {
         Optional<Credentials> user = repositoryCredentials.findByUserName(userName);
         return user.map(SchoolUserDetails::new).get();
     }
-
-
 }
