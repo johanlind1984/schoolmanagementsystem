@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Controller
-public class staffController {
+@RequestMapping("/staff")
+public class StaffController {
 
     private Person person;
     public Credentials credentials;
@@ -27,11 +28,12 @@ public class staffController {
     @Autowired
     private iRepositoryProgram repositoryProgram;
 
-    public staffController() {
+    public StaffController() {
     }
 
-    @RequestMapping("/staffview")
+    @RequestMapping("/")
     public String staffView(Model theModel) {
+
 
         List<Program> programs = repositoryProgram.findAll();
         theModel.addAttribute("programs", programs);
@@ -50,6 +52,7 @@ public class staffController {
         theModel.addAttribute("programs", programs);
         theModel.addAttribute("chosenProgram", program);
         theModel.addAttribute("studentList", studentList);
+
         theModel.addAttribute("Person", person);
 
         return "faculty-view";

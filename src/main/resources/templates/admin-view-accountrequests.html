@@ -29,22 +29,25 @@
     </div>
         <table align="center" width="75%" height="125">
             <tr>
-                <form action="/adminstartview" method="post">
-                    <td><button type="submit">Account Requests</button></td>
-                </form>
+                <div align="center">
+                    <table align="center" width="75%" height="125">
+                        <tr>
+                            <form action="/admin/accountrequests" method="post">
+                                <td><button type="submit">Account Requests</button></td>
+                            </form>
 
-                <form action="/assignstudents" method="post">
-                <td><button type="submit">Assign Students to Program</button></td>
-                </form>
+                            <form action="/admin/assignstudents" method="post">
+                                <td><button type="submit">Assign Students to Program</button></td>
+                            </form>
 
-                <form action="/programcourse" method="post">
-                    <td><button type="submit">Assign Students to Program</button></td>
-                </form>
+                            <form action="/admin/programcourse" method="post">
+                                <td><button type="submit">Add / Remove courses from Program</button></td>
+                            </form>
 
-                <form action="/removeperson" method="post">
-                    <td><button type="submit">Remove Person</button></td>
-                </form>
-            </tr>
+                            <form action="/admin/removeperson" method="post">
+                                <td><button type="submit">Remove Person</button></td>
+                            </form>
+                        </tr>
         </table>
     </div>
     <br><br><br><br>
@@ -70,13 +73,13 @@
         <br>
         <td><span th:text="'Title: ' + ${request.personType.personTypeTitle}"></span></td>
 
-        <form th:action="@{/manageaccess}">
+        <form th:action="@{/admin/manageaccess}">
             <select th:name="permission">
-                <option value="0">Deny Access</option>
-                <option value="1">Approve as Student</option>
-                <option value="2">Approve as Teacher</option>
-                <option value="3">Approve as Faculty</option>
-                <option value="4">Approve as Administrator</option>
+                <option value="DENIED">Deny Access</option>
+                <option value="ROLE_STUDENT">Approve as Student</option>
+                <option value="ROLE_TEACHER">Approve as Teacher</option>
+                <option value="ROLE_STAFF">Approve as Faculty</option>
+                <option value="ROLE_ADMIN">Approve as Administrator</option>
             </select>
             <button type="submit" th:name="username" th:value="${request.userName}">Save</button>
         </form>

@@ -1,0 +1,2 @@
+INSERT INTO credentials (username, password, permission, enabled) VALUES('adminuser001', 'adminuser001', '4', '1');
+INSERT INTO credentials (username, password, permission, enabled) VALUES('student001', 'student001', '1', '1');
