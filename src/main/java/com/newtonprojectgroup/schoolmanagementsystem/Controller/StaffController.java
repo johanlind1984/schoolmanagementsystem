@@ -7,17 +7,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class staffController {
+@RequestMapping("/staff")
+public class StaffController {
 
     private Person person;
     public Credentials credentials;
 
-    public staffController() {
+    public StaffController() {
     }
 
-    @RequestMapping("/staffview")
+    @RequestMapping("/")
     public String staffView(Model theModel) {
-
 
         theModel.addAttribute("Person", person);
         return "faculty-view";

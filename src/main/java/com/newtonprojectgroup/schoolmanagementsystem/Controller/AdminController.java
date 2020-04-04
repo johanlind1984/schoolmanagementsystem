@@ -3,17 +3,20 @@ package com.newtonprojectgroup.schoolmanagementsystem.Controller;
 import com.newtonprojectgroup.schoolmanagementsystem.Entity.*;
 import com.newtonprojectgroup.schoolmanagementsystem.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class adminController {
+@RequestMapping("/admin")
+public class AdminController {
 
     @Autowired
     private iRepositoryCourse repositoryCourse;
@@ -22,7 +25,13 @@ public class adminController {
     private iRepositoryStudent repositoryStudent;
 
     @Autowired
+    private iRepositoryStaff repositoryStaff;
+
+    @Autowired
     private iRepositoryPerson repositoryPerson;
+
+    @Autowired
+    private iRepositoryAdmin repositoryAdmin;
 
     @Autowired
     private iRepositoryProgram  repositoryProgram;
@@ -33,25 +42,35 @@ public class adminController {
     @Autowired
     private iRepositoryAccountRequests repositoryAccountRequests;
 
+    @Autowired
+    private UserDetailsService userDetailService;
+
     private List<AccountRequest> accountRequestList;
     private List<Student> studentList;
 
 
+    @RequestMapping("/")
+    public ModelAndView goToStartView() {
+        return new ModelAndView("redirect:/admin/accountrequests");
+    }
 
-    @RequestMapping("/adminstartview")
-    public String administratorStartView(Model theModel) {
+    @RequestMapping("/accountrequests")
+    public String administratorStartView(Model theModel, Principal userdetails) {
+
+        // såhär hämtar man användarens information, Principal i parametern på metoden är en Spring klass som autowire
+        // med den inloggade användaren. Principal har en metod .getName() som är användarnmanet, via det kan man
+        // sedan hämta användarinformationen via en repository,
+
+        Admin admin = repositoryAdmin.findById(userdetails.getName()).orElse(null);
+
+
+        accountRequestList = repositoryAccountRequests.findAll();
 
         theModel.addAttribute("courseList", repositoryCourse.findAll());
         theModel.addAttribute("studentList", repositoryStudent.findAll());
         theModel.addAttribute("programList", repositoryProgram.findAll());
         theModel.addAttribute("credential", new Credentials());
-
-        accountRequestList = repositoryAccountRequests.findAll();
         theModel.addAttribute("accountRequestsList", accountRequestList);
-
-        for (AccountRequest accountRequest: accountRequestList) {
-            System.out.println(accountRequest.getEmail());
-        }
 
         return "admin-view-accountrequests";
     }
@@ -59,10 +78,10 @@ public class adminController {
     // This method could possibly have ModelAndView returntype instead.
     @RequestMapping("/manageaccess")
     public String setPendingAccountAccess(
-            @RequestParam( value = "permission", required = true) int permission,
+            @RequestParam( value = "permission", required = true) String permission,
             @RequestParam( value = "username") String userName, Model theModel) {
 
-        if(permission == 0) {
+        if(permission.equals("DENIED")) {
             System.out.println("Deleting student from queue: " + userName);
             repositoryAccountRequests.deleteById(userName);
         } else {
@@ -70,7 +89,6 @@ public class adminController {
             saveAccountRequestAsCredential(requestToSave, permission);
             savePersonAsCorrectPersonType(requestToSave, permission);
             repositoryAccountRequests.deleteById(userName);
-
         }
 
         accountRequestList = repositoryAccountRequests.findAll();
@@ -108,7 +126,8 @@ public class adminController {
         student.setEnlistedProgram(repositoryProgram.findById(programId).orElse(null));
         student.setSemester(1);
         repositoryStudent.save(student);
-        return new ModelAndView("redirect:/assignstudents");
+
+        return new ModelAndView("redirect:/admin/assignstudents");
     }
 
     @RequestMapping("/programcourse")
@@ -144,12 +163,13 @@ public class adminController {
 
         repositoryProgram.save(program);
 
-        return new ModelAndView("redirect:/programcourse");
+        return new ModelAndView("redirect:/admin/programcourse");
     }
 
     @RequestMapping("/removeperson")
     public String removePersonFromSystem(Model theModel) {
         theModel.addAttribute("personList", repositoryPerson.findAll());
+
         return "admin-remove-person";
     }
 
@@ -166,10 +186,10 @@ public class adminController {
         return new ModelAndView("redirect:/removeperson");
     }
 
-    private void savePersonAsCorrectPersonType(AccountRequest requestToSave, int permission) {
+    private void savePersonAsCorrectPersonType(AccountRequest requestToSave, String permission) {
 
         switch (permission) {
-            case 1:
+            case "ROLE_STUDENT":
                 Student student = new Student();
                 student.setPersonId(requestToSave.getUserName());
                 student.setFirstName(requestToSave.getFirstName());
@@ -180,6 +200,28 @@ public class adminController {
                 student.setPersonType(requestToSave.getPersonType());
                 repositoryStudent.save(student);
                 break;
+
+            case "ROLE_STAFF":
+                Staff staff = new Staff();
+                staff.setPersonId(requestToSave.getUserName());
+                staff.setFirstName(requestToSave.getFirstName());
+                staff.setLastName(requestToSave.getLastName());
+                staff.setAdress(requestToSave.getAdress());
+                staff.setEmail(requestToSave.getEmail());
+                staff.setPersonalNumber(requestToSave.getPersonalNumber());
+                staff.setPersonType(requestToSave.getPersonType());
+                repositoryStaff.save(staff);
+
+            case "ROLE_ADMIN":
+                Admin admin = new Admin();
+                admin.setPersonId(requestToSave.getUserName());
+                admin.setFirstName(requestToSave.getFirstName());
+                admin.setLastName(requestToSave.getLastName());
+                admin.setAdress(requestToSave.getAdress());
+                admin.setEmail(requestToSave.getEmail());
+                admin.setPersonalNumber(requestToSave.getPersonalNumber());
+                admin.setPersonType(requestToSave.getPersonType());
+
             default:
                 // add case for each personType and add the person to the suiting table as I've done with student.
                 break;
@@ -187,11 +229,12 @@ public class adminController {
 
     }
 
-    private void saveAccountRequestAsCredential(AccountRequest requestToSave, int permission) {
+    private void saveAccountRequestAsCredential(AccountRequest requestToSave, String permission) {
         Credentials newCredentials = new Credentials();
         newCredentials.setUserName(requestToSave.getUserName());
         newCredentials.setPassword(requestToSave.getPassword());
         newCredentials.setUserPermission(permission);
+        newCredentials.setEnabled(true);
         repositoryCredentials.save(newCredentials);
 
     }

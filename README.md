@@ -3,7 +3,20 @@
 
 CREATE DATABASE WITH THE FOLLOWNING STATEMENTS
 
-CREATE DATABASE `student_hms` ;
+CREATE DATABASE `student_hms`;
+
+CREATE TABLE `account_requests` (
+  `person_username` varchar(45) NOT NULL,
+  `person_password` varchar(250) NOT NULL,
+  `person_type_id` int(11) DEFAULT NULL,
+  `first_name` varchar(45) DEFAULT NULL,
+  `last_name` varchar(45) DEFAULT NULL,
+  `personal_number` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `adress` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`person_username`)
+);
+
 
 CREATE TABLE `course` (
   `idcourse` int(11) NOT NULL,
@@ -13,10 +26,17 @@ CREATE TABLE `course` (
 
 CREATE TABLE `credentials` (
   `username` varchar(45) NOT NULL,
-  `password` varchar(45) DEFAULT NULL,
-  `permission` int(11) DEFAULT NULL,
+  `password` varchar(250) DEFAULT NULL,
+  `permission` varchar(45) DEFAULT NULL,
+  `enabled` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`username`)
 );
+
+//****
+To create a user with username admin and password admin in table credentials use statement: 
+INSERT INTO credentials (username, password, permission, enabled) VALUES ('admin', '$2a$10$cohOOhg76WuBC7EwwOegje8jH0Tqs6ERFWaOKxuolo9TLQ8YRlCJ2', 'ROLE_ADMIN', '1');
+//****
+
 
 CREATE TABLE `grade` (
   `idgrade` int(11) NOT NULL,
