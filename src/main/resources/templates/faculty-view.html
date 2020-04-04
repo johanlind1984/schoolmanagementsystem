@@ -72,7 +72,7 @@
 <h3 align="center">Välj program och se tillhörande elever</h3>
 
 <div align="center">
-    <form th:action="@{/chosenprogram}" method="get">
+    <form th:action="@{/staff/chosenprogram}" method="get">
         <select th:name="program">
             <option th:each="program : ${programs}"
                     th:value="${program.programId}"
@@ -104,7 +104,7 @@
 <h2 align="center">Din information</h2>
 <br>
 
-<form class="form-inline" th:action="/staffview" method="get">
+<form class="form-inline" action="/staff" method="get">
     <p align="center"><label for="fname">Namn</label>
         <input type="text" id="fname" name="fname" th:value="${Person.firstName}"></p><br>
 

@@ -1,17 +1,16 @@
 package com.newtonprojectgroup.schoolmanagementsystem.Controller;
 
-import com.newtonprojectgroup.schoolmanagementsystem.Entity.Credentials;
-import com.newtonprojectgroup.schoolmanagementsystem.Entity.Person;
-import com.newtonprojectgroup.schoolmanagementsystem.Entity.Program;
-import com.newtonprojectgroup.schoolmanagementsystem.Entity.Student;
+import com.newtonprojectgroup.schoolmanagementsystem.Entity.*;
+import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryPerson;
 import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryProgram;
-import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryStudent;
+import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryStaff;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -23,7 +22,10 @@ public class StaffController {
     private List<Program> programList;
 
     @Autowired
-    private iRepositoryStudent repositoryStudent;
+    private iRepositoryPerson repositoryPerson;
+
+    @Autowired
+    private iRepositoryStaff repositoryStaff;
 
     @Autowired
     private iRepositoryProgram repositoryProgram;
@@ -32,27 +34,30 @@ public class StaffController {
     }
 
     @RequestMapping("/")
-    public String staffView(Model theModel) {
+    public String staffView(Principal principal, Model theModel) {
 
 
         List<Program> programs = repositoryProgram.findAll();
+        Person person = repositoryPerson.findById(principal.getName()).orElse(null);
+
         theModel.addAttribute("programs", programs);
         theModel.addAttribute("Person", person);
+
 
         return "faculty-view";
     }
 
-
-    //Skapa en knapp för att visa studenter i ett program
     @RequestMapping("/chosenprogram")
-    public String chosenProgram(@RequestParam("program") int chosenProgramId, Model theModel) {
+    public String chosenProgram(@RequestParam("program") int chosenProgramId, Principal principal, Model theModel) {
+
+        Person person = repositoryPerson.findById(principal.getName()).orElse(null);
         List<Program> programs = repositoryProgram.findAll();
         Program program = repositoryProgram.findById(chosenProgramId).orElse(null);
         List<Student> studentList = program.getStudentList();
+
         theModel.addAttribute("programs", programs);
         theModel.addAttribute("chosenProgram", program);
         theModel.addAttribute("studentList", studentList);
-
         theModel.addAttribute("Person", person);
 
         return "faculty-view";
