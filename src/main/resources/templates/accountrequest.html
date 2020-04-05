@@ -1,62 +1,68 @@
 <!DOCTYPE HTML>
 
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="sv">
 
 <head>
 	<!-- Meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+	
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+	
 </head>
 <body>
 
 <div>
 	<h1 align="center">Registreringsformulär</h1>
-		<form action="/new" method="POST" th:object="${accountrequest}">
-
+		<form action="/register/save" method="POST" th:object="${accountrequest}">
+			
 			<div class="container" align="center">
 				<label for=userName>Användarnamn:</label><br>
 				<input type="text" th:field="${accountrequest.userName}" required><br>
-
+				<div th:errors= "*{userName}">Error message</div>
+				
 				<label for=password>Lösenord, minst 6 tecken</label><br>
 				<input type="password" th:field="${accountrequest.password}" minlength="6" required><br>
-
+				
 				<label for=firstName>Förnamn:</label><br>
 				<input type="text" th:field="${accountrequest.firstName}" required><br>
-
+				
 				<label for=lastName>Efternamn:</label><br>
 				<input type="text" th:field="${accountrequest.lastName}" required><br>
-
+				
 				<label for=personalNumber>Personnummer:</label><br>
 				<input type="text" th:field="${accountrequest.personalNumber}" required=><br>
-
+				
 				<label for=email>Epost</label><br>
 				<input type="text" th:field="${accountrequest.email}" required=><br>
-
+				
 				<label for=adress>Adress</label><br>
 				<input type="text" th:field="${accountrequest.adress}"><br><br>
-
+		
 				<select class="form-control" th:field="${accountrequest.personType}" id="dropOperator" required="required">
 					<option value="0">Välj behörighet</option>
 					<option	th:each="personType:${allPersonTypes}"
 							th:value="${personType.personTypeId}"
 							th:text="${personType.personTypeTitle}">
 							</option>
-</div>
-		</select><br><br>
-
-		<button type="submit">Lägg till</button><button type="reset">Rensa</button>
-
-
+				</select><br><br>
+				<button type="submit">Lägg till</button><button type="reset">Rensa</button>
 			</div>
-		</form>
+		</form>	
+</div>
+				
+		
 
+				
+		
+		
+		
+		
+	
 
-
+	
 
 </body>
 </html>
