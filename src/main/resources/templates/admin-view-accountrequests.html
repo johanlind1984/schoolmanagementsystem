@@ -16,6 +16,17 @@
 <body>
     <h1 align="center">Pending account Requests</h1>
     <div align="center">
+    <table align="center" width="75%" height="125">
+        <tr>
+            <form th:action="@{/menuchoice}" method="post">
+                <td><button type="submit" th:name="menuchoice" th:value="accountrequests">Account Requests</button></td>
+                <td><button type="submit" th:name="menuchoice" th:value="studentprogram">Assign Students to Program</button></td>
+                <td><button type="submit" th:name="menuchoice" th:value="deleteusers">Delete Users</button></td>
+                <td><button type="submit" th:name="menuchoice" th:value="userdetails">My Details</button></td>
+            </form>
+        </tr>
+    </table>
+    </div>
         <table align="center" width="75%" height="125">
             <tr>
                 <div align="center">
@@ -41,6 +52,7 @@
     </div>
 
     <br><br><br><br>
+
 
     <h3 align="center">
     <td>
