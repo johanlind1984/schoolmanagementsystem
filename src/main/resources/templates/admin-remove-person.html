@@ -14,28 +14,28 @@
     <!-- //web font -->
 </head>
 <body>
-    <h1 align="center">Pending account Requests</h1>
+    <h1 align="center">Radera person</h1>
     <div align="center">
         <table align="center" width="75%" height="125">
             <tr>
                 <form action="/admin/accountrequests" method="post">
-                    <td><button type="submit">Account Requests</button></td>
+                    <td><button type="submit">Hantera kontoförfrågningar</button></td>
                 </form>
 
                 <form action="/admin/assignstudents" method="post">
-                    <td><button type="submit">Assign Students to Program</button></td>
+                    <td><button type="submit">Registrera studenter på program</button></td>
                 </form>
 
                 <form action="/admin/programcourse" method="post">
-                    <td><button type="submit">Add / Remove courses from Program</button></td>
+                    <td><button type="submit">Lägg till / ta bort kurser från program</button></td>
                 </form>
 
                 <form action="/admin/removeperson" method="post">
-                    <td><button type="submit">Remove Person</button></td>
+                    <td><button type="submit">Radera person</button></td>
                 </form>
 
                 <form action="/logout" method="post">
-                    <td><button type="submit">Logout</button></td>
+                    <td><button type="submit">Logga ut</button></td>
                 </form>
             </tr>
         </table>
@@ -61,7 +61,7 @@
         <td><span th:text="'Title: ' + ${request.personType.personTypeTitle}"></span></td>
 
         <form th:action="@{/admin/removethisperson}">
-            <button type="submit" th:name="username" th:value="${request.personId}">Remove</button>
+            <button type="submit" th:name="username" th:value="${request.personId}">Radera</button>
         </form>
         <br><br>
     </tr>
