@@ -109,11 +109,11 @@
     <form class="form-1" th:action="@{/staff/chosenprogram}" method="get">
         <label>
             <select name="program" id="program" multiple="multiple">
-
-                <option th:each="program: ${programs}"
+                <option value="1" selected="selected"
+                        th:each="program: ${programs}"
                         th:value="${program.programId}"
-                        th:text="${program.programName}"
-                        th:selected="selected">
+                        th:text="${program.programName}">
+
                 </option>
             </select>
         </label>
@@ -154,7 +154,7 @@
            th:value="${Person.lastName}">
 
     <label for="personalNumber">Personnummer</label>
-    <input type="text" id="personalNumber" readonly name="personalNumber"
+    <input style="background-color: grey" type="text" id="personalNumber" readonly name="personalNumber"
            th:value="${Person.personalNumber}">
 
     <label for="adress">Adress</label>
@@ -166,7 +166,7 @@
            th:value="${Person.email}">
 
     <label for="personType">Sysselsättning</label>
-    <input id="personType" name="personType" readonly
+    <input style="background-color: grey" id="personType" name="personType" readonly
            th:value="${Person.personType.personTypeTitle}">
 
     <button type="submit" value="Edit">Spara information</button>

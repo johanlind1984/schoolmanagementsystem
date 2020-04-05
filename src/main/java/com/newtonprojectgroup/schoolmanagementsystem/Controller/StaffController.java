@@ -78,7 +78,7 @@ public class StaffController {
 
     @RequestMapping("/chosenprogram")
     public String chosenProgram(Principal principal, Model theModel,
-            @RequestParam("program") int chosenProgramId) {
+            @RequestParam(value = "program") int chosenProgramId) {
 
         Person person = repositoryPerson.findById(principal.getName()).orElse(null);
         List<Program> programs = repositoryProgram.findAll();
