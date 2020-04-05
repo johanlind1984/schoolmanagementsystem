@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Edit Teacher</title>
+</head>
+<body>
+	<div align="center">
+		<h1>Edit Teacher</h1>
+		<br />
+		<form action="#" th:action="@{/save}" th:object="${teacher}"
+			method="post">
+
+			<table border="0" cellpadding="10">
+				<tr>				
+					<td>Namn:</td>
+					<td>
+						<input type="text" th:field="*{firstName}"  />
+					</td>
+				</tr>			
+				<tr>				
+					<td>Efternamn:</td>
+					<td>
+						<input type="text" th:field="*{lastName}" />
+					</td>
+				</tr>
+				<tr>
+					<td>Personnummer:</td>
+					<td><input type="text" th:field="*{personalNumber}" /></td>
+				</tr>
+				<tr>
+					<td>Email:</td>
+					<td><input type="text" th:field="*{email}" /></td>
+				</tr>
+				<tr>
+					<td>Adress:</td>
+					<td><input type="text" th:field="*{adress}" /></td>
+				</tr>								
+				<tr>
+					<td colspan="2"><button type="submit">Save</button> </td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>
