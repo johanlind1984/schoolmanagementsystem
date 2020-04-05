@@ -1,4 +1,4 @@
-/*package com.newtonprojectgroup.schoolmanagementsystem.Controller;
+package com.newtonprojectgroup.schoolmanagementsystem.Controller;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
@@ -16,4 +16,4 @@ public class errorController implements ErrorController {
 	    public String getErrorPath() {
 	        return "/error";
 	    }
-}*/
+}
