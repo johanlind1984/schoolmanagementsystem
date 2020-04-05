@@ -16,38 +16,24 @@
 <body>
     <h1 align="center">Pending account Requests</h1>
     <div align="center">
-    <table align="center" width="75%" height="125">
-        <tr>
-            <form th:action="@{/menuchoice}" method="post">
-                <td><button type="submit" th:name="menuchoice" th:value="accountrequests">Account Requests</button></td>
-                <td><button type="submit" th:name="menuchoice" th:value="studentprogram">Assign Students to Program</button></td>
-                <td><button type="submit" th:name="menuchoice" th:value="deleteusers">Delete Users</button></td>
-                <td><button type="submit" th:name="menuchoice" th:value="userdetails">My Details</button></td>
-            </form>
-        </tr>
-    </table>
-    </div>
         <table align="center" width="75%" height="125">
             <tr>
-                <div align="center">
-                    <table align="center" width="75%" height="125">
-                        <tr>
-                            <form action="/admin/accountrequests" method="post">
-                                <td><button type="submit">Account Requests</button></td>
-                            </form>
+                <form action="/admin/accountrequests" method="post">
+                    <td><button type="submit">Account Requests</button></td>
+                </form>
 
-                            <form action="/admin/assignstudents" method="post">
-                                <td><button type="submit">Assign Students to Program</button></td>
-                            </form>
+                <form action="/admin/assignstudents" method="post">
+                    <td><button type="submit">Assign Students to Program</button></td>
+                </form>
 
-                            <form action="/admin/programcourse" method="post">
-                                <td><button type="submit">Add / Remove courses from Program</button></td>
-                            </form>
+                <form action="/admin/programcourse" method="post">
+                    <td><button type="submit">Add / Remove courses from Program</button></td>
+                </form>
 
-                            <form action="/admin/removeperson" method="post">
-                                <td><button type="submit">Remove Person</button></td>
-                            </form>
-                        </tr>
+                <form action="/admin/removeperson" method="post">
+                    <td><button type="submit">Remove Person</button></td>
+                </form>
+            </tr>
         </table>
     </div>
 
