@@ -53,7 +53,7 @@ public class NewRegistrationController {
 		if (credRepo.findById(accountRequest.getUserName()).orElse(null) !=  null || 
 				accReqRepo.findById(accountRequest.getUserName()).orElse(null) != null) {
 			System.out.println("Användarnamn upptaget");
-//			
+		
 			List<PersonType>personTypeList=persTypeRepo.findAll();
 			
 			model.addAttribute("accountrequest", accountRequest);
@@ -69,66 +69,9 @@ public class NewRegistrationController {
 			
 		}
 		return "welcome-new-account";
-//		Credentials credentials = credRepo.findById(accountRequest.getUserName()).orElse(null); 		 		
-//		if (credentials.getUserName().equals(accountRequest.getUserName())) { 
-//			
-//			
-//			
-//			List<PersonType>personTypeList=persTypeRepo.findAll();
-//			
-//			
-//			
-//			model.addAttribute("accountrequest", accountRequest);
-//			model.addAttribute("allPersonTypes", personTypeList);
-//			
-//		
-//			return "accountRequest";
-//		}else {
-//			CharSequence seq = java.nio.CharBuffer.wrap(accountRequest.getPassword());
-//			accountRequest.setPassword(passwordEncoder.encode(seq).toCharArray());
-//			
-//			
-//			accReqRepo.save(accountRequest);
-//			
-//		}
-//		return "welcome-new-account";
-
-		
 	
-}
-//	@PostMapping ("/save")
-//	public String createAccountRequest(@ModelAttribute("accountrequest") AccountRequest accountRequest, Model model) {
-//
-//		CharSequence seq = java.nio.CharBuffer.wrap(accountRequest.getPassword());
-//		accountRequest.setPassword(passwordEncoder.encode(seq).toCharArray());
-//		
-//		
-//		accReqRepo.save(accountRequest);
-//		return "redirect:/newAccount";
-//	
-//}
-//	@PostMapping ("/save")
-//	public String saveAccountRequest (@ModelAttribute("accountrequest") @Valid AccountRequest accountRequest, BindingResult bindingResult) {
-//		new SaveAccountRequestValidator().validate (accountRequest, bindingResult);
-//			if(bindingResult.hasErrors()) {
-//				return "accountrequest";
-//			}else {
-//			CharSequence seq = java.nio.CharBuffer.wrap(accountRequest.getPassword());
-//			accountRequest.setPassword(passwordEncoder.encode(seq).toCharArray());
-//			accReqRepo.save(accountRequest);
-//		}
-//		return "welcome-new-account";
-//	}
-//	
 	
 	
 	
-//	@GetMapping("/newAccount")
-	
-//	public String displayWelcomeNewAccount(Model model) {
-//		return"welcome-new-account";
-//	}
-	
-	
-	
+}
 }
