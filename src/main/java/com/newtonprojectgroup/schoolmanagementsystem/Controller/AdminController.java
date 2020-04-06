@@ -177,12 +177,14 @@ public class AdminController {
 
         if(userName != null) {
             Person personToRemove = repositoryPerson.findById(userName).orElse(null);
+            Credentials credentialsToRemove = repositoryCredentials.findById(userName).orElse(null);
             if(personToRemove != null) {
                 repositoryPerson.delete(personToRemove);
+                repositoryCredentials.delete(credentialsToRemove);
             }
         }
 
-        return new ModelAndView("redirect:/removeperson");
+        return new ModelAndView("redirect:/admin/removeperson");
     }
 
     private void savePersonAsCorrectPersonType(AccountRequest requestToSave, String permission) {
