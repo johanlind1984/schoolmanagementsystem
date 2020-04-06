@@ -1,12 +1,10 @@
 package com.newtonprojectgroup.schoolmanagementsystem.Controller;
 
-import com.newtonprojectgroup.schoolmanagementsystem.Entity.Credentials;
 import com.newtonprojectgroup.schoolmanagementsystem.Entity.Person;
 import com.newtonprojectgroup.schoolmanagementsystem.Entity.Program;
 import com.newtonprojectgroup.schoolmanagementsystem.Entity.Student;
 import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryPerson;
 import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryProgram;
-import com.newtonprojectgroup.schoolmanagementsystem.Repository.iRepositoryStaff;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,20 +20,11 @@ import java.util.List;
 @RequestMapping("/staff")
 public class StaffController {
 
-    private Person person;
-    public Credentials credentials;
-    private List<Program> programList;
-
     @Autowired
     private iRepositoryPerson repositoryPerson;
 
     @Autowired
-    private iRepositoryStaff repositoryStaff;
-
-    @Autowired
     private iRepositoryProgram repositoryProgram;
-
-    private Principal principal;
 
     public StaffController() {
     }
@@ -53,8 +42,6 @@ public class StaffController {
 
         return "faculty-view";
     }
-
-
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ModelAndView updateInformation(Principal principal,
@@ -76,7 +63,6 @@ public class StaffController {
         return new ModelAndView("redirect:/staff/");
     }
 
-
     @RequestMapping("/chosenprogram")
     public String chosenProgram(Principal principal, Model theModel,
             @RequestParam(value = "program") int chosenProgramId) {
@@ -94,14 +80,5 @@ public class StaffController {
         theModel.addAttribute("Person", person);
 
         return "faculty-view";
-    }
-
-    public void setUser(Person person) {
-        this.person = person;
-    }
-
-    public void setCredentials(Credentials credentials) {
-        this.credentials = credentials;
-
     }
 }
