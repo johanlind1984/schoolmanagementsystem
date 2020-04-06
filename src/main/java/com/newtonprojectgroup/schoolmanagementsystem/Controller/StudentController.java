@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,24 +44,32 @@ public class StudentController {
 		return "student-view";
 		
 	}
-	//Tillägg efter merge. Stefan har gjort update
-//	@RequestMapping(value = "/update", method = RequestMethod.POST)
-//    public ModelAndView updateInformation(Principal principal,
-//            @RequestParam("firstName") String firstName,
-//            @RequestParam("lastName") String lastName,
-//            @RequestParam("adress") String adress,
-//            @RequestParam("email") String email) {
-//
-//        Person personFromDB = personRepo.findById(principal.getName()).orElse(null);
-//        assert personFromDB != null;
-//        personFromDB.setFirstName(firstName);
-//        personFromDB.setLastName(lastName);
-//        personFromDB.setAdress(adress);
-//        personFromDB.setEmail(email);
-//
-//        personRepo.save(personFromDB);
-//
-//        return new ModelAndView("redirect:/student/");
-//    }
+	
+	@GetMapping ("/student-update")
+	public String showUpdateInformation (Model model, Principal principal) {
+		Person person=personRepo.findById(principal.getName()).orElse(null);
+		model.addAttribute("person", person);
+		return "student-update";
+	}
+	
+	@PostMapping ("/student-update")
+	public String updateInformationStudent(Model model, Principal principal,
+			@RequestParam("firstName") String firstName,
+            @RequestParam("lastName") String lastName,
+            @RequestParam("adress") String adress,
+            @RequestParam("email") String email) {
+		Person personFromDB = personRepo.findById(principal.getName()).orElse(null);
+        assert personFromDB != null;
+        personFromDB.setFirstName(firstName);
+        personFromDB.setLastName(lastName);
+        personFromDB.setAdress(adress);
+        personFromDB.setEmail(email);
+
+        personRepo.save(personFromDB);
+
+        return "redirect:/student";
+		
+	}
+	
 	
 }
