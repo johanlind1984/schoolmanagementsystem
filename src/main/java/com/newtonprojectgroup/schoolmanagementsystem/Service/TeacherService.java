@@ -14,12 +14,16 @@ public class TeacherService {
 	@Autowired
 	private iRepositoryTeacher repoTeacher;
 	
-	public List<Teacher> listAll() {
+	/*public List<Teacher> listAll() {
 		return repoTeacher.findAll();
-	}
+	}*/
 	
 	public Teacher get(String idteacher) {
 		return repoTeacher.findById(idteacher).get();
+	}
+	
+	public void save(Teacher teacher) {
+		repoTeacher.save(teacher);
 	}
 	
 	

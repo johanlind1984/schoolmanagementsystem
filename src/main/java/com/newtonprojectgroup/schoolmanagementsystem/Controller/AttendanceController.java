@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -38,8 +37,8 @@ public class AttendanceController {
 		Student existingStudent = new Student();
 		existingStudent = repostudent.findById(studentId).orElse(null);
 		existingStudent.setCount(existingStudent.getCount()+1);
-		 repostudent.save(existingStudent);
-		 System.out.println("updatecount");
+		repostudent.save(existingStudent);
+				 
 		 return new ModelAndView("redirect:/attendance");
 	}
 	
