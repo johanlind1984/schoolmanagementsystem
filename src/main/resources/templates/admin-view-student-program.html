@@ -14,24 +14,28 @@
     <!-- //web font -->
 </head>
 <body>
-    <h1 align="center">Assign Students to Program</h1>
+    <h1 align="center">Registrera student på på program</h1>
     <div align="center">
         <table align="center" width="75%" height="125">
             <tr>
                 <form action="/admin/accountrequests" method="post">
-                    <td><button type="submit">Account Requests</button></td>
+                    <td><button type="submit">Hantera kontoförfrågningar</button></td>
                 </form>
 
                 <form action="/admin/assignstudents" method="post">
-                    <td><button type="submit">Assign Students to Program</button></td>
+                    <td><button type="submit">Registrera studenter på program</button></td>
                 </form>
 
                 <form action="/admin/programcourse" method="post">
-                    <td><button type="submit">Add / Remove courses from Program</button></td>
+                    <td><button type="submit">Lägg till / ta bort kurser från program</button></td>
                 </form>
 
                 <form action="/admin/removeperson" method="post">
-                    <td><button type="submit">Remove Person</button></td>
+                    <td><button type="submit">Radera person</button></td>
+                </form>
+
+                <form action="/logout" method="post">
+                    <td><button type="submit">Logga ut</button></td>
                 </form>
             </tr>
         </table>
@@ -40,7 +44,7 @@
 
     <h3 align="center">
     <td>
-        <span th:if="${unassignedStudents.isEmpty()}">There are no students unassigned to a program at this time</span>
+        <span th:if="${unassignedStudents.isEmpty()}">Det finns inga studenter utan program just nu...</span>
     </td>
 
     <tr th:each="unassignedStudent : ${unassignedStudents}" align="center">
@@ -62,7 +66,7 @@
                 <option th:each="program : ${programList}" th:value="${program.programId}" th:text="${program.programName}">
                 </option>
             </select>
-            <button type="submit" th:name="username" th:value="${unassignedStudent.personId}">Save</button>
+            <button type="submit" th:name="username" th:value="${unassignedStudent.personId}">Spara</button>
         </form>
         </div>
         <br><br>
