@@ -21,7 +21,7 @@
 			<div class="container" align="center">
 				<label for=userName>Användarnamn:</label><br>
 				<input type="text" th:field="${accountrequest.userName}" required><br>
-				<div th:errors= "*{userName}">Error message</div>
+				
 				
 				<label for=password>Lösenord, minst 6 tecken</label><br>
 				<input type="password" th:field="${accountrequest.password}" minlength="6" required><br>
