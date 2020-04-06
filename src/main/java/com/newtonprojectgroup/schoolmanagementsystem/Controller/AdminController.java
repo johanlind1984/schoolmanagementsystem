@@ -43,6 +43,9 @@ public class AdminController {
     private iRepositoryAccountRequests repositoryAccountRequests;
 
     @Autowired
+    private iRepositoryTeacher repositoryTeacher;
+
+    @Autowired
     private UserDetailsService userDetailService;
 
     private List<AccountRequest> accountRequestList;
@@ -222,6 +225,18 @@ public class AdminController {
                 admin.setEmail(requestToSave.getEmail());
                 admin.setPersonalNumber(requestToSave.getPersonalNumber());
                 admin.setPersonType(requestToSave.getPersonType());
+                repositoryAdmin.save(admin);
+
+            case "ROLE_TEACHER":
+                Teacher teacher = new Teacher();
+                teacher.setPersonId(requestToSave.getUserName());
+                teacher.setFirstName(requestToSave.getFirstName());
+                teacher.setLastName(requestToSave.getLastName());
+                teacher.setAdress(requestToSave.getAdress());
+                teacher.setEmail(requestToSave.getEmail());
+                teacher.setPersonalNumber(requestToSave.getPersonalNumber());
+                teacher.setPersonType(requestToSave.getPersonType());
+                repositoryTeacher.save(teacher);
 
             default:
                 // add case for each personType and add the person to the suiting table as I've done with student.
