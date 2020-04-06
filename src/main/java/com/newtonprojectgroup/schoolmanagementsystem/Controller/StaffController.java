@@ -64,6 +64,7 @@ public class StaffController {
             @RequestParam("email") String email) {
 
         Person personFromDB = repositoryPerson.findById(principal.getName()).orElse(null);
+
         assert personFromDB != null;
         personFromDB.setFirstName(firstName);
         personFromDB.setLastName(lastName);
@@ -94,25 +95,6 @@ public class StaffController {
 
         return "faculty-view";
     }
-
-//    @RequestMapping("/staffview")
-//    public String chosenProgram(
-//            @RequestParam( value = "chosen", required = true) int chosen, Model theModel) {
-//
-//        if(chosen == 0) {
-//            System.out.println(chosen);
-//            List<Student> students = repositoryProgram.findById(chosen).orElse(null).getStudentList();
-//
-//            programList = repositoryProgram.findAll();
-//            List<Program> programs = repositoryProgram.findAll();
-//
-//            theModel.addAttribute("programs", programs);
-//            theModel.addAttribute("students", students);
-//            System.out.println(chosen);
-//        }
-//
-//        return "faculty-view";
-//    }
 
     public void setUser(Person person) {
         this.person = person;
