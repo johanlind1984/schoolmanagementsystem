@@ -59,6 +59,8 @@ public class NewRegistrationController {
 			model.addAttribute("accountrequest", accountRequest);
 			model.addAttribute("allPersonTypes", personTypeList);
 			
+			
+			
 			return "accountRequest";
 			
 		}else {

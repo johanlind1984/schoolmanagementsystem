@@ -57,7 +57,7 @@
 		</table>
 	</div>
 	
-	<div class="container">
+	<div class="container" align="center">
 	
 		<h3>Min information</h3>
 		<table class="table table-bordered table-striped">
@@ -74,16 +74,17 @@
 			<td class="title">Epost</td>
 			<td th:text="${person.email}"></td>
 		</tr>
+		
 
 		</thead>
 		
 		</table>
-		<!-- Add new Change button -->
-		<a th:href="@{/update}"
-			class="btn btn-primary btn-sm mb-3">
-			Ändra informationen
-			</a>
-	</div>
+		
+		
+		
+			<p><a th:href="@{/student-update}" href="student-update.html">Klicka här</a> för att ändra informationen</p>
+</div>
+	
 
 </body>
 

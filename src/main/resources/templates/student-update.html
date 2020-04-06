@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="sv">
+
+<head>
+	<!-- Meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	
+	
+</head>
+
+<body>
+
+	<h2 align="center">Uppdatera informationen</h2>
+
+
+	<form class="form" action="#" th:action="@{/student-update}" th:object="${person}" method="POST">
+		<div class="container" align="center">
+
+		<label for="firstName">Förnamn</label>
+    		<input type="text" id="firstName" name="firstName"
+            		th:value="${person.firstName}"><br>
+
+    	<label for="lastName">Efternamn</label>
+    		<input type="text" id="lastName" name="lastName"
+           			th:value="${person.lastName}"><br>
+
+    	<label for="adress">Adress</label>
+    		<input type="text" id="adress" name="adress"
+           			th:value="${person.adress}"><br>
+
+    	<label for="email">Epostadress</label>
+   		 	<input type="text" id="email" name="email"
+          			th:value="${person.email}"><br><br>
+
+    	<button type="submit" value="Edit">Spara information</button>
+    	
+    	<p><a th:href="@{/student}" href="student-view.html">Åter till din sida</a> </p>
+		</div>
+	</form>
+
+</body>
+</html>
