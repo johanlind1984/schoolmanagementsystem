@@ -34,8 +34,8 @@ public class AttendanceController {
 @GetMapping("/submit")
 	public ModelAndView updateCount(@RequestParam("student") String studentId, Model model) {
 		
-		Student existingStudent = new Student();
-		existingStudent = repostudent.findById(studentId).orElse(null);
+		
+		Student existingStudent = repostudent.findById(studentId).orElse(null);
 		existingStudent.setCount(existingStudent.getCount()+1);
 		repostudent.save(existingStudent);
 				 

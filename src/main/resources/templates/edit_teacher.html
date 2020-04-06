@@ -28,24 +28,35 @@
 	<div align="center"><br/>
 	<h1>Ändra Information</h1></br></br>
 	
-	<form action="#" th:action="@{/edit}"  method="post">
-		<label>Namn: </label>
-		<input type="text" th:field="*{teacher.firstName}"/><br/><br/>
-		
-		<label>Efternamn: </label>
-		<input type="text" th:field="*{teacher.lastName}"/><br/><br/>
-		
-		<label>Personnummer: </label>
-		<input type="text" th:field="*{teacher.personalNumber}"/><br/><br/>
-		
-		<label>Mejl adress: </label>
-		<input type="text" th:field="*{teacher.email}"/><br/><br/>
-		
-		<label>Adress: </label>
-		<input type="text" th:field="*{teacher.adress}"/><br/><br/>
-		
-		<button type="submit">Spara</button>
-	</form>
+	<form  action="#" th:action="@{/teacher/save}" th:object="${person}" method="POST">
+
+    <label for="firstName">Namn : </label>
+    <input type="text" id="firstName" name="firstName"
+           th:value="${Person.firstName}"><br/>
+
+    <label for="lastName">Efternamn :</label>
+    <input type="text" id="lastName" name="lastName"
+           th:value="${Person.lastName}"><br/>
+
+    <label for="personalNumber">Personnummer :</label>
+    <input style="background-color: #aaada9" type="text" id="personalNumber" readonly name="personalNumber"
+           th:value="${Person.personalNumber}"><br/>
+
+    <label for="adress">Adress :</label>
+    <input type="text" id="adress" name="adress"
+           th:value="${Person.adress}"><br/>
+
+    <label for="email">Epostadress :</label>
+    <input align="20%" type="text" id="email" name="email"
+           th:value="${Person.email}"><br/>
+
+    <label for="personType">Sysselsättning :</label>
+    <input style="background-color: #aaada9" type="text" id="personType"  readonly name="personType" 
+           th:value="${Person.personType.personTypeTitle}"><br/>
+
+    <button type="submit" value="Edit">Spara information</button>
+
+</form>
 	</div>
 </body>
 </html>

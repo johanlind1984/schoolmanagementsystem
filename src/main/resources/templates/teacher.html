@@ -161,8 +161,24 @@
         <span>Mejl Adress:</span><span th:text="${Person.email}"></span><br/><br/>
         <span>Adress:</span><span th:text="${Person.adress}"></span><br/><br/><br/><br/>
 
-        <a href="@{/edit}">Ändra Personliga Information</a>
+        <a href="/teacher/edit">Ändra Personliga Information</a>
     </div>
+    
+    <div align="center">
+    <form action="/attendance" method="get" class="btn">
+        <td>
+            <button type="submit">Frånvaro</button>
+        </td>
+    </form>
+</div>
+    
+    <div align="center">
+    <form action="/logout" method="post" class="btn">
+        <td>
+            <button type="submit">Logga ut</button>
+        </td>
+    </form>
+</div>
 </div>
 
 </body>

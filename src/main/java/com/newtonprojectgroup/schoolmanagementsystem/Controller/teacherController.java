@@ -50,23 +50,13 @@ public class teacherController {
 		model.addAttribute("programs", programs);
 		model.addAttribute("Person", person);
 
-
-
-
 		return "teacher";
 	}
 	
-	/*@RequestMapping("/edit/{idteacher}") 	
-	public ModelAndView editTeacher(@PathVariable(name = "idteacher") String idteacher) {
-		ModelAndView mav = new ModelAndView("edit_teacher"); 		
-		Teacher teacher = service.get(idteacher); 		
-		mav.addObject("teacher", teacher);
-		return mav; 	
-		}*/
-
+	
 	@GetMapping("/edit")
 	public String editTeacher(Principal principal, Model model) {
-		System.out.println("submit");
+		
 		Person person = repoperson.findById(principal.getName()).orElse(null);
 		model.addAttribute("Person", person);
 		
@@ -74,13 +64,26 @@ public class teacherController {
 	}
 	
 
+	 @RequestMapping(value = "/save", method = RequestMethod.POST)
+	    public ModelAndView updateInformation(Principal principal,
+	            @RequestParam("firstName") String firstName,
+	            @RequestParam("lastName") String lastName,
+	            @RequestParam("adress") String adress,
+	            @RequestParam("email") String email) {
 
-@RequestMapping(value = "/submit", method = RequestMethod.POST)
-public String saveTeacher(@ModelAttribute("teacher") Teacher teacher) {
-	service.save(teacher);
-	
-	return "redirect:/teacher";
-}
+	        Person personFromDB = repoperson.findById(principal.getName()).orElse(null);
+
+	        assert personFromDB != null;
+	        personFromDB.setFirstName(firstName);
+	        personFromDB.setLastName(lastName);
+	        personFromDB.setAdress(adress);
+	        personFromDB.setEmail(email);
+
+	        repoperson.save(personFromDB);
+
+	        return new ModelAndView("redirect:/teacher/");
+	    }
+
 
 
 		
