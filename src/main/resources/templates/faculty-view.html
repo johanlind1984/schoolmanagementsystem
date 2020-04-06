@@ -50,7 +50,7 @@
             color: white;
         }
         .program button:hover {
-            background-color: royalblue;
+            background-color: #1888e1;
         }
         .form-1 label {
             size: 50px;
@@ -94,7 +94,7 @@
         }
 
         .form button:hover {
-            background-color: royalblue;
+            background-color: #1888e1;
         }
     </style>
 
@@ -154,7 +154,7 @@
            th:value="${Person.lastName}">
 
     <label for="personalNumber">Personnummer</label>
-    <input style="background-color: grey" type="text" id="personalNumber" readonly name="personalNumber"
+    <input style="background-color: #aaada9" type="text" id="personalNumber" readonly name="personalNumber"
            th:value="${Person.personalNumber}">
 
     <label for="adress">Adress</label>
@@ -166,7 +166,7 @@
            th:value="${Person.email}">
 
     <label for="personType">Sysselsättning</label>
-    <input style="background-color: grey" id="personType" name="personType" readonly
+    <input style="background-color: #aaada9" id="personType" name="personType" readonly
            th:value="${Person.personType.personTypeTitle}">
 
     <button type="submit" value="Edit">Spara information</button>
