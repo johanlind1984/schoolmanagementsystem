@@ -153,6 +153,7 @@
     <br>
     <div align="center">
         <br/>
+        
         <h1>Lärare Information</h1><br/><br/>
         <span>Namn:</span><span th:text="${Person.firstName}"></span><br/><br/>
         <span>Efternamn:</span><span th:text="${Person.lastName}"></span><br/><br/>
@@ -160,7 +161,7 @@
         <span>Mejl Adress:</span><span th:text="${Person.email}"></span><br/><br/>
         <span>Adress:</span><span th:text="${Person.adress}"></span><br/><br/><br/><br/>
 
-        <button type="submit">Ändra Personliga Uppgifter</button>
+        <a href="@{/edit}">Ändra Personliga Information</a>
     </div>
 </div>
 

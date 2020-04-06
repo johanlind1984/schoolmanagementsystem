@@ -28,24 +28,24 @@
 	<div align="center"><br/>
 	<h1>Ändra Information</h1></br></br>
 	
-	
-	<label>Namn: </label>
-	<input type="text" th:field="*{teacher.firstName}"/><br/><br/>
-	
-	<label>Efternamn: </label>
-	<input type="text" th:field="*{teacher.lastName}"/><br/><br/>
-	
-	<label>Personnummer: </label>
-	<input type="text" th:field="*{teacher.personalNumber}"/><br/><br/>
-	
-	<label>Mejl adress: </label>
-	<input type="text" th:field="*{teacher.email}"/><br/><br/>
-	
-	<label>Adress: </label>
-	<input type="text" th:field="*{teacher.adress}"/><br/><br/>
-	
-	<button type="submit">Spara</button>
-	
+	<form action="#" th:action="@{/edit}"  method="post">
+		<label>Namn: </label>
+		<input type="text" th:field="*{teacher.firstName}"/><br/><br/>
+		
+		<label>Efternamn: </label>
+		<input type="text" th:field="*{teacher.lastName}"/><br/><br/>
+		
+		<label>Personnummer: </label>
+		<input type="text" th:field="*{teacher.personalNumber}"/><br/><br/>
+		
+		<label>Mejl adress: </label>
+		<input type="text" th:field="*{teacher.email}"/><br/><br/>
+		
+		<label>Adress: </label>
+		<input type="text" th:field="*{teacher.adress}"/><br/><br/>
+		
+		<button type="submit">Spara</button>
+	</form>
 	</div>
 </body>
 </html>
