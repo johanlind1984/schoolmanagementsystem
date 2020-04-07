@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Ändra Information</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
 <style type ="text/css">
 	label{
 			display: inline-block;
@@ -10,6 +12,9 @@
 			margin: 5px;
 			text-align:left;
 	}
+    .body {
+        background-color: #aaada9;
+    }
 	button{
 		margin: 10px;
 		padding: 10px;
@@ -24,11 +29,11 @@
 	
 </style>
 </head>
-<body>
+<body class="body">
 	<div align="center"><br/>
 	<h1>Ändra Information</h1></br></br>
 	
-	<form  action="#" th:action="@{/teacher/save}" th:object="${person}" method="POST">
+	<form action="#" th:action="@{/teacher/save}" th:object="${person}" method="POST">
 
     <label for="firstName">Namn : </label>
     <input type="text" id="firstName" name="firstName"

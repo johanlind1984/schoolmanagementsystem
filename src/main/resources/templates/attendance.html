@@ -4,24 +4,42 @@
     <meta charset="UTF-8">
 
     <style>
+        .form button {
+            padding-bottom: 2px;
+            height: 23px;
+            width: auto;
+            background-color: #4169E1;
+            cursor: pointer;
+            font-size: 16px;
+
+            border-color: #fff;
+            color: white;
+        }
+        .form button hover {
+            background-color: #e13f36;
+        }
+
         .btn button {
             padding: 5px;
             margin-top: 5px;
             width: 140px;
             background-color: #e1202f;
             cursor: pointer;
-            font-size: 20px;
+            font-size: 16px;
             border-color: #fff;
             color: white;
         }
-
         .btn button hover {
             background-color: #e13f36;
+        }
+        .body {
+            background-color: #aaada9;
+        }
     </style>
     <title>Attendance</title>
 
 </head>
-<body>
+<body class="body">
 
 <div align="center">
     <br/><br/><br/>
@@ -29,7 +47,7 @@
     <br/><br/>
 
     <div align="center">
-        <form th:action="@{/submit}" method="get">
+        <form class="form" th:action="@{/submit}" method="get">
             <select th:name="student">
                 <option th:each="student : ${studentList}"
                         th:value="${student.personId}"
@@ -39,7 +57,7 @@
             <button class="btn" type="submit">Submit</button>
         </form>
     </div>
-    <div align="center"><br/><br/><br/>
+    <div class="btn" align="center"><br/><br/><br/>
         <form action="/teacher/" method="get">
             <td>
                 <button type="submit">Tillbaka till lärare</button>
