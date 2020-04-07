@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <title>School of AJJST</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <style>
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+    <style type="text/css">
     h2 {
     font-size: 33px;
     font-family: inherit;
@@ -50,7 +51,7 @@
     width: 140px;
     background-color: #e1202f;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 16px;
     border-color: #fff;
     color: white;
     }
@@ -95,7 +96,7 @@
     width: 207px;
     background-color: #4169E1;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 16px;
 
     border-color: #fff;
     color: white;
@@ -107,8 +108,8 @@
     </style>
 
 </head>
-<body>
-    <h1 align="center">Pending account Requests</h1>
+<body class="body">
+    <h1 align="center">Kontoförfrågningar</h1>
     <div align="center">
         <table align="center" width="75%" height="125">
             <tr class="form">
@@ -158,7 +159,7 @@
         <br>
         <td><span th:text="'Title: ' + ${request.personType.personTypeTitle}"></span></td>
 
-        <form th:action="@{/admin/manageaccess}">
+        <form class="form" th:action="@{/admin/manageaccess}">
             <select th:name="permission">
                 <option value="DENIED">Neka tillgång</option>
                 <option value="ROLE_STUDENT">Godkänn som Student</option>

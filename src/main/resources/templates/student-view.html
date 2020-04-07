@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="sv">
+
+<head>
+	<!-- Meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	
+</head>
+
+<body>
+	<h2 align="center">Välkommen</h2>
+	
+	<div class="container">
+		<h3>Mina resultat</h3>
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>Mina kurser </th>
+					<th>Mina resultat</th>
+				</tr>
+		
+			</thead>
+		<tbody>
+			<tr th:each="grade:${student.studentGrades}">
+				<td th:text="${grade.course.courseName}"/>
+				<td th:text="${grade.grade.score}"/>
+			</tr>
+		</tbody>
+		
+		</table>
+	</div>
+	<div class="container">
+	
+		<h3>Min frånvaro</h3>
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>Mitt program </th>
+					<th>Min frånvaro</th>
+				</tr>
+		
+			</thead>
+		<tbody>
+			<tr>
+				<td th:text="${student.enlistedProgram.programName}"/>
+				<td th:text="${student.count}"/>
+				
+			</tr>
+		</tbody>
+		
+		</table>
+	</div>
+	
+	<div class="container" align="center">
+	
+		<h3>Min information</h3>
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+		<tr>
+			<td class="title">Namn</td>
+			<td th:text="${person.firstName+ ' ' + person.lastName}"></td>
+		</tr>
+		<tr>
+			<td class="title">Adress</td>
+			<td th:text="${person.adress}"></td>
+		</tr>
+		<tr>
+			<td class="title">Epost</td>
+			<td th:text="${person.email}"></td>
+		</tr>
+		
+
+		</thead>
+		
+		</table>
+		
+		
+		
+			<p><a th:href="@{/student-update}" href="student-update.html">Klicka här</a> för att ändra informationen</p>
+</div>
+	
+
+</body>
+
+</html>
