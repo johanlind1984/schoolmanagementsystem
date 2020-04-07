@@ -1,47 +1,62 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-<meta charset="utf-8" />
-<title>Edit Teacher</title>
+<meta charset="UTF-8">
+<title>Ändra Information</title>
+<style type ="text/css">
+	label{
+			display: inline-block;
+			width: 200px;
+			margin: 5px;
+			text-align:left;
+	}
+	button{
+		margin: 10px;
+		padding: 10px;
+	}
+	input[type=text], input[type=password], select{
+		display: inline-block;
+		width: 200px;
+	}
+	input[type=checkbox]{
+		margin-right: 190px; 
+	}
+	
+</style>
 </head>
 <body>
-	<div align="center">
-		<h1>Edit Teacher</h1>
-		<br />
-		<form action="#" th:action="@{/save}" th:object="${teacher}"
-			method="post">
+	<div align="center"><br/>
+	<h1>Ändra Information</h1></br></br>
+	
+	<form  action="#" th:action="@{/teacher/save}" th:object="${person}" method="POST">
 
-			<table border="0" cellpadding="10">
-				<tr>				
-					<td>Namn:</td>
-					<td>
-						<input type="text" th:field="*{firstName}"  />
-					</td>
-				</tr>			
-				<tr>				
-					<td>Efternamn:</td>
-					<td>
-						<input type="text" th:field="*{lastName}" />
-					</td>
-				</tr>
-				<tr>
-					<td>Personnummer:</td>
-					<td><input type="text" th:field="*{personalNumber}" /></td>
-				</tr>
-				<tr>
-					<td>Email:</td>
-					<td><input type="text" th:field="*{email}" /></td>
-				</tr>
-				<tr>
-					<td>Adress:</td>
-					<td><input type="text" th:field="*{adress}" /></td>
-				</tr>								
-				<tr>
-					<td colspan="2"><button type="submit">Save</button> </td>
-				</tr>
-			</table>
-		</form>
+    <label for="firstName">Namn : </label>
+    <input type="text" id="firstName" name="firstName"
+           th:value="${Person.firstName}"><br/>
+
+    <label for="lastName">Efternamn :</label>
+    <input type="text" id="lastName" name="lastName"
+           th:value="${Person.lastName}"><br/>
+
+    <label for="personalNumber">Personnummer :</label>
+    <input style="background-color: #aaada9" type="text" id="personalNumber" readonly name="personalNumber"
+           th:value="${Person.personalNumber}"><br/>
+
+    <label for="adress">Adress :</label>
+    <input type="text" id="adress" name="adress"
+           th:value="${Person.adress}"><br/>
+
+    <label for="email">Epostadress :</label>
+    <input align="20%" type="text" id="email" name="email"
+           th:value="${Person.email}"><br/>
+
+    <label for="personType">Sysselsättning :</label>
+    <input style="background-color: #aaada9" type="text" id="personType"  readonly name="personType" 
+           th:value="${Person.personType.personTypeTitle}"><br/>
+
+    <button type="submit" value="Edit">Spara information</button>
+
+</form>
 	</div>
 </body>
 </html>

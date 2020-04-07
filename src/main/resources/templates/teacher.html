@@ -1,37 +1,185 @@
 <!DOCTYPE html>
-<html lang="sv" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-<meta charset="ISO-8859-1">
-<title>Teacher</title>
+    <meta charset="UTF-8">
+    <title>Teacher</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <style>
+        span{
+            align-content: center;
+            display: inline-block;
+            width: 200px;
+            text-align: left;
+        }
+        h2 {
+            font-size: 33px;
+            font-family: inherit;
+            color: black;
+        }
+
+        h3 {
+            font-size: 23px;
+            font-family: inherit;
+            color: black;
+        }
+
+        .table-body-font-size {
+            font-size: 17px;
+        }
+
+        .table-head-font-size {
+            font-size: 19px;
+        }
+
+        .program button {
+            padding: 5px;
+            margin-top: 5px;
+            width: 140px;
+            background-color: #4169E1;
+            cursor: pointer;
+            font-size: 20px;
+            border-color: #fff;
+            color: white;
+        }
+
+        .program button:hover {
+            background-color: #1888e1;
+        }
+
+        .btn button {
+            padding: 5px;
+            margin-top: 5px;
+            width: 140px;
+            background-color: #e1202f;
+            cursor: pointer;
+            font-size: 20px;
+            border-color: #fff;
+            color: white;
+        }
+        .btn button hover {
+            background-color: #e13f36;
+        }
+
+        .form-1 label {
+            size: 50px;
+            font-size: 20px;
+            padding-bottom: 10px;
+            padding-top: 10px;
+        }
+
+        .form {
+            margin: 0 auto;
+            width: 210px;
+        }
+
+        .form label {
+            font-size: 19px;
+            font-weight: bold;
+            padding-top: 9px;
+            padding-bottom: 2px;
+            display: inline-block;
+            text-align: right;
+            float: left;
+        }
+
+        .form input {
+            font-size: 14px;
+            size: 155px;
+            width: 207px;
+            display: inline-block;
+            text-align: left;
+            float: right;
+        }
+
+        .form button {
+            padding: 5px;
+            margin-top: 5px;
+            width: 207px;
+            background-color: #4169E1;
+            cursor: pointer;
+            font-size: 20px;
+
+            border-color: #fff;
+            color: white;
+        }
+
+        .form button:hover {
+            background-color: #1888e1;
+        }
+    </style>
 </head>
 <body>
 
 <div align="center">
-    <h1>L�rare Profil Information</h1>
-    
+    <h1>Inloggad: Lärare</h1>
+
     <br/><br/>
-    <table border="1" cellpadding="10">
-        <thead>
-            <tr>
-                
-                <th>Namn</th>
-                <th>Efternamn</th>
-                <th>Personnummer</th>
-                <th>Email</th>
-                <th>Adress</th>
+    <h3 align="center">Välj program och se tillhörande elever</h3>
+    <div align="center">
+        <form class="form-1" th:action="@{/teacher/chosenprogram}" method="get">
+            <label>
+                <select name="program" id="program" multiple="multiple">
+                    <option value="1" selected="selected"
+                            th:each="program: ${programs}"
+                            th:value="${program.programId}"
+                            th:text="${program.programName}">
+
+                    </option>
+                </select>
+            </label>
+            <p align="center" class="program">
+                <button type="submit">Välj program</button>
+            </p>
+        </form>
+    </div>
+
+    <div align="center">
+        <table>
+            <tr class="table-head-font-size">
+                <th style="font-weight: bold">Föramn</th>
+                <th style="font-weight: bold">Efternamn</th>
+                <th style="font-weight: bold">Email</th>
             </tr>
-        </thead>
-        <tbody>
-            
-            	<td th:text="${teacher.firstName}">Namn</td>
-                <td th:text="${teacher.lastName}">Efternamn</td>
-                <td th:text="${teacher.personalNumber}">Personnummer</td>
-                <td th:text="${teacher.email}"> Email</td>
-                <td th:text="${teacher.adress}">Adress</td>
-               
-            
-        </tbody>
-    </table>
-   </div>
+            <h3 th:text="${programTitle}"></h3>
+            <tr class="table-body-font-size" th:each="student: ${studentList}">
+                <td width="25%" align="center" th:text="${student.firstName}">Default firstname</td>
+                <td width="25%" align="center" th:text="${student.lastName}">Default lastname</td>
+                <td width="25%" align="center" th:text="${student.email}">Default email</td>
+
+            </tr>
+        </table>
+    </div>
+    <br>
+    <div align="center">
+        <br/>
+        
+        <h1>Lärare Information</h1><br/><br/>
+        <span>Namn:</span><span th:text="${Person.firstName}"></span><br/><br/>
+        <span>Efternamn:</span><span th:text="${Person.lastName}"></span><br/><br/>
+        <span>Personnummer:</span><span th:text="${Person.personalNumber}"></span><br/><br/>
+        <span>Mejl Adress:</span><span th:text="${Person.email}"></span><br/><br/>
+        <span>Adress:</span><span th:text="${Person.adress}"></span><br/><br/><br/><br/>
+
+        <a href="/teacher/edit">Ändra Personliga Information</a>
+    </div>
+    
+    <div align="center">
+    <form action="/attendance" method="get" class="btn">
+        <td>
+            <button type="submit">Frånvaro</button>
+        </td>
+    </form>
+</div>
+    
+    <div align="center">
+    <form action="/logout" method="post" class="btn">
+        <td>
+            <button type="submit">Logga ut</button>
+        </td>
+    </form>
+</div>
+</div>
+
 </body>
 </html>

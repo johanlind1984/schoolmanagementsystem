@@ -126,7 +126,9 @@ public class AdminController {
 
         Student student = (Student) repositoryPerson.findById(userName).orElse(null);
         student.setEnlistedProgram(repositoryProgram.findById(programId).orElse(null));
-        student.setSemester(1);
+        student.setSemester(1);        
+	    student.setCount(0);
+	    
         repositoryStudent.save(student);
 
         return new ModelAndView("redirect:/admin/assignstudents");
