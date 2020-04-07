@@ -1,39 +1,53 @@
 <!DOCTYPE html>
-<html lang="sv" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-<meta charset="ISO-8859-1">
-<title>Attendance</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-    <!-- Custom Theme files -->
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <!-- //Custom Theme files -->
-    <!-- web font -->
-    <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
-    <!-- //web font -->
+    <meta charset="UTF-8">
+
+    <style>
+        .btn button {
+            padding: 5px;
+            margin-top: 5px;
+            width: 140px;
+            background-color: #e1202f;
+            cursor: pointer;
+            font-size: 20px;
+            border-color: #fff;
+            color: white;
+        }
+
+        .btn button hover {
+            background-color: #e13f36;
+    </style>
+    <title>Attendance</title>
+
 </head>
 <body>
 
 <div align="center">
-	<h1> Elev Fr�nvaro Lista</h1>
-	<br/><br/>
-	
-<div align="center">
-	<form th:action="@{/submit}" method="get">
-		<select th:name="student">
-			<option th:each="student : ${studentList}"
-				th:value="${student.personId}"
-				th:text="${student.firstName} + ' ' + ${student.lastName}">
-			</option>
-		</select>
-		 
-	<button class="btn" type="submit"  >Submit</button>
-	</form>
+    <br/><br/><br/>
+    <h1> Elev Frånvaro Lista</h1>
+    <br/><br/>
+
+    <div align="center">
+        <form th:action="@{/submit}" method="get">
+            <select th:name="student">
+                <option th:each="student : ${studentList}"
+                        th:value="${student.personId}"
+                        th:text="${student.firstName} + ' ' + ${student.lastName}">
+                </option>
+            </select>
+            <button class="btn" type="submit">Submit</button>
+        </form>
+    </div>
+    <div align="center"><br/><br/><br/>
+        <form action="/teacher/" method="get">
+            <td>
+                <button type="submit">Tillbaka till lärare</button>
+            </td>
+        </form>
+    </div>
+
 </div>
-	
-	
-	</div>
-	
+
 </body>
 </html>

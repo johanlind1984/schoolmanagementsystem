@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
@@ -152,6 +153,7 @@
     <br>
     <div align="center">
         <br/>
+        
         <h1>Lärare Information</h1><br/><br/>
         <span>Namn:</span><span th:text="${Person.firstName}"></span><br/><br/>
         <span>Efternamn:</span><span th:text="${Person.lastName}"></span><br/><br/>
@@ -159,8 +161,25 @@
         <span>Mejl Adress:</span><span th:text="${Person.email}"></span><br/><br/>
         <span>Adress:</span><span th:text="${Person.adress}"></span><br/><br/><br/><br/>
 
-        <button type="submit">Ändra Personliga Uppgifter</button>
+        <a href="/teacher/edit">Ändra Personliga Information</a>
     </div>
+    
+    <div align="center">
+    <form action="/attendance" method="get" class="btn">
+        <td>
+            <button type="submit">Frånvaro</button>
+        </td>
+    </form>
 </div>
+    
+    <div align="center">
+    <form action="/logout" method="post" class="btn">
+        <td>
+            <button type="submit">Logga ut</button>
+        </td>
+    </form>
+</div>
+</div>
+
 </body>
 </html>
