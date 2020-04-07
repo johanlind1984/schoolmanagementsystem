@@ -217,6 +217,7 @@ public class AdminController {
                 staff.setPersonalNumber(requestToSave.getPersonalNumber());
                 staff.setPersonType(requestToSave.getPersonType());
                 repositoryStaff.save(staff);
+                break;
 
             case "ROLE_ADMIN":
                 Admin admin = new Admin();
@@ -228,6 +229,7 @@ public class AdminController {
                 admin.setPersonalNumber(requestToSave.getPersonalNumber());
                 admin.setPersonType(requestToSave.getPersonType());
                 repositoryAdmin.save(admin);
+                break;
 
             case "ROLE_TEACHER":
                 Teacher teacher = new Teacher();
@@ -239,6 +241,7 @@ public class AdminController {
                 teacher.setPersonalNumber(requestToSave.getPersonalNumber());
                 teacher.setPersonType(requestToSave.getPersonType());
                 repositoryTeacher.save(teacher);
+                break;
 
             default:
                 // add case for each personType and add the person to the suiting table as I've done with student.
