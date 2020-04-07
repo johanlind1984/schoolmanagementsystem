@@ -3,12 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <title>School of AJJST</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+    <style type="text/css">
+    h2 {
+    font-size: 33px;
+    font-family: inherit;
+    color: black;
+    }
+
+    h3 {
+    font-size: 23px;
+    font-family: inherit;
+    color: black;
+    }
+
+    .body {
+    background-color: #aaada9;
+    }
+
+    .table-body-font-size {
+    font-size: 17px;
+    }
+
+    .table-head-font-size {
+    font-size: 19px;
+    }
+
+    .program button {
+    padding: 5px;
+    margin-top: 5px;
+    width: 140px;
+    background-color: #4169E1;
+    cursor: pointer;
+    font-size: 20px;
+    border-color: #fff;
+    color: white;
+    }
+
+    .program button:hover {
+    background-color: #1888e1;
+    }
+
+    .btn button {
+    padding: 5px;
+    margin-top: 5px;
+    width: 140px;
+    background-color: #e1202f;
+    cursor: pointer;
+    font-size: 16px;
+    border-color: #fff;
+    color: white;
+    }
+    .btn button hover {
+    background-color: #e13f36;
+    }
+
+    .form-1 label {
+    size: 50px;
+    font-size: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    }
+
+    .form {
+    margin: 0 auto;
+    width: 210px;
+    }
+
+    .form label {
+    font-size: 19px;
+    font-weight: bold;
+    padding-top: 9px;
+    padding-bottom: 2px;
+    display: inline-block;
+    text-align: right;
+    float: left;
+    }
+
+    .form input {
+    font-size: 14px;
+    size: 155px;
+    width: 207px;
+    display: inline-block;
+    text-align: left;
+    float: right;
+    }
+
+    .form button {
+    padding: 5px;
+    margin-top: 5px;
+    width: 207px;
+    background-color: #4169E1;
+    cursor: pointer;
+    font-size: 16px;
+
+    border-color: #fff;
+    color: white;
+    }
+
+    .form button:hover {
+    background-color: #1888e1;
+    }
+    </style>
+
 </head>
-<body>
-    <h1 align="center">Kontoförfrågningar/h1>
+<body class="body">
+    <h1 align="center">Kontoförfrågningar</h1>
     <div align="center">
         <table align="center" width="75%" height="125">
-            <tr>
+            <tr class="form">
                 <form action="/admin/accountrequests" method="post">
                     <td><button type="submit">Hantera kontoförfrågningar</button></td>
                 </form>
@@ -26,7 +130,7 @@
                 </form>
 
                 <form action="/logout" method="post">
-                    <td><button type="submit">Logga ut</button></td>
+                    <td><button class="btn" type="submit">Logga ut</button></td>
                 </form>
             </tr>
         </table>
@@ -40,7 +144,7 @@
         <span th:if="${accountRequestsList.isEmpty()}">Det finns inga kontoförfrågningar för tillfället</span>
     </td>
 
-    <tr th:each="request : ${accountRequestsList}" align="center">
+    <tr class="form" th:each="request : ${accountRequestsList}" align="center">
         <td><span th:text="'Username: ' + ${request.userName}"></span></td>
         <br>
         <td><span th:text="'First Name: ' + ${request.firstName}"></span></td>
@@ -55,7 +159,7 @@
         <br>
         <td><span th:text="'Title: ' + ${request.personType.personTypeTitle}"></span></td>
 
-        <form th:action="@{/admin/manageaccess}">
+        <form class="form" th:action="@{/admin/manageaccess}">
             <select th:name="permission">
                 <option value="DENIED">Neka tillgång</option>
                 <option value="ROLE_STUDENT">Godkänn som Student</option>
@@ -63,7 +167,7 @@
                 <option value="ROLE_STAFF">Godkänn som Faculty</option>
                 <option value="ROLE_ADMIN">Godkänn som Administrator</option>
             </select>
-            <button type="submit" th:name="username" th:value="${request.userName}">Spara</button>
+            <button class="btn" type="submit" th:name="username" th:value="${request.userName}">Spara</button>
         </form>
         <br><br>
     </tr>
