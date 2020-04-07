@@ -24,6 +24,7 @@
             font-family: inherit;
             color: black;
         }
+
         h3 {
             font-size: 23px;
             font-family: inherit;
@@ -33,12 +34,15 @@
         .body {
             background-color: #aaada9;
         }
+
         .table-body-font-size {
             font-size: 17px;
         }
+
         .table-head-font-size {
             font-size: 19px;
         }
+
         .program button {
             padding: 5px;
             margin-top: 5px;
@@ -49,15 +53,32 @@
             border-color: #fff;
             color: white;
         }
+
         .program button:hover {
-            background-color: royalblue;
+            background-color: #1888e1;
         }
+
+        .btn button {
+            padding: 5px;
+            margin-top: 5px;
+            width: 140px;
+            background-color: #e1202f;
+            cursor: pointer;
+            font-size: 20px;
+            border-color: #fff;
+            color: white;
+        }
+        .btn button hover {
+            background-color: #e13f36;
+        }
+
         .form-1 label {
             size: 50px;
             font-size: 20px;
             padding-bottom: 10px;
             padding-top: 10px;
         }
+
         .form {
             margin: 0 auto;
             width: 210px;
@@ -81,6 +102,7 @@
             text-align: left;
             float: right;
         }
+
         .form button {
             padding: 5px;
             margin-top: 5px;
@@ -94,7 +116,7 @@
         }
 
         .form button:hover {
-            background-color: royalblue;
+            background-color: #1888e1;
         }
     </style>
 
@@ -145,16 +167,16 @@
 
 <form class="form" action="#" th:action="@{/staff/update}" th:object="${person}" method="POST">
 
-<label for="firstName">Namn</label>
+    <label for="firstName">Namn</label>
     <input type="text" id="firstName" name="firstName"
-            th:value="${Person.firstName}">
+           th:value="${Person.firstName}">
 
     <label for="lastName">Efternamn</label>
     <input type="text" id="lastName" name="lastName"
            th:value="${Person.lastName}">
 
     <label for="personalNumber">Personnummer</label>
-    <input style="background-color: grey" type="text" id="personalNumber" readonly name="personalNumber"
+    <input style="background-color: #aaada9" type="text" id="personalNumber" readonly name="personalNumber"
            th:value="${Person.personalNumber}">
 
     <label for="adress">Adress</label>
@@ -166,13 +188,19 @@
            th:value="${Person.email}">
 
     <label for="personType">Sysselsättning</label>
-    <input style="background-color: grey" id="personType" name="personType" readonly
+    <input style="background-color: #aaada9" id="personType" name="personType" readonly
            th:value="${Person.personType.personTypeTitle}">
 
     <button type="submit" value="Edit">Spara information</button>
 
 </form>
-
-
+<br><br>
+<div align="center">
+    <form action="/logout" method="post" class="btn">
+        <td>
+            <button type="submit">Logga ut</button>
+        </td>
+    </form>
+</div>
 </body>
 </html>
