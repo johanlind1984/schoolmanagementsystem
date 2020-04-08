@@ -91,6 +91,7 @@ CREATE TABLE `student` (
   `idstudent` varchar(55) NOT NULL,
   `student_program_id` int(11) DEFAULT NULL,
   `student_semester` int(11) DEFAULT NULL,
+  `count` int DEFAULT '0',
   PRIMARY KEY (`idstudent`),
   CONSTRAINT `idstudent` FOREIGN KEY (`idstudent`) REFERENCES `credentials` (`username`)
 );
@@ -114,3 +115,7 @@ CREATE TABLE `student_grade` (
   KEY `grade_idcourse_idx` (`grade_idcourse`)
 );
 
+CREATE TABLE `teacher` (
+  `idteacher` varchar(45) NOT NULL,
+  PRIMARY KEY (`idteacher`)
+);
