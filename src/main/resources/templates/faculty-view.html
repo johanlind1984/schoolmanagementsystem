@@ -147,7 +147,7 @@
         <tr class="table-head-font-size">
             <th style="font-weight: bold">Föramn</th>
             <th style="font-weight: bold">Efternamn</th>
-            <th style="font-weight: bold">Email</th>
+            <th style="font-weight: bold">Epostadress</th>
         </tr>
         <h3 th:text="${programTitle}"></h3>
         <tr class="table-body-font-size" th:each="student: ${studentList}">
@@ -180,8 +180,8 @@
     <input type="text" id="adress" name="adress"
            th:value="${Person.adress}">
 
-    <label for="email">Epostadress</label>
-    <input align="20%" type="text" id="email" name="email"
+    <label for="epostadress">Epostadress</label>
+    <input align="20%" type="text" id="epostadress" name="email"
            th:value="${Person.email}">
 
     <label for="personType">Sysselsättning</label>
